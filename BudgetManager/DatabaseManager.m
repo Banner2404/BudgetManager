@@ -10,6 +10,8 @@
 
 @implementation DatabaseManager
 
+#pragma mark Static manager
+
 + (DatabaseManager*)sharedManager{
     
     static DatabaseManager* manager = nil;
@@ -22,6 +24,31 @@
     });
     
     return manager;
+}
+
+#pragma mark - Create
+
+- (Wallet*)createWalletWithName:(NSString*) name{
+    
+    Wallet* wallet = [NSEntityDescription insertNewObjectForEntityForName:@"Wallet"
+                                                   inManagedObjectContext:self.managedObjectContext];
+    
+    wallet.name = name;
+    
+    return wallet;
+    
+}
+
+#pragma mark - Get
+
+- (NSArray*)getWallets{
+    
+    NSFetchRequest* request = [NSFetchRequest fetchRequestWithEntityName:@"Wallet"];
+    
+    NSArray* results = [self.managedObjectContext executeFetchRequest:request error:nil];
+    
+    return results;
+    
 }
 
 #pragma mark - Core Data stack

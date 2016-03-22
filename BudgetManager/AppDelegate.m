@@ -11,12 +11,26 @@
 
 @interface AppDelegate ()
 
+@property (strong,nonatomic) DatabaseManager* databaseManager;
+
 @end
 
 @implementation AppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    self.databaseManager = [DatabaseManager sharedManager];
+    
+    //Wallet* wallet = [self.databaseManager createWalletWithName:@"Banner"];
+    
+    //[self.databaseManager saveContext];
+    
+    Wallet* wallet = [[self.databaseManager getWallets] firstObject];
+    
+    NSLog(@"%@",wallet.name);
+    
+    
     
     return YES;
 }

@@ -14,6 +14,7 @@
 		D1AFD1E21CA19B2900E998F0 /* BudgetManager.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D1AFD1E01CA19B2900E998F0 /* BudgetManager.xcdatamodeld */; };
 		D1AFD1E41CA19B2900E998F0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1AFD1E31CA19B2900E998F0 /* Assets.xcassets */; };
 		D1AFD1E71CA19B2900E998F0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1AFD1E51CA19B2900E998F0 /* LaunchScreen.storyboard */; };
+		D1AFD1F01CA1A2B900E998F0 /* DatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AFD1EF1CA1A2B900E998F0 /* DatabaseManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,8 @@
 		D1AFD1E31CA19B2900E998F0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D1AFD1E61CA19B2900E998F0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D1AFD1E81CA19B2900E998F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D1AFD1EE1CA1A2B900E998F0 /* DatabaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseManager.h; sourceTree = "<group>"; };
+		D1AFD1EF1CA1A2B900E998F0 /* DatabaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +63,8 @@
 		D1AFD1D31CA19B2900E998F0 /* BudgetManager */ = {
 			isa = PBXGroup;
 			children = (
+				D1AFD1EE1CA1A2B900E998F0 /* DatabaseManager.h */,
+				D1AFD1EF1CA1A2B900E998F0 /* DatabaseManager.m */,
 				D1AFD1D71CA19B2900E998F0 /* AppDelegate.h */,
 				D1AFD1D81CA19B2900E998F0 /* AppDelegate.m */,
 				D1AFD1DA1CA19B2900E998F0 /* ViewController.h */,
@@ -156,6 +161,7 @@
 				D1AFD1E21CA19B2900E998F0 /* BudgetManager.xcdatamodeld in Sources */,
 				D1AFD1DC1CA19B2900E998F0 /* ViewController.m in Sources */,
 				D1AFD1D91CA19B2900E998F0 /* AppDelegate.m in Sources */,
+				D1AFD1F01CA1A2B900E998F0 /* DatabaseManager.m in Sources */,
 				D1AFD1D61CA19B2900E998F0 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -307,6 +313,7 @@
 				D1AFD1ED1CA19B2900E998F0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

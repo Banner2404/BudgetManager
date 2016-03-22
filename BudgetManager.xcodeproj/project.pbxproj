@@ -15,6 +15,14 @@
 		D1AFD1E41CA19B2900E998F0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1AFD1E31CA19B2900E998F0 /* Assets.xcassets */; };
 		D1AFD1E71CA19B2900E998F0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1AFD1E51CA19B2900E998F0 /* LaunchScreen.storyboard */; };
 		D1AFD1F01CA1A2B900E998F0 /* DatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AFD1EF1CA1A2B900E998F0 /* DatabaseManager.m */; };
+		D1AFD2021CA1A49800E998F0 /* Wallet+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AFD1F31CA1A49800E998F0 /* Wallet+CoreDataProperties.m */; };
+		D1AFD2031CA1A49800E998F0 /* Wallet.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AFD1F51CA1A49800E998F0 /* Wallet.m */; };
+		D1AFD2041CA1A49800E998F0 /* Favourites+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AFD1F71CA1A49800E998F0 /* Favourites+CoreDataProperties.m */; };
+		D1AFD2051CA1A49800E998F0 /* Favourites.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AFD1F91CA1A49800E998F0 /* Favourites.m */; };
+		D1AFD2061CA1A49800E998F0 /* OperationType+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AFD1FB1CA1A49800E998F0 /* OperationType+CoreDataProperties.m */; };
+		D1AFD2071CA1A49800E998F0 /* OperationType.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AFD1FD1CA1A49800E998F0 /* OperationType.m */; };
+		D1AFD2081CA1A49800E998F0 /* Operation+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AFD1FF1CA1A49800E998F0 /* Operation+CoreDataProperties.m */; };
+		D1AFD2091CA1A49800E998F0 /* Operation.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AFD2011CA1A49800E998F0 /* Operation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +39,22 @@
 		D1AFD1E81CA19B2900E998F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D1AFD1EE1CA1A2B900E998F0 /* DatabaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseManager.h; sourceTree = "<group>"; };
 		D1AFD1EF1CA1A2B900E998F0 /* DatabaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseManager.m; sourceTree = "<group>"; };
+		D1AFD1F21CA1A49800E998F0 /* Wallet+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Wallet+CoreDataProperties.h"; sourceTree = "<group>"; };
+		D1AFD1F31CA1A49800E998F0 /* Wallet+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Wallet+CoreDataProperties.m"; sourceTree = "<group>"; };
+		D1AFD1F41CA1A49800E998F0 /* Wallet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Wallet.h; sourceTree = "<group>"; };
+		D1AFD1F51CA1A49800E998F0 /* Wallet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Wallet.m; sourceTree = "<group>"; };
+		D1AFD1F61CA1A49800E998F0 /* Favourites+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Favourites+CoreDataProperties.h"; sourceTree = "<group>"; };
+		D1AFD1F71CA1A49800E998F0 /* Favourites+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Favourites+CoreDataProperties.m"; sourceTree = "<group>"; };
+		D1AFD1F81CA1A49800E998F0 /* Favourites.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Favourites.h; sourceTree = "<group>"; };
+		D1AFD1F91CA1A49800E998F0 /* Favourites.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Favourites.m; sourceTree = "<group>"; };
+		D1AFD1FA1CA1A49800E998F0 /* OperationType+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OperationType+CoreDataProperties.h"; sourceTree = "<group>"; };
+		D1AFD1FB1CA1A49800E998F0 /* OperationType+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "OperationType+CoreDataProperties.m"; sourceTree = "<group>"; };
+		D1AFD1FC1CA1A49800E998F0 /* OperationType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OperationType.h; sourceTree = "<group>"; };
+		D1AFD1FD1CA1A49800E998F0 /* OperationType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OperationType.m; sourceTree = "<group>"; };
+		D1AFD1FE1CA1A49800E998F0 /* Operation+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Operation+CoreDataProperties.h"; sourceTree = "<group>"; };
+		D1AFD1FF1CA1A49800E998F0 /* Operation+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Operation+CoreDataProperties.m"; sourceTree = "<group>"; };
+		D1AFD2001CA1A49800E998F0 /* Operation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Operation.h; sourceTree = "<group>"; };
+		D1AFD2011CA1A49800E998F0 /* Operation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Operation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +115,22 @@
 		D1AFD1F11CA1A3E700E998F0 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D1AFD1F21CA1A49800E998F0 /* Wallet+CoreDataProperties.h */,
+				D1AFD1F31CA1A49800E998F0 /* Wallet+CoreDataProperties.m */,
+				D1AFD1F41CA1A49800E998F0 /* Wallet.h */,
+				D1AFD1F51CA1A49800E998F0 /* Wallet.m */,
+				D1AFD1F61CA1A49800E998F0 /* Favourites+CoreDataProperties.h */,
+				D1AFD1F71CA1A49800E998F0 /* Favourites+CoreDataProperties.m */,
+				D1AFD1F81CA1A49800E998F0 /* Favourites.h */,
+				D1AFD1F91CA1A49800E998F0 /* Favourites.m */,
+				D1AFD1FA1CA1A49800E998F0 /* OperationType+CoreDataProperties.h */,
+				D1AFD1FB1CA1A49800E998F0 /* OperationType+CoreDataProperties.m */,
+				D1AFD1FC1CA1A49800E998F0 /* OperationType.h */,
+				D1AFD1FD1CA1A49800E998F0 /* OperationType.m */,
+				D1AFD1FE1CA1A49800E998F0 /* Operation+CoreDataProperties.h */,
+				D1AFD1FF1CA1A49800E998F0 /* Operation+CoreDataProperties.m */,
+				D1AFD2001CA1A49800E998F0 /* Operation.h */,
+				D1AFD2011CA1A49800E998F0 /* Operation.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -166,9 +206,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1AFD2071CA1A49800E998F0 /* OperationType.m in Sources */,
+				D1AFD2051CA1A49800E998F0 /* Favourites.m in Sources */,
 				D1AFD1E21CA19B2900E998F0 /* BudgetManager.xcdatamodeld in Sources */,
 				D1AFD1DC1CA19B2900E998F0 /* ViewController.m in Sources */,
+				D1AFD2031CA1A49800E998F0 /* Wallet.m in Sources */,
+				D1AFD2091CA1A49800E998F0 /* Operation.m in Sources */,
+				D1AFD2081CA1A49800E998F0 /* Operation+CoreDataProperties.m in Sources */,
+				D1AFD2021CA1A49800E998F0 /* Wallet+CoreDataProperties.m in Sources */,
+				D1AFD2061CA1A49800E998F0 /* OperationType+CoreDataProperties.m in Sources */,
 				D1AFD1D91CA19B2900E998F0 /* AppDelegate.m in Sources */,
+				D1AFD2041CA1A49800E998F0 /* Favourites+CoreDataProperties.m in Sources */,
 				D1AFD1F01CA1A2B900E998F0 /* DatabaseManager.m in Sources */,
 				D1AFD1D61CA19B2900E998F0 /* main.m in Sources */,
 			);

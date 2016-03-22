@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10147" systemVersion="15E65" minimumToolsVersion="Automatic">
-    <entity name="Favourites" syncable="YES">
+    <entity name="Favourites" representedClassName="Favourites" syncable="YES">
         <relationship name="operations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Operation" inverseName="favourite" inverseEntity="Operation" syncable="YES"/>
     </entity>
-    <entity name="Operation" syncable="YES">
+    <entity name="Operation" representedClassName="Operation" syncable="YES">
         <attribute name="cost" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="moneyType" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
@@ -13,11 +13,11 @@
         <relationship name="type" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="OperationType" inverseName="operations" inverseEntity="OperationType" syncable="YES"/>
         <relationship name="wallet" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Wallet" inverseName="operations" inverseEntity="Wallet" syncable="YES"/>
     </entity>
-    <entity name="OperationType" syncable="YES">
+    <entity name="OperationType" representedClassName="OperationType" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="operations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Operation" inverseName="type" inverseEntity="Operation" syncable="YES"/>
     </entity>
-    <entity name="Wallet" syncable="YES">
+    <entity name="Wallet" representedClassName="Wallet" syncable="YES">
         <attribute name="bankMoney" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="cashMoney" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="isSecure" optional="YES" attributeType="Boolean" syncable="YES"/>

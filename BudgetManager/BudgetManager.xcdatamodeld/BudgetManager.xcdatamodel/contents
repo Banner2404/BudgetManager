@@ -1,4 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="Test1.xcdatamodel" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <elements/>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10147" systemVersion="15E65" minimumToolsVersion="Automatic">
+    <entity name="Operation" syncable="YES">
+        <attribute name="cost" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="moneyType" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="operationID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="profitType" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <relationship name="type" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="OperationType" inverseName="operations" inverseEntity="OperationType" syncable="YES"/>
+        <relationship name="wallet" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Wallet" inverseName="operations" inverseEntity="Wallet" syncable="YES"/>
+    </entity>
+    <entity name="OperationType" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="operations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Operation" inverseName="type" inverseEntity="Operation" syncable="YES"/>
+    </entity>
+    <entity name="Wallet" syncable="YES">
+        <attribute name="bankMoney" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="cashMoney" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="isSecure" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="operations" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Operation" inverseName="wallet" inverseEntity="Operation" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Wallet" positionX="-1028" positionY="-16" width="128" height="133"/>
+        <element name="Operation" positionX="-837" positionY="-1" width="128" height="148"/>
+        <element name="OperationType" positionX="-623" positionY="-0" width="128" height="73"/>
+    </elements>
 </model>

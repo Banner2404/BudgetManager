@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		D1AFD1D61CA19B2900E998F0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AFD1D51CA19B2900E998F0 /* main.m */; };
 		D1AFD1D91CA19B2900E998F0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AFD1D81CA19B2900E998F0 /* AppDelegate.m */; };
-		D1AFD1DC1CA19B2900E998F0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AFD1DB1CA19B2900E998F0 /* ViewController.m */; };
 		D1AFD1DF1CA19B2900E998F0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1AFD1DD1CA19B2900E998F0 /* Main.storyboard */; };
 		D1AFD1E21CA19B2900E998F0 /* BudgetManager.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D1AFD1E01CA19B2900E998F0 /* BudgetManager.xcdatamodeld */; };
 		D1AFD1E41CA19B2900E998F0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1AFD1E31CA19B2900E998F0 /* Assets.xcassets */; };
@@ -23,6 +22,7 @@
 		D1AFD2071CA1A49800E998F0 /* OperationType.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AFD1FD1CA1A49800E998F0 /* OperationType.m */; };
 		D1AFD2081CA1A49800E998F0 /* Operation+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AFD1FF1CA1A49800E998F0 /* Operation+CoreDataProperties.m */; };
 		D1AFD2091CA1A49800E998F0 /* Operation.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AFD2011CA1A49800E998F0 /* Operation.m */; };
+		D1AFD20C1CA1ABB000E998F0 /* DatabaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AFD20B1CA1ABB000E998F0 /* DatabaseViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,8 +30,6 @@
 		D1AFD1D51CA19B2900E998F0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D1AFD1D71CA19B2900E998F0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D1AFD1D81CA19B2900E998F0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		D1AFD1DA1CA19B2900E998F0 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		D1AFD1DB1CA19B2900E998F0 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		D1AFD1DE1CA19B2900E998F0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D1AFD1E11CA19B2900E998F0 /* BudgetManager.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BudgetManager.xcdatamodel; sourceTree = "<group>"; };
 		D1AFD1E31CA19B2900E998F0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -55,6 +53,8 @@
 		D1AFD1FF1CA1A49800E998F0 /* Operation+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Operation+CoreDataProperties.m"; sourceTree = "<group>"; };
 		D1AFD2001CA1A49800E998F0 /* Operation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Operation.h; sourceTree = "<group>"; };
 		D1AFD2011CA1A49800E998F0 /* Operation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Operation.m; sourceTree = "<group>"; };
+		D1AFD20A1CA1ABB000E998F0 /* DatabaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseViewController.h; sourceTree = "<group>"; };
+		D1AFD20B1CA1ABB000E998F0 /* DatabaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,10 +90,10 @@
 				D1AFD1F11CA1A3E700E998F0 /* Models */,
 				D1AFD1EE1CA1A2B900E998F0 /* DatabaseManager.h */,
 				D1AFD1EF1CA1A2B900E998F0 /* DatabaseManager.m */,
+				D1AFD20A1CA1ABB000E998F0 /* DatabaseViewController.h */,
+				D1AFD20B1CA1ABB000E998F0 /* DatabaseViewController.m */,
 				D1AFD1D71CA19B2900E998F0 /* AppDelegate.h */,
 				D1AFD1D81CA19B2900E998F0 /* AppDelegate.m */,
-				D1AFD1DA1CA19B2900E998F0 /* ViewController.h */,
-				D1AFD1DB1CA19B2900E998F0 /* ViewController.m */,
 				D1AFD1DD1CA19B2900E998F0 /* Main.storyboard */,
 				D1AFD1E31CA19B2900E998F0 /* Assets.xcassets */,
 				D1AFD1E51CA19B2900E998F0 /* LaunchScreen.storyboard */,
@@ -209,7 +209,6 @@
 				D1AFD2071CA1A49800E998F0 /* OperationType.m in Sources */,
 				D1AFD2051CA1A49800E998F0 /* Favourites.m in Sources */,
 				D1AFD1E21CA19B2900E998F0 /* BudgetManager.xcdatamodeld in Sources */,
-				D1AFD1DC1CA19B2900E998F0 /* ViewController.m in Sources */,
 				D1AFD2031CA1A49800E998F0 /* Wallet.m in Sources */,
 				D1AFD2091CA1A49800E998F0 /* Operation.m in Sources */,
 				D1AFD2081CA1A49800E998F0 /* Operation+CoreDataProperties.m in Sources */,
@@ -217,6 +216,7 @@
 				D1AFD2061CA1A49800E998F0 /* OperationType+CoreDataProperties.m in Sources */,
 				D1AFD1D91CA19B2900E998F0 /* AppDelegate.m in Sources */,
 				D1AFD2041CA1A49800E998F0 /* Favourites+CoreDataProperties.m in Sources */,
+				D1AFD20C1CA1ABB000E998F0 /* DatabaseViewController.m in Sources */,
 				D1AFD1F01CA1A2B900E998F0 /* DatabaseManager.m in Sources */,
 				D1AFD1D61CA19B2900E998F0 /* main.m in Sources */,
 			);

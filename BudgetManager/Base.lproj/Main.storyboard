@@ -70,12 +70,15 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal" title="No wallet"/>
                             <connections>
-                                <segue destination="ivk-vY-Yws" kind="popoverPresentation" popoverAnchorView="20l-18-eXz" id="cDy-DL-UdX">
+                                <segue destination="ivk-vY-Yws" kind="popoverPresentation" identifier="segue" popoverAnchorView="20l-18-eXz" id="cDy-DL-UdX">
                                     <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                 </segue>
                             </connections>
                         </button>
                     </navigationItem>
+                    <connections>
+                        <outlet property="walletButton" destination="20l-18-eXz" id="M8d-XU-ZLB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cKi-tV-hDa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

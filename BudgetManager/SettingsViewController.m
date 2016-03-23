@@ -24,6 +24,7 @@
     
     [self checkSequre];
     
+    NSLog(@"%@", self.walletNameTextField.text);
     
 }
 

@@ -7,9 +7,10 @@
 //
 
 #import "WalletsViewController.h"
+#import "MainViewController.h"
 #import "Wallet.h"
 
-@interface WalletsViewController ()
+@interface WalletsViewController () <UITableViewDelegate>
 
 @end
 
@@ -49,7 +50,7 @@
                                                              initWithFetchRequest:fetchRequest
                                                              managedObjectContext:self.managedObjectContext
                                                                sectionNameKeyPath:nil
-                                                                        cacheName:@"Master"];
+                                                                        cacheName:nil];
     aFetchedResultsController.delegate = self;
     self.fetchedResultsController = aFetchedResultsController;
 
@@ -70,6 +71,23 @@
     
     cell.textLabel.text = wallet.name;
     
+}
+
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    UINavigationController* nav = (UINavigationController*)self.presentingViewController;
+    
+    MainViewController* mainVC = (MainViewController*)nav.topViewController;
+        
+    Wallet* wallet = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    
+    mainVC.selectedWallet = wallet;
+    [mainVC.walletButton setTitle:wallet.name forState:UIControlStateNormal];
+
+
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 

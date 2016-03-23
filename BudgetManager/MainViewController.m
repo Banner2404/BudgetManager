@@ -8,6 +8,7 @@
 
 #import "MainViewController.h"
 #import "SettingsViewController.h"
+#import "Wallet.h"
 
 @interface MainViewController ()
 
@@ -17,7 +18,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
+    if (self.selectedWallet) {
+        
+        [self.walletButton setTitle:self.selectedWallet.name forState:UIControlStateNormal];
+        
+    }else{
+        
+        [self.walletButton setTitle:@"No wallet" forState:UIControlStateNormal];
+        
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning {

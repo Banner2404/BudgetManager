@@ -22,15 +22,16 @@
     
     self.databaseManager = [DatabaseManager sharedManager];
     
-    //Wallet* wallet = [self.databaseManager createWalletWithName:@"Banner"];
+    //Wallet* wallet = [self.databaseManager createWalletWithName:@"Banner2"];
     
     //[self.databaseManager saveContext];
     
-    Wallet* wallet = [[self.databaseManager getWallets] firstObject];
     
-    NSLog(@"%@",wallet.name);
+    //Wallet* wallet = [[self.databaseManager getWallets] firstObject];
     
+    //NSLog(@"%@",wallet.name);
     
+    NSLog(@"Wallets: %ld",[[self.databaseManager getWallets] count]);
     
     return YES;
 }

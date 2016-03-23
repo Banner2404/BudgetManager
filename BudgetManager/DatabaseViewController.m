@@ -7,12 +7,24 @@
 //
 
 #import "DatabaseViewController.h"
+#import "DatabaseManager.h"
 
 @interface DatabaseViewController ()
 
 @end
 
 @implementation DatabaseViewController
+
+- (NSManagedObjectContext*)managedObjectContext{
+    
+    if (_managedObjectContext) {
+        return _managedObjectContext;
+    }else{
+        _managedObjectContext = [[DatabaseManager sharedManager] managedObjectContext];
+        return _managedObjectContext;
+    }
+    
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];

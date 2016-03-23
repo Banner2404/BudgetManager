@@ -21,7 +21,7 @@
             </objects>
             <point key="canvasLocation" x="94" y="377"/>
         </scene>
-        <!--Wallet-->
+        <!--Main View Controller-->
         <scene sceneID="1s0-s2-zJW">
             <objects>
                 <viewController id="eUW-rH-kGX" customClass="MainViewController" sceneMemberID="viewController">
@@ -63,11 +63,51 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Wallet" id="gCZ-l1-A07"/>
+                    <navigationItem key="navigationItem" id="gCZ-l1-A07">
+                        <nil key="title"/>
+                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="20l-18-eXz">
+                            <rect key="frame" x="180" y="7" width="240" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="No wallet"/>
+                            <connections>
+                                <segue destination="ivk-vY-Yws" kind="popoverPresentation" popoverAnchorView="20l-18-eXz" id="cDy-DL-UdX">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
+                            </connections>
+                        </button>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cKi-tV-hDa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="768" y="377"/>
+        </scene>
+        <!--Wallets View Controller-->
+        <scene sceneID="96T-o0-t13">
+            <objects>
+                <tableViewController id="ivk-vY-Yws" customClass="WalletsViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="FVq-TV-kMu">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="2V9-Ce-2JN">
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2V9-Ce-2JN" id="qj3-sc-i4Y">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="ivk-vY-Yws" id="jDw-ae-nmM"/>
+                            <outlet property="delegate" destination="ivk-vY-Yws" id="zki-F4-n4K"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MbG-Ay-TV8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1448" y="128"/>
         </scene>
         <!--Settings-->
         <scene sceneID="KvT-c7-1Qr">

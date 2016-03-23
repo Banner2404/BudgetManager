@@ -25,6 +25,7 @@
 		D1AFD20C1CA1ABB000E998F0 /* DatabaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AFD20B1CA1ABB000E998F0 /* DatabaseViewController.m */; };
 		D1AFD20F1CA2947800E998F0 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AFD20E1CA2947800E998F0 /* MainViewController.m */; };
 		D1AFD2121CA2950700E998F0 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AFD2111CA2950700E998F0 /* SettingsViewController.m */; };
+		D1AFD21E1CA2A16100E998F0 /* WalletsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AFD21D1CA2A16100E998F0 /* WalletsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +62,8 @@
 		D1AFD20E1CA2947800E998F0 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		D1AFD2101CA2950700E998F0 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		D1AFD2111CA2950700E998F0 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		D1AFD21C1CA2A16100E998F0 /* WalletsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WalletsViewController.h; sourceTree = "<group>"; };
+		D1AFD21D1CA2A16100E998F0 /* WalletsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WalletsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +107,8 @@
 				D1AFD20E1CA2947800E998F0 /* MainViewController.m */,
 				D1AFD2101CA2950700E998F0 /* SettingsViewController.h */,
 				D1AFD2111CA2950700E998F0 /* SettingsViewController.m */,
+				D1AFD21C1CA2A16100E998F0 /* WalletsViewController.h */,
+				D1AFD21D1CA2A16100E998F0 /* WalletsViewController.m */,
 				D1AFD1DD1CA19B2900E998F0 /* Main.storyboard */,
 				D1AFD1E31CA19B2900E998F0 /* Assets.xcassets */,
 				D1AFD1E51CA19B2900E998F0 /* LaunchScreen.storyboard */,
@@ -229,6 +234,7 @@
 				D1AFD20C1CA1ABB000E998F0 /* DatabaseViewController.m in Sources */,
 				D1AFD20F1CA2947800E998F0 /* MainViewController.m in Sources */,
 				D1AFD2121CA2950700E998F0 /* SettingsViewController.m in Sources */,
+				D1AFD21E1CA2A16100E998F0 /* WalletsViewController.m in Sources */,
 				D1AFD1F01CA1A2B900E998F0 /* DatabaseManager.m in Sources */,
 				D1AFD1D61CA19B2900E998F0 /* main.m in Sources */,
 			);

@@ -23,6 +23,8 @@
 		D1AFD2081CA1A49800E998F0 /* Operation+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AFD1FF1CA1A49800E998F0 /* Operation+CoreDataProperties.m */; };
 		D1AFD2091CA1A49800E998F0 /* Operation.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AFD2011CA1A49800E998F0 /* Operation.m */; };
 		D1AFD20C1CA1ABB000E998F0 /* DatabaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AFD20B1CA1ABB000E998F0 /* DatabaseViewController.m */; };
+		D1AFD20F1CA2947800E998F0 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AFD20E1CA2947800E998F0 /* MainViewController.m */; };
+		D1AFD2121CA2950700E998F0 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AFD2111CA2950700E998F0 /* SettingsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +57,10 @@
 		D1AFD2011CA1A49800E998F0 /* Operation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Operation.m; sourceTree = "<group>"; };
 		D1AFD20A1CA1ABB000E998F0 /* DatabaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseViewController.h; sourceTree = "<group>"; };
 		D1AFD20B1CA1ABB000E998F0 /* DatabaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseViewController.m; sourceTree = "<group>"; };
+		D1AFD20D1CA2947800E998F0 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		D1AFD20E1CA2947800E998F0 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		D1AFD2101CA2950700E998F0 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		D1AFD2111CA2950700E998F0 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +100,10 @@
 				D1AFD20B1CA1ABB000E998F0 /* DatabaseViewController.m */,
 				D1AFD1D71CA19B2900E998F0 /* AppDelegate.h */,
 				D1AFD1D81CA19B2900E998F0 /* AppDelegate.m */,
+				D1AFD20D1CA2947800E998F0 /* MainViewController.h */,
+				D1AFD20E1CA2947800E998F0 /* MainViewController.m */,
+				D1AFD2101CA2950700E998F0 /* SettingsViewController.h */,
+				D1AFD2111CA2950700E998F0 /* SettingsViewController.m */,
 				D1AFD1DD1CA19B2900E998F0 /* Main.storyboard */,
 				D1AFD1E31CA19B2900E998F0 /* Assets.xcassets */,
 				D1AFD1E51CA19B2900E998F0 /* LaunchScreen.storyboard */,
@@ -217,6 +227,8 @@
 				D1AFD1D91CA19B2900E998F0 /* AppDelegate.m in Sources */,
 				D1AFD2041CA1A49800E998F0 /* Favourites+CoreDataProperties.m in Sources */,
 				D1AFD20C1CA1ABB000E998F0 /* DatabaseViewController.m in Sources */,
+				D1AFD20F1CA2947800E998F0 /* MainViewController.m in Sources */,
+				D1AFD2121CA2950700E998F0 /* SettingsViewController.m in Sources */,
 				D1AFD1F01CA1A2B900E998F0 /* DatabaseManager.m in Sources */,
 				D1AFD1D61CA19B2900E998F0 /* main.m in Sources */,
 			);

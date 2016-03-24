@@ -53,17 +53,7 @@
     
 }
 
-#pragma mark - Actions
-
-- (IBAction)actionSecureSwitch:(UISwitch *)sender {
-    
-    self.selectedWallet.isSecure = [NSNumber numberWithBool:sender.isOn];
-    
-    [self checkSequre];
-    
-}
-
-- (IBAction)actionDeleteButton:(UIBarButtonItem *)sender {
+- (void)deleteWallet{
     
     [[DatabaseManager sharedManager] deleteWallet:self.selectedWallet];
     
@@ -76,6 +66,37 @@
     [mainVC refreshInfo];
     
     [self.navigationController popViewControllerAnimated:YES];
+    
+}
+
+#pragma mark - Actions
+
+- (IBAction)actionSecureSwitch:(UISwitch *)sender {
+    
+    self.selectedWallet.isSecure = [NSNumber numberWithBool:sender.isOn];
+    
+    [self checkSequre];
+    
+}
+
+- (IBAction)actionDeleteButton:(UIBarButtonItem *)sender {
+    
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Delete wallet"
+                                                                   message:[NSString stringWithFormat:@"Are you sure want to delete wallet %@", self.selectedWallet.name]
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction* actionYes = [UIAlertAction actionWithTitle:@"Yes"
+                                                        style:UIAlertActionStyleDestructive
+                                                      handler:^(UIAlertAction * _Nonnull action) {
+                                                          [self deleteWallet];
+                                                      }];
+    UIAlertAction* actionNo = [UIAlertAction actionWithTitle:@"No"
+                                                       style:UIAlertActionStyleCancel
+                                                     handler:nil];
+    
+    [alert addAction:actionYes];
+    [alert addAction:actionNo];
+    
+    [self presentViewController:alert animated:YES completion:nil];
     
 }
 @end

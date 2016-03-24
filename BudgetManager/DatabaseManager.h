@@ -22,7 +22,7 @@
 + (DatabaseManager*)sharedManager;
 
 - (void)deleteWallet:(Wallet*)wallet;
-- (Wallet*)createWalletWithName:(NSString*) name;
+- (Wallet*)createWalletWithName:(NSString*) name cash:(NSInteger) cashMoney bank:(NSInteger)bankMoney security:(BOOL) isSecure password:(NSString*) password;
 - (NSArray*)getWallets;
 
 - (void)saveContext;

@@ -7,7 +7,9 @@
 //
 
 #import "AddWalletViewController.h"
+#import "MainViewController.h"
 #import "DatabaseManager.h"
+#import "Wallet.h"
 
 @interface AddWalletViewController ()
 
@@ -60,9 +62,24 @@
 
 - (IBAction)actionDoneButton:(UIBarButtonItem *)sender {
     
-    [[DatabaseManager sharedManager] createWalletWithName:self.walletNameTextField.text];
+    NSString* name = self.walletNameTextField.text;
+    NSInteger cash = [self.cashMoneyTextLabel.text integerValue];
+    NSInteger bank = [self.bankMoneyTextLabel.text integerValue];
+    BOOL isSecure = self.secureSwitch.isOn;
+    NSString* password = self.passwordTextField.text;
+
+    [[DatabaseManager sharedManager] createWalletWithName:name
+                                                     cash:cash
+                                                     bank:bank
+                                                 security:isSecure
+                                                 password:password];
     
     [[DatabaseManager sharedManager] saveContext];
+    
+    MainViewController* mainVC = [[self.navigationController viewControllers] objectAtIndex:0];
+    
+    [mainVC refreshInfo];
+
     
     [self.navigationController popViewControllerAnimated:YES];
     

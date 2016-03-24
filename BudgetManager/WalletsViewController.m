@@ -84,7 +84,7 @@
     Wallet* wallet = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
     mainVC.selectedWallet = wallet;
-    [mainVC.walletButton setTitle:wallet.name forState:UIControlStateNormal];
+    [mainVC refreshInfo];
 
 
     [self dismissViewControllerAnimated:YES completion:nil];

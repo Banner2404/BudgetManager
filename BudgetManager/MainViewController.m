@@ -19,15 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    if (self.selectedWallet) {
-        
-        [self.walletButton setTitle:self.selectedWallet.name forState:UIControlStateNormal];
-        
-    }else{
-        
-        [self.walletButton setTitle:@"No wallet" forState:UIControlStateNormal];
-        
-    }
+    [self refreshInfo];
     
 }
 
@@ -45,6 +37,27 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (void)refreshInfo{
+    
+    if (self.selectedWallet) {
+        
+        [self.walletButton setTitle:self.selectedWallet.name forState:UIControlStateNormal];
+        self.cashMoneyLabel.text = [NSString stringWithFormat:@"%@",self.selectedWallet.cashMoney];
+        self.bankMoneyLabel.text = [NSString stringWithFormat:@"%@",self.selectedWallet.bankMoney];
+        
+        
+    }else{
+        
+        [self.walletButton setTitle:@"No wallet" forState:UIControlStateNormal];
+        self.cashMoneyLabel.text = @"0";
+        self.bankMoneyLabel.text = @"0";
+    }
+
+    
+}
+
+#pragma mark - Actions
 
 - (IBAction)actionSettings:(UIButton *)sender {
     

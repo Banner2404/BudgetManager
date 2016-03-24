@@ -72,7 +72,8 @@
     MainViewController* mainVC = [[self.navigationController viewControllers] objectAtIndex:0];
     
     mainVC.selectedWallet = nil;
-    [mainVC.walletButton setTitle:@"No wallet" forState:UIControlStateNormal];
+    
+    [mainVC refreshInfo];
     
     [self.navigationController popViewControllerAnimated:YES];
     

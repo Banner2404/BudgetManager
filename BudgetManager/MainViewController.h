@@ -15,5 +15,8 @@
 @property (strong,nonatomic) Wallet* selectedWallet;
 - (IBAction)actionSettings:(UIButton *)sender;
 @property (weak, nonatomic) IBOutlet UIButton *walletButton;
+@property (weak, nonatomic) IBOutlet UILabel *cashMoneyLabel;
+@property (weak, nonatomic) IBOutlet UILabel *bankMoneyLabel;
 
+- (void)refreshInfo;
 @end

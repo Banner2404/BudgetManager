@@ -28,12 +28,17 @@
 
 #pragma mark - Create
 
-- (Wallet*)createWalletWithName:(NSString*) name{
+- (Wallet*)createWalletWithName:(NSString*) name cash:(NSInteger)cashMoney bank:(NSInteger)bankMoney security:(BOOL)isSecure password:(NSString *)password{
     
     Wallet* wallet = [NSEntityDescription insertNewObjectForEntityForName:@"Wallet"
                                                    inManagedObjectContext:self.managedObjectContext];
     
     wallet.name = name;
+    wallet.cashMoney = [NSNumber numberWithInteger:cashMoney];
+    wallet.bankMoney = [NSNumber numberWithInteger:bankMoney];
+    wallet.isSecure = [NSNumber numberWithBool:isSecure];
+    wallet.password = password;
+
     
     return wallet;
     

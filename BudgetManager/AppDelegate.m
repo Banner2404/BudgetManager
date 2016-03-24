@@ -22,9 +22,12 @@
     
     self.databaseManager = [DatabaseManager sharedManager];
     
-    //Wallet* wallet = [self.databaseManager createWalletWithName:@"Banner2"];
-    
-    //[self.databaseManager saveContext];
+//    Wallet* wallet1 = [self.databaseManager createWalletWithName:@"Banner1"];
+//    Wallet* wallet2 = [self.databaseManager createWalletWithName:@"Banner2"];
+//    Wallet* wallet3 = [self.databaseManager createWalletWithName:@"Banner3"];
+//
+//    
+//    [self.databaseManager saveContext];
     
     
     //Wallet* wallet = [[self.databaseManager getWallets] firstObject];

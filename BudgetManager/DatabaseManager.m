@@ -51,6 +51,17 @@
     
 }
 
+#pragma mark - Delete
+
+- (void)deleteWallet:(Wallet *)wallet{
+    
+    
+    [self.managedObjectContext deleteObject:wallet];
+    
+    [self saveContext];
+    
+}
+
 #pragma mark - Core Data stack
 
 @synthesize managedObjectContext = _managedObjectContext;

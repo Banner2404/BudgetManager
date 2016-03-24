@@ -7,6 +7,8 @@
 //
 
 #import "SettingsViewController.h"
+#import "MainViewController.h"
+#import "DatabaseManager.h"
 #import "Wallet.h"
 
 @interface SettingsViewController ()
@@ -58,6 +60,21 @@
     self.selectedWallet.isSecure = [NSNumber numberWithBool:sender.isOn];
     
     [self checkSequre];
+    
+}
+
+- (IBAction)actionDeleteButton:(UIBarButtonItem *)sender {
+    
+    [[DatabaseManager sharedManager] deleteWallet:self.selectedWallet];
+    
+    self.selectedWallet = nil;
+    
+    MainViewController* mainVC = [[self.navigationController viewControllers] objectAtIndex:0];
+    
+    mainVC.selectedWallet = nil;
+    [mainVC.walletButton setTitle:@"No wallet" forState:UIControlStateNormal];
+    
+    [self.navigationController popViewControllerAnimated:YES];
     
 }
 @end

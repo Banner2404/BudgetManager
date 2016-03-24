@@ -345,7 +345,14 @@
                             <outlet property="delegate" destination="ZGc-I2-fbs" id="I7M-13-n5Q"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Settings" id="Ftt-ba-2lq"/>
+                    <navigationItem key="navigationItem" title="Settings" id="Ftt-ba-2lq">
+                        <barButtonItem key="rightBarButtonItem" title="Delete" id="vRU-u4-Mph">
+                            <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="actionDeleteButton:" destination="ZGc-I2-fbs" id="4Is-85-o4i"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="passwordLabel" destination="0V3-k5-0eQ" id="Ud8-UQ-x0w"/>
                         <outlet property="passwordTextField" destination="0ZD-Wz-t5s" id="Y1t-si-Gkn"/>

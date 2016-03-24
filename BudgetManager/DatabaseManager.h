@@ -21,6 +21,7 @@
 
 + (DatabaseManager*)sharedManager;
 
+- (void)deleteWallet:(Wallet*)wallet;
 - (Wallet*)createWalletWithName:(NSString*) name;
 - (NSArray*)getWallets;
 

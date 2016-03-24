@@ -18,5 +18,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 @property (weak, nonatomic) IBOutlet UILabel *passwordLabel;
 - (IBAction)actionSecureSwitch:(UISwitch *)sender;
+- (IBAction)actionDeleteButton:(UIBarButtonItem *)sender;
 
 @end

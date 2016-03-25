@@ -250,17 +250,30 @@
             </objects>
             <point key="canvasLocation" x="1526" y="-537"/>
         </scene>
-        <!--Wallets View Controller-->
+        <!--Wallet-->
         <scene sceneID="96T-o0-t13">
             <objects>
-                <tableViewController id="ivk-vY-Yws" customClass="WalletsViewController" sceneMemberID="viewController">
+                <tableViewController title="Wallet" id="ivk-vY-Yws" customClass="WalletsViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="FVq-TV-kMu">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <navigationBar key="tableHeaderView" contentMode="scaleToFill" id="Faa-bh-Bza">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <items>
+                                <navigationItem title="Wallets" id="MGY-dA-n5q">
+                                    <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="6Hu-NN-omQ">
+                                        <connections>
+                                            <action selector="actionCancelButton:" destination="ivk-vY-Yws" id="Sdn-pD-bhn"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </navigationItem>
+                            </items>
+                        </navigationBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="2V9-Ce-2JN">
-                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="72" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2V9-Ce-2JN" id="qj3-sc-i4Y">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -273,6 +286,8 @@
                             <outlet property="delegate" destination="ivk-vY-Yws" id="zki-F4-n4K"/>
                         </connections>
                     </tableView>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MbG-Ay-TV8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

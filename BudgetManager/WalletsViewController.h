@@ -13,5 +13,6 @@
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 
 - (void)configureCell:(UITableViewCell *)cell withObject:(NSManagedObject *)object;
+- (IBAction)actionCancelButton:(UIBarButtonItem *)sender;
 
 @end

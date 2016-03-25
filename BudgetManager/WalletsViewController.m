@@ -20,7 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -65,11 +65,20 @@
     return _fetchedResultsController;
 }
 
+
 - (void)configureCell:(UITableViewCell *)cell withObject:(NSManagedObject *)object{
     
     Wallet* wallet = (Wallet*)object;
     
     cell.textLabel.text = wallet.name;
+    
+}
+
+#pragma mark - Actions
+
+- (IBAction)actionCancelButton:(UIBarButtonItem *)sender {
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
     
 }
 

@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class Wallet;
+
 @interface AddOperationViewController : UITableViewController
+
+@property (strong,nonatomic) Wallet* selectedWallet;
 
 @end

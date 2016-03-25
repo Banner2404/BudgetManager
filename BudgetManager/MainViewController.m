@@ -98,6 +98,8 @@
         
         AddOperationViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"AddOperationViewController"];
         
+        vc.selectedWallet = self.selectedWallet;
+        
         [self.navigationController pushViewController:vc animated:YES];
     }
     

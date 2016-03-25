@@ -250,8 +250,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="bankMoneyTextLabel" destination="6uH-dI-jzw" id="NFz-Lq-6sW"/>
-                        <outlet property="cashMoneyTextLabel" destination="82A-gA-tGz" id="YoT-fb-MTm"/>
+                        <outlet property="bankMoneyTextField" destination="6uH-dI-jzw" id="Vk9-g5-0zY"/>
+                        <outlet property="cashMoneyTextField" destination="82A-gA-tGz" id="0hm-hY-TSt"/>
                         <outlet property="passwordLabel" destination="Kdg-bP-Kmf" id="bli-fi-ivX"/>
                         <outlet property="passwordTextField" destination="fef-kt-3Pb" id="YFt-jm-Cfr"/>
                         <outlet property="secureSwitch" destination="av2-il-nm3" id="Qbp-t1-NFd"/>
@@ -333,12 +333,63 @@
                                                     <rect key="frame" x="315" y="0.0" width="265" height="43"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="ZGc-I2-fbs" id="hfD-m9-e3z"/>
+                                                    </connections>
+                                                </textField>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="kIh-30-wZL">
+                                        <rect key="frame" x="0.0" y="44" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kIh-30-wZL" id="kgq-sj-uKK">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Sxx-Na-HJG">
+                                                    <rect key="frame" x="315" y="0.0" width="265" height="43"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="ZGc-I2-fbs" id="fX1-27-9c2"/>
+                                                    </connections>
+                                                </textField>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Cash money" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cw9-9X-Lh3">
+                                                    <rect key="frame" x="20" y="0.0" width="287" height="43"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="FJ1-K7-XBm">
+                                        <rect key="frame" x="0.0" y="88" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FJ1-K7-XBm" id="hcr-ch-9Sg">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Bank money" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KsK-Jb-OzY">
+                                                    <rect key="frame" x="20" y="0.0" width="287" height="43"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KP2-fJ-LCP">
+                                                    <rect key="frame" x="315" y="0.0" width="265" height="43"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="ZGc-I2-fbs" id="Q8Y-bb-LFk"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="QWH-Fs-i9o">
-                                        <rect key="frame" x="0.0" y="44" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="132" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QWH-Fs-i9o" id="D0s-Uc-Lfn">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -360,7 +411,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="lBb-6b-SMN">
-                                        <rect key="frame" x="0.0" y="88" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="176" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lBb-6b-SMN" id="rhU-cS-AMC">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -376,6 +427,9 @@
                                                     <rect key="frame" x="315" y="0.0" width="265" height="43"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="ZGc-I2-fbs" id="QN6-f7-8s0"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -397,6 +451,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="bankMoneyTextField" destination="KP2-fJ-LCP" id="Pd4-bQ-z63"/>
+                        <outlet property="cashMoneyTextField" destination="Sxx-Na-HJG" id="vKG-0t-PNF"/>
                         <outlet property="passwordLabel" destination="0V3-k5-0eQ" id="Ud8-UQ-x0w"/>
                         <outlet property="passwordTextField" destination="0ZD-Wz-t5s" id="Y1t-si-Gkn"/>
                         <outlet property="secureSwitch" destination="OTW-7B-2fQ" id="sd1-t2-TVz"/>

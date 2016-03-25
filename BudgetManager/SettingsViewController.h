@@ -17,6 +17,8 @@
 @property (weak, nonatomic) IBOutlet UISwitch *secureSwitch;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 @property (weak, nonatomic) IBOutlet UILabel *passwordLabel;
+@property (weak, nonatomic) IBOutlet UITextField *cashMoneyTextField;
+@property (weak, nonatomic) IBOutlet UITextField *bankMoneyTextField;
 - (IBAction)actionSecureSwitch:(UISwitch *)sender;
 - (IBAction)actionDeleteButton:(UIBarButtonItem *)sender;
 

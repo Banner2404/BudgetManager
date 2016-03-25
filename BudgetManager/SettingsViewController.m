@@ -11,7 +11,7 @@
 #import "DatabaseManager.h"
 #import "Wallet.h"
 
-@interface SettingsViewController ()
+@interface SettingsViewController () <UITextFieldDelegate>
 
 @end
 
@@ -23,6 +23,9 @@
     self.walletNameTextField.text = self.selectedWallet.name;
     [self.secureSwitch setOn:[self.selectedWallet.isSecure boolValue]];
     self.passwordTextField.text = self.selectedWallet.password;
+    self.cashMoneyTextField.text = [NSString stringWithFormat:@"%@",self.selectedWallet.cashMoney];
+    self.bankMoneyTextField.text = [NSString stringWithFormat:@"%@",self.selectedWallet.bankMoney];
+
     
     [self checkSequre];
     
@@ -69,6 +72,27 @@
     
 }
 
+- (BOOL)nameField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    
+    NSCharacterSet* charactersSet = [[NSCharacterSet alphanumericCharacterSet] invertedSet];
+    
+    if ([[string componentsSeparatedByCharactersInSet:charactersSet] count] > 1) {
+        return NO;
+    }
+    return YES;
+}
+
+- (BOOL)numberField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    
+    NSCharacterSet* charactersSet = [[NSCharacterSet decimalDigitCharacterSet] invertedSet];
+    
+    if ([[string componentsSeparatedByCharactersInSet:charactersSet] count] > 1) {
+        return NO;
+    }
+    return YES;
+}
+
+
 #pragma mark - Actions
 
 - (IBAction)actionSecureSwitch:(UISwitch *)sender {
@@ -99,4 +123,24 @@
     [self presentViewController:alert animated:YES completion:nil];
     
 }
+
+#pragma mark - UITextFieldDelegate
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    
+    if ([textField isEqual:self.cashMoneyTextField] || [textField isEqual:self.cashMoneyTextField]) {
+        
+        return [self numberField:textField shouldChangeCharactersInRange:range replacementString:string];
+        
+    }
+    
+    if ([textField isEqual:self.walletNameTextField] || [textField isEqual:self.passwordTextField]) {
+        
+        return [self nameField:textField shouldChangeCharactersInRange:range replacementString:string];
+        
+    }
+    return YES;
+    
+}
+
 @end

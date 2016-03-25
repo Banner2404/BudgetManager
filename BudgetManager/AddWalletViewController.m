@@ -75,8 +75,8 @@
 - (void)validCreation{
     
     NSString* name = self.walletNameTextField.text;
-    NSInteger cash = [self.cashMoneyTextLabel.text integerValue];
-    NSInteger bank = [self.bankMoneyTextLabel.text integerValue];
+    NSInteger cash = [self.cashMoneyTextField.text integerValue];
+    NSInteger bank = [self.bankMoneyTextField.text integerValue];
     BOOL isSecure = self.secureSwitch.isOn;
     NSString* password = self.passwordTextField.text;
     
@@ -146,7 +146,7 @@
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
     
-    if ([textField isEqual:self.cashMoneyTextLabel] || [textField isEqual:self.bankMoneyTextLabel]) {
+    if ([textField isEqual:self.cashMoneyTextField] || [textField isEqual:self.bankMoneyTextField]) {
         
         return [self numberField:textField shouldChangeCharactersInRange:range replacementString:string];
         

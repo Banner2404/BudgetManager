@@ -55,6 +55,9 @@
                                 <rect key="frame" x="20" y="128" width="260" height="206"/>
                                 <color key="backgroundColor" red="1" green="0.089671097242484898" blue="0.099558135219568578" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Add"/>
+                                <connections>
+                                    <action selector="actionAdd:" destination="eUW-rH-kGX" eventType="touchUpInside" id="Yw6-tJ-5uS"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u5v-bi-Jjj">
                                 <rect key="frame" x="320" y="128" width="260" height="206"/>
@@ -104,6 +107,54 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cKi-tV-hDa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="768" y="377"/>
+        </scene>
+        <!--Add Operation View Controller-->
+        <scene sceneID="iFU-mT-t0U">
+            <objects>
+                <tableViewController storyboardIdentifier="AddOperationViewController" id="qXc-X6-ILx" customClass="AddOperationViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="j5d-Hg-zXk">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <sections>
+                            <tableViewSection id="L3j-f0-bpW">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="llf-tg-6mA">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="llf-tg-6mA" id="cGU-WV-Jcr">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="gKb-RI-oP0">
+                                        <rect key="frame" x="0.0" y="44" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gKb-RI-oP0" id="Oki-jT-q9O">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="fkR-RQ-YdD">
+                                        <rect key="frame" x="0.0" y="88" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fkR-RQ-YdD" id="DPs-6x-qiJ">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="qXc-X6-ILx" id="xSj-XB-S3l"/>
+                            <outlet property="delegate" destination="qXc-X6-ILx" id="muK-YY-cpw"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6CE-Ta-HT9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="754" y="-366"/>
         </scene>
         <!--Add wallet-->
         <scene sceneID="UDe-LT-yfS">

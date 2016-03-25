@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D1396A801CA55949006CF786 /* AddOperationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1396A7F1CA55949006CF786 /* AddOperationViewController.m */; };
 		D176C1451CA450A500CB7334 /* AddWalletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D176C1441CA450A500CB7334 /* AddWalletViewController.m */; };
 		D1AFD1D61CA19B2900E998F0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AFD1D51CA19B2900E998F0 /* main.m */; };
 		D1AFD1D91CA19B2900E998F0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AFD1D81CA19B2900E998F0 /* AppDelegate.m */; };
@@ -30,6 +31,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D1396A7E1CA55949006CF786 /* AddOperationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddOperationViewController.h; sourceTree = "<group>"; };
+		D1396A7F1CA55949006CF786 /* AddOperationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddOperationViewController.m; sourceTree = "<group>"; };
 		D176C1431CA450A500CB7334 /* AddWalletViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddWalletViewController.h; sourceTree = "<group>"; };
 		D176C1441CA450A500CB7334 /* AddWalletViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddWalletViewController.m; sourceTree = "<group>"; };
 		D1AFD1D11CA19B2900E998F0 /* BudgetManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BudgetManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -80,6 +83,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D1396A811CA55953006CF786 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				D1AFD1EE1CA1A2B900E998F0 /* DatabaseManager.h */,
+				D1AFD1EF1CA1A2B900E998F0 /* DatabaseManager.m */,
+				D1AFD20A1CA1ABB000E998F0 /* DatabaseViewController.h */,
+				D1AFD20B1CA1ABB000E998F0 /* DatabaseViewController.m */,
+			);
+			name = Database;
+			sourceTree = "<group>";
+		};
 		D1AFD1C81CA19B2900E998F0 = {
 			isa = PBXGroup;
 			children = (
@@ -100,10 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				D1AFD1F11CA1A3E700E998F0 /* Models */,
-				D1AFD1EE1CA1A2B900E998F0 /* DatabaseManager.h */,
-				D1AFD1EF1CA1A2B900E998F0 /* DatabaseManager.m */,
-				D1AFD20A1CA1ABB000E998F0 /* DatabaseViewController.h */,
-				D1AFD20B1CA1ABB000E998F0 /* DatabaseViewController.m */,
+				D1396A811CA55953006CF786 /* Database */,
 				D1AFD1D71CA19B2900E998F0 /* AppDelegate.h */,
 				D1AFD1D81CA19B2900E998F0 /* AppDelegate.m */,
 				D1AFD20D1CA2947800E998F0 /* MainViewController.h */,
@@ -114,6 +125,8 @@
 				D1AFD21D1CA2A16100E998F0 /* WalletsViewController.m */,
 				D176C1431CA450A500CB7334 /* AddWalletViewController.h */,
 				D176C1441CA450A500CB7334 /* AddWalletViewController.m */,
+				D1396A7E1CA55949006CF786 /* AddOperationViewController.h */,
+				D1396A7F1CA55949006CF786 /* AddOperationViewController.m */,
 				D1AFD1DD1CA19B2900E998F0 /* Main.storyboard */,
 				D1AFD1E31CA19B2900E998F0 /* Assets.xcassets */,
 				D1AFD1E51CA19B2900E998F0 /* LaunchScreen.storyboard */,
@@ -228,6 +241,7 @@
 			files = (
 				D1AFD2071CA1A49800E998F0 /* OperationType.m in Sources */,
 				D1AFD2051CA1A49800E998F0 /* Favourites.m in Sources */,
+				D1396A801CA55949006CF786 /* AddOperationViewController.m in Sources */,
 				D1AFD1E21CA19B2900E998F0 /* BudgetManager.xcdatamodeld in Sources */,
 				D1AFD2031CA1A49800E998F0 /* Wallet.m in Sources */,
 				D1AFD2091CA1A49800E998F0 /* Operation.m in Sources */,

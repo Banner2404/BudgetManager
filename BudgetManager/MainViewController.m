@@ -8,6 +8,7 @@
 
 #import "MainViewController.h"
 #import "SettingsViewController.h"
+#import "AddOperationViewController.h"
 #import "Wallet.h"
 
 @interface MainViewController ()
@@ -28,16 +29,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 - (void)refreshInfo{
     
     if (self.selectedWallet) {
@@ -57,23 +48,29 @@
     
 }
 
+- (void)showWalletAlert{
+    
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"No wallet"
+                                                                   message:@"Please select wallet you want to configure"
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* action = [UIAlertAction actionWithTitle:@"OK"
+                                                     style:UIAlertActionStyleDefault
+                                                   handler:nil];
+    
+    [alert addAction:action];
+    
+    [self presentViewController:alert animated:nil completion:nil];
+    
+}
+
 #pragma mark - Actions
 
 - (IBAction)actionSettings:(UIButton *)sender {
     
     if (!self.selectedWallet) {
         
-        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"No wallet"
-                                                                       message:@"Please select wallet you want to configure"
-                                                                preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction* action = [UIAlertAction actionWithTitle:@"OK"
-                                                         style:UIAlertActionStyleDefault
-                                                       handler:nil];
-        
-        [alert addAction:action];
-        
-        [self presentViewController:alert animated:nil completion:nil];
+        [self showWalletAlert];
     
     }else{
         
@@ -85,5 +82,24 @@
         
         [self.navigationController pushViewController:vc animated:YES];
     }
+}
+
+
+- (IBAction)actionAdd:(UIButton *)sender {
+    
+    if (!self.selectedWallet) {
+        
+        [self showWalletAlert];
+        
+    }else{
+
+    
+        UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+        
+        AddOperationViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"AddOperationViewController"];
+        
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
 }
 @end

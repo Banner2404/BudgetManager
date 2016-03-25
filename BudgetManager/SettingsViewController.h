@@ -21,5 +21,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *bankMoneyTextField;
 - (IBAction)actionSecureSwitch:(UISwitch *)sender;
 - (IBAction)actionDeleteButton:(UIBarButtonItem *)sender;
+- (IBAction)actionSaveButton:(UIButton *)sender;
 
 @end

@@ -92,6 +92,46 @@
     return YES;
 }
 
+- (void)showAlertWithTitle:(NSString*) title message:(NSString*) message actionName:(NSString*) actionName{
+    
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:title
+                                                                   message:message
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* action = [UIAlertAction actionWithTitle:actionName
+                                                     style:UIAlertActionStyleDefault
+                                                   handler:nil];
+    
+    [alert addAction:action];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+    
+    
+}
+
+- (void)validSave{
+    
+    NSInteger cashMoney = [self.cashMoneyTextField.text integerValue];
+    NSInteger bankMoney = [self.bankMoneyTextField.text integerValue];
+    
+    self.selectedWallet.name = self.walletNameTextField.text;
+    self.selectedWallet.cashMoney = [NSNumber numberWithInteger:cashMoney];
+    self.selectedWallet.bankMoney = [NSNumber numberWithInteger:bankMoney];
+    self.selectedWallet.isSecure = [NSNumber numberWithBool:self.secureSwitch.isOn];
+    self.selectedWallet.password = self.passwordTextField.text;
+    
+    [[DatabaseManager sharedManager] saveContext];
+    
+    MainViewController* mainVC = [[self.navigationController viewControllers] objectAtIndex:0];
+    
+    [mainVC refreshInfo];
+    
+    
+    [self.navigationController popViewControllerAnimated:YES];
+
+    
+}
+
 
 #pragma mark - Actions
 
@@ -121,6 +161,25 @@
     [alert addAction:actionNo];
     
     [self presentViewController:alert animated:YES completion:nil];
+    
+}
+
+- (IBAction)actionSaveButton:(UIButton *)sender {
+    
+    if ([self.walletNameTextField.text isEqualToString:@""]) {
+        
+        [self showAlertWithTitle:@"Name" message:@"Please enter name for wallet" actionName:@"OK"];
+        
+    }else if (self.secureSwitch.isOn && [self.passwordTextField.text isEqualToString:@""]) {
+        
+        [self showAlertWithTitle:@"Password" message:@"Please enter password for wallet" actionName:@"OK"];
+        
+    }else{
+        
+        [self validSave];
+        
+    }
+
     
 }
 

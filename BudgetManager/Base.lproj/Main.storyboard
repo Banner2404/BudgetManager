@@ -108,6 +108,34 @@
             </objects>
             <point key="canvasLocation" x="768" y="377"/>
         </scene>
+        <!--Types View Controller-->
+        <scene sceneID="Eqj-sf-ZeH">
+            <objects>
+                <tableViewController storyboardIdentifier="TypesViewController" id="3Bs-5b-PeV" customClass="TypesViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Skx-Tt-VZf">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="UHO-ww-q3I">
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UHO-ww-q3I" id="fbV-St-Xb8">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="3Bs-5b-PeV" id="fEg-Q4-Or2"/>
+                            <outlet property="delegate" destination="3Bs-5b-PeV" id="gxw-jl-BAM"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mqO-cy-zxV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="754" y="-1039"/>
+        </scene>
         <!--Title-->
         <scene sceneID="iFU-mT-t0U">
             <objects>
@@ -130,6 +158,9 @@
                                                     <rect key="frame" x="309" y="0.0" width="271" height="43"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="qXc-X6-ILx" id="U1V-jY-Jp4"/>
+                                                    </connections>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="da4-s6-RCt">
                                                     <rect key="frame" x="20" y="0.0" width="281" height="43"/>
@@ -218,6 +249,12 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="bookmarks" id="JOf-0H-ugq"/>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="costTextField" destination="IFe-Jd-TRa" id="dke-Tm-noZ"/>
+                        <outlet property="dateTextField" destination="0qy-mZ-WLw" id="cY8-Gy-jTX"/>
+                        <outlet property="moneyTypeControl" destination="yxl-l5-gAD" id="bgO-Z4-YIO"/>
+                        <outlet property="typeTextField" destination="Oq7-Vi-9yk" id="adC-MO-q9E"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6CE-Ta-HT9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -9,9 +9,15 @@
 #import <UIKit/UIKit.h>
 
 @class Wallet;
+@class OperationType;
 
 @interface AddOperationViewController : UITableViewController
 
 @property (strong,nonatomic) Wallet* selectedWallet;
+@property (strong,nonatomic) OperationType* selectedType;
+@property (weak, nonatomic) IBOutlet UITextField *typeTextField;
+@property (weak, nonatomic) IBOutlet UITextField *costTextField;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *moneyTypeControl;
+@property (weak, nonatomic) IBOutlet UITextField *dateTextField;
 
 @end

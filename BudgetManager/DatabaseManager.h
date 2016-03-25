@@ -23,6 +23,7 @@
 
 - (void)deleteWallet:(Wallet*)wallet;
 - (Wallet*)createWalletWithName:(NSString*) name cash:(NSInteger) cashMoney bank:(NSInteger)bankMoney security:(BOOL) isSecure password:(NSString*) password;
+- (OperationType*)createOperationTypeWithName:(NSString*)name;
 - (NSArray*)getWallets;
 
 - (void)saveContext;

@@ -7,8 +7,9 @@
 //
 
 #import "AddOperationViewController.h"
+#import "TypesViewController.h"
 
-@interface AddOperationViewController ()
+@interface AddOperationViewController () <UITextFieldDelegate>
 
 @end
 
@@ -27,6 +28,34 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)loadTypesController{
+    
+    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    
+    TypesViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"TypesViewController"];
+    
+    vc.operationVC = self;
+    
+    vc.modalPresentationStyle = UIModalPresentationPopover;
+    vc.popoverPresentationController.sourceView = self.typeTextField;
+    
+    [self presentViewController:vc animated:YES completion:nil];
+    
+}
+
+#pragma mark - UITextFieldDelegate
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    
+    if ([textField isEqual:self.typeTextField]) {
+        
+        [self loadTypesController];
+        return NO;
+        
+    }
+    return YES;
 }
 
 @end

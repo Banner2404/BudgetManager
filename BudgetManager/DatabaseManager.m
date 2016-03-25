@@ -44,6 +44,16 @@
     
 }
 
+- (OperationType*)createOperationTypeWithName:(NSString*)name{
+    
+    OperationType* type = [NSEntityDescription insertNewObjectForEntityForName:@"OperationType"
+                                                        inManagedObjectContext:self.managedObjectContext];
+    
+    type.name = name;
+    return type;
+    
+}
+
 #pragma mark - Get
 
 - (NSArray*)getWallets{

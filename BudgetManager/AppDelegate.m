@@ -29,7 +29,12 @@
 //    
 //    [self.databaseManager saveContext];
     
-    
+//    OperationType* type1 = [self.databaseManager createOperationTypeWithName:@"Type1"];
+//    OperationType* type2 = [self.databaseManager createOperationTypeWithName:@"Type2"];
+//    OperationType* type3 = [self.databaseManager createOperationTypeWithName:@"Type3"];
+//    
+//    [self.databaseManager saveContext];
+
     //Wallet* wallet = [[self.databaseManager getWallets] firstObject];
     
     //NSLog(@"%@",wallet.name);

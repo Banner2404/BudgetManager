@@ -85,13 +85,19 @@
 
 }
 
+- (BOOL)nameField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    
+    NSCharacterSet* charactersSet = [[NSCharacterSet alphanumericCharacterSet] invertedSet];
+    
+    if ([[string componentsSeparatedByCharactersInSet:charactersSet] count] > 1) {
+        return NO;
+    }
+    return YES;
+}
+
 - (BOOL)numberField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
     
     NSCharacterSet* charactersSet = [[NSCharacterSet decimalDigitCharacterSet] invertedSet];
-    
-//    if (range.location == 0 && [string length] > 0 && [string characterAtIndex:0] == '0') {
-//        return NO;
-//    }
     
     if ([[string componentsSeparatedByCharactersInSet:charactersSet] count] > 1) {
         return NO;
@@ -106,6 +112,12 @@
     if ([textField isEqual:self.cashMoneyTextLabel] || [textField isEqual:self.bankMoneyTextLabel]) {
         
         return [self numberField:textField shouldChangeCharactersInRange:range replacementString:string];
+        
+    }
+    
+    if ([textField isEqual:self.walletNameTextField] || [textField isEqual:self.passwordTextField]) {
+        
+        return [self nameField:textField shouldChangeCharactersInRange:range replacementString:string];
         
     }
     return YES;

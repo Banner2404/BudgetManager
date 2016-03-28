@@ -18,6 +18,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.selectedDate = [NSDate dateWithTimeIntervalSinceNow:0];
+    
+    NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+    
+    [formatter setDateStyle:NSDateFormatterMediumStyle];
+    
+    self.dateTextField.text = [formatter stringFromDate:self.selectedDate];
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     

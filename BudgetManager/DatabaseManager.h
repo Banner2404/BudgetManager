@@ -25,6 +25,8 @@
 - (Wallet*)createWalletWithName:(NSString*) name cash:(NSInteger) cashMoney bank:(NSInteger)bankMoney security:(BOOL) isSecure password:(NSString*) password;
 - (OperationType*)createOperationTypeWithName:(NSString*)name;
 - (NSArray*)getWallets;
+- (NSArray*)getOperationTypes;
+- (Operation*)addOperationForWallet:(Wallet*)wallet type:(OperationType*) operationType cost:(NSInteger)cost moneyType:(MoneyType) moneyType date:(NSDate*)date profitType:(ProfitType)profitType;
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;

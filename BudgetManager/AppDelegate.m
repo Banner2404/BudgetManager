@@ -29,7 +29,7 @@
 //    
 //    [self.databaseManager saveContext];
     
-//    OperationType* type1 = [self.databaseManager createOperationTypeWithName:@"Type1"];
+    //OperationType* type1 = [self.databaseManager createOperationTypeWithName:@"Type1"];
 //    OperationType* type2 = [self.databaseManager createOperationTypeWithName:@"Type2"];
 //    OperationType* type3 = [self.databaseManager createOperationTypeWithName:@"Type3"];
 //    
@@ -39,7 +39,33 @@
     
     //NSLog(@"%@",wallet.name);
     
+//    [self.databaseManager addOperationForWallet:[[self.databaseManager getWallets] objectAtIndex:0]
+//                                           type:[[self.databaseManager getOperationTypes] objectAtIndex:0]
+//                                           cost:2000
+//                                      moneyType:MoneyTypeCash
+//                                           date:[NSDate dateWithTimeIntervalSinceNow:0]
+//                                     profitType:ProfitTypeIncome];
+//    [self.databaseManager saveContext];
+//
+//    [self.databaseManager addOperationForWallet:[[self.databaseManager getWallets] objectAtIndex:0]
+//                                           type:[[self.databaseManager getOperationTypes] objectAtIndex:0]
+//                                           cost:3000
+//                                      moneyType:MoneyTypeCash
+//                                           date:[NSDate dateWithTimeIntervalSinceNow:0]
+//                                     profitType:ProfitTypeIncome];
+//    [self.databaseManager saveContext];
+//
+//
+//    [self.databaseManager addOperationForWallet:[[self.databaseManager getWallets] objectAtIndex:0]
+//                                           type:[[self.databaseManager getOperationTypes] objectAtIndex:0]
+//                                           cost:1000
+//                                      moneyType:MoneyTypeCash
+//                                           date:[NSDate dateWithTimeIntervalSinceNow:0]
+//                                     profitType:ProfitTypeIncome];
+//    [self.databaseManager saveContext];
+    
     NSLog(@"Wallets: %ld",[[self.databaseManager getWallets] count]);
+    NSLog(@"Operations: %ld",[[[[self.databaseManager getWallets] objectAtIndex:0] operations] count]);
     
     return YES;
 }

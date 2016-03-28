@@ -66,6 +66,37 @@
     
 }
 
+- (NSArray*)getOperationTypes{
+    
+    NSFetchRequest* request = [NSFetchRequest fetchRequestWithEntityName:@"OperationType"];
+    
+    NSArray* results = [self.managedObjectContext executeFetchRequest:request error:nil];
+    
+    return results;
+    
+}
+
+#pragma mark - Add
+
+- (Operation*)addOperationForWallet:(Wallet*)wallet type:(OperationType*) operationType cost:(NSInteger)cost moneyType:(MoneyType) moneyType date:(NSDate*)date profitType:(ProfitType)profitType{
+    
+    static NSInteger operationID = 0;
+    
+    Operation* operation = [NSEntityDescription insertNewObjectForEntityForName:@"Operation"
+                                                         inManagedObjectContext:self.managedObjectContext];
+    
+    operation.wallet = wallet;
+    operation.type = operationType;
+    operation.cost = [NSNumber numberWithInteger:cost];
+    operation.moneyType = [NSNumber numberWithInteger:moneyType];
+    operation.profitType = [NSNumber numberWithInteger:profitType];
+    operation.date = date;
+    operation.operationID = [NSNumber numberWithInteger:operationID ++];
+    
+    return operation;
+    
+}
+
 #pragma mark - Delete
 
 - (void)deleteWallet:(Wallet *)wallet{

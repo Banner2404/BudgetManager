@@ -24,9 +24,11 @@
 - (void)deleteWallet:(Wallet*)wallet;
 - (Wallet*)createWalletWithName:(NSString*) name cash:(NSInteger) cashMoney bank:(NSInteger)bankMoney security:(BOOL) isSecure password:(NSString*) password;
 - (OperationType*)createOperationTypeWithName:(NSString*)name;
+- (Operation*)addOperationForWallet:(Wallet*)wallet type:(OperationType*) operationType cost:(NSInteger)cost moneyType:(MoneyType) moneyType profitType:(ProfitType)profitType date:(NSDate*)date;
 - (NSArray*)getWallets;
 - (NSArray*)getOperationTypes;
-- (Operation*)addOperationForWallet:(Wallet*)wallet type:(OperationType*) operationType cost:(NSInteger)cost moneyType:(MoneyType) moneyType date:(NSDate*)date profitType:(ProfitType)profitType;
+- (void)showOperations;
+
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;

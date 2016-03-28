@@ -7,6 +7,7 @@
 //
 
 #import "AddOperationViewController.h"
+#import "DatabaseManager.h"
 #import "TypesViewController.h"
 
 @interface AddOperationViewController () <UITextFieldDelegate>
@@ -66,4 +67,18 @@
     return YES;
 }
 
+#pragma mark - Actions
+
+- (IBAction)actionAddButton:(UIButton *)sender {
+    
+    [[DatabaseManager sharedManager] addOperationForWallet:self.selectedWallet
+                                                      type:self.selectedType
+                                                      cost:[self.costTextField.text integerValue]
+                                                 moneyType:(MoneyType)self.moneyTypeControl.selectedSegmentIndex
+                                                profitType:(ProfitType)self.profitTypeControl.selectedSegmentIndex
+                                                      date:self.selectedDate];
+    
+    [self.navigationController popViewControllerAnimated:YES];
+    
+}
 @end

@@ -65,8 +65,7 @@
 //    [self.databaseManager saveContext];
     
     NSLog(@"Wallets: %ld",[[self.databaseManager getWallets] count]);
-    NSLog(@"Operations: %ld",[[[[self.databaseManager getWallets] objectAtIndex:0] operations] count]);
-    
+    [self.databaseManager showOperations];
     return YES;
 }
 

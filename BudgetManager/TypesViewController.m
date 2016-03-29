@@ -7,6 +7,7 @@
 //
 
 #import "TypesViewController.h"
+#import "DatabaseManager.h"
 #import "AddOperationViewController.h"
 #import "OperationType.h"
 
@@ -71,6 +72,43 @@
     OperationType* type = (OperationType*)object;
     
     cell.textLabel.text = type.name;
+    
+}
+
+- (void)createOperationTypeWithName:(NSString*)name{
+    
+    [[DatabaseManager sharedManager] createOperationTypeWithName:name];
+    
+}
+
+#pragma mark - Actions
+
+- (IBAction)actionAddButton:(UIBarButtonItem *)sender {
+    
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"New type"
+                                                                   message:@"Please enter name of new type"
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
+    __block UITextField* alertTextField = [[UITextField alloc] init];
+    
+    [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        
+        alertTextField = textField;
+        
+    }];
+    
+    UIAlertAction* action = [UIAlertAction actionWithTitle:@"Done"
+                                                     style:UIAlertActionStyleDefault
+                                                   handler:^(UIAlertAction * _Nonnull action) {
+                                                       
+                                                       [self createOperationTypeWithName:alertTextField.text];
+                                                       
+                                                   }];
+    
+    [alert addAction:action];
+    
+    
+    [self presentViewController:alert animated:YES completion:nil];
     
 }
 

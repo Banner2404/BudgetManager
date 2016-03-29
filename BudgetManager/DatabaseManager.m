@@ -50,6 +50,8 @@
                                                         inManagedObjectContext:self.managedObjectContext];
     
     type.name = name;
+    
+    [self saveContext];
     return type;
     
 }

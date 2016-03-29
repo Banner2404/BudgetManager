@@ -17,6 +17,7 @@
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 
 - (void)configureCell:(UITableViewCell *)cell withObject:(NSManagedObject *)object;
+- (IBAction)actionAddButton:(UIBarButtonItem *)sender;
 
 
 @end

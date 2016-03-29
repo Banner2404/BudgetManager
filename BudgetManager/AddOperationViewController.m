@@ -82,6 +82,37 @@
     return YES;
 }
 
+- (void)showAlertWithTitle:(NSString*) title message:(NSString*) message actionName:(NSString*) actionName{
+    
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:title
+                                                                   message:message
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* action = [UIAlertAction actionWithTitle:actionName
+                                                     style:UIAlertActionStyleDefault
+                                                   handler:nil];
+    
+    [alert addAction:action];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+    
+    
+}
+
+- (void)validAddOperation{
+    
+    [[DatabaseManager sharedManager] addOperationForWallet:self.selectedWallet
+                                                      type:self.selectedType
+                                                      cost:[self.costTextField.text integerValue]
+                                                 moneyType:(MoneyType)self.moneyTypeControl.selectedSegmentIndex
+                                                profitType:(ProfitType)self.profitTypeControl.selectedSegmentIndex
+                                                      date:self.selectedDate];
+    
+    [self.navigationController popViewControllerAnimated:YES];
+    
+}
+
+
 
 #pragma mark - UITextFieldDelegate
 
@@ -119,14 +150,22 @@
 
 - (IBAction)actionAddButton:(UIButton *)sender {
     
-    [[DatabaseManager sharedManager] addOperationForWallet:self.selectedWallet
-                                                      type:self.selectedType
-                                                      cost:[self.costTextField.text integerValue]
-                                                 moneyType:(MoneyType)self.moneyTypeControl.selectedSegmentIndex
-                                                profitType:(ProfitType)self.profitTypeControl.selectedSegmentIndex
-                                                      date:self.selectedDate];
+    if (!self.selectedType) {
+        
+        [self showAlertWithTitle:@"Type" message:@"Please select type of operation" actionName:@"OK"];
+        
+    }else if([self.costTextField.text isEqualToString:@""]){
+        
+        [self showAlertWithTitle:@"Cost" message:@"Please enter cost of operation" actionName:@"OK"];
+        
+    }else{
+        
+        [self validAddOperation];
+        
+    }
     
-    [self.navigationController popViewControllerAnimated:YES];
+    
+    
     
 }
 @end

@@ -21,13 +21,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone){
-        
-        UIEdgeInsets insets = UIEdgeInsetsMake(20, 0, 0, 0);
-        
-        self.tableView.contentInset = insets;
-    }
-    
 }
 
 

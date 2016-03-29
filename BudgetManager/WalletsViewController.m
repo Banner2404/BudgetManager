@@ -23,6 +23,7 @@
     
 }
 
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -95,10 +96,8 @@
     mainVC.selectedWallet = wallet;
     [mainVC refreshInfo];
 
-
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-
 
 /*
 #pragma mark - Navigation

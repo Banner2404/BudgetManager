@@ -72,6 +72,17 @@
     
 }
 
+- (BOOL)numberField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    
+    NSCharacterSet* charactersSet = [[NSCharacterSet decimalDigitCharacterSet] invertedSet];
+    
+    if ([[string componentsSeparatedByCharactersInSet:charactersSet] count] > 1) {
+        return NO;
+    }
+    return YES;
+}
+
+
 #pragma mark - UITextFieldDelegate
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
@@ -91,6 +102,17 @@
     }
     
     return YES;
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    
+    if ([textField isEqual:self.costTextField]){
+        
+        return [self numberField:textField shouldChangeCharactersInRange:range replacementString:string];
+        
+    }
+    return YES;
+    
 }
 
 #pragma mark - Actions

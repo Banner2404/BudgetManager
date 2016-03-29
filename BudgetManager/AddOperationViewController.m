@@ -9,6 +9,7 @@
 #import "AddOperationViewController.h"
 #import "DatabaseManager.h"
 #import "TypesViewController.h"
+#import "DateViewController.h"
 
 @interface AddOperationViewController () <UITextFieldDelegate>
 
@@ -39,6 +40,23 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)loadDateController{
+    
+    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    
+    DateViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"DateViewController"];
+    
+    vc.operationVC = self;
+    vc.datePicker.date = self.selectedDate;
+    
+    vc.modalPresentationStyle = UIModalPresentationPopover;
+    vc.popoverPresentationController.sourceView = self.typeTextField;
+    
+    [self presentViewController:vc animated:YES completion:nil];
+    
+}
+
+
 - (void)loadTypesController{
     
     UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
@@ -64,6 +82,14 @@
         return NO;
         
     }
+    
+    if ([textField isEqual:self.dateTextField]){
+        
+        [self loadDateController];
+        return NO;
+        
+    }
+    
     return YES;
 }
 

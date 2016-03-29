@@ -255,6 +255,9 @@
                                                     <rect key="frame" x="309" y="0.0" width="271" height="43"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="qXc-X6-ILx" id="GBk-ZK-giy"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -300,6 +303,55 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6CE-Ta-HT9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="754" y="-366"/>
+        </scene>
+        <!--Date View Controller-->
+        <scene sceneID="YMq-av-5FB">
+            <objects>
+                <viewController storyboardIdentifier="DateViewController" id="7pe-CF-lWY" customClass="DateViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="g9A-cU-0vD"/>
+                        <viewControllerLayoutGuide type="bottom" id="4wA-2g-Bke"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9OV-AU-kJY">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="8c5-gE-Ldv">
+                                <rect key="frame" x="0.0" y="44" width="600" height="216"/>
+                                <date key="date" timeIntervalSinceReferenceDate="480934166.756594">
+                                    <!--2016-03-29 08:49:26 +0000-->
+                                </date>
+                            </datePicker>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4HF-VM-bNg">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <items>
+                                    <navigationItem title="Date" id="XxD-8K-JXi">
+                                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="f00-YY-DWT">
+                                            <connections>
+                                                <action selector="actionDoneButton:" destination="7pe-CF-lWY" id="Zl3-tA-vp1"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="4HF-VM-bNg" firstAttribute="top" secondItem="9OV-AU-kJY" secondAttribute="top" id="7YS-Ee-49D"/>
+                            <constraint firstItem="8c5-gE-Ldv" firstAttribute="leading" secondItem="9OV-AU-kJY" secondAttribute="leading" id="BrT-BV-uFJ"/>
+                            <constraint firstAttribute="trailing" secondItem="8c5-gE-Ldv" secondAttribute="trailing" id="Ndf-tY-Rtu"/>
+                            <constraint firstAttribute="trailing" secondItem="4HF-VM-bNg" secondAttribute="trailing" id="RNW-6R-2Bs"/>
+                            <constraint firstItem="4HF-VM-bNg" firstAttribute="leading" secondItem="9OV-AU-kJY" secondAttribute="leading" id="Syb-sI-9tq"/>
+                            <constraint firstItem="8c5-gE-Ldv" firstAttribute="top" secondItem="9OV-AU-kJY" secondAttribute="top" constant="44" id="Tau-8J-cIO"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="datePicker" destination="8c5-gE-Ldv" id="khu-77-PYf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JcD-XB-bI3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1376" y="-1177"/>
         </scene>
         <!--Add wallet-->
         <scene sceneID="UDe-LT-yfS">

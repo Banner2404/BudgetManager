@@ -19,6 +19,7 @@
 
 - (IBAction)actionSettings:(UIButton *)sender;
 - (IBAction)actionAdd:(UIButton *)sender;
+- (IBAction)actionStatictics:(UIButton *)sender;
 
 - (void)refreshInfo;
 @end

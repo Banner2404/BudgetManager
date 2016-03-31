@@ -64,44 +64,43 @@
     
 }
 
-#pragma mark - Actions
-
-- (IBAction)actionSettings:(UIButton *)sender {
+- (void)showViewControllerFromStoryboardID:(NSString*)storyboardID{
     
     if (!self.selectedWallet) {
         
         [self showWalletAlert];
-    
+        
     }else{
         
         UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
         
-        SettingsViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"SettingsViewController"];
+        SettingsViewController* vc = [storyboard instantiateViewControllerWithIdentifier:storyboardID];
         
         vc.selectedWallet = self.selectedWallet;
         
         [self.navigationController pushViewController:vc animated:YES];
     }
+    
+}
+
+#pragma mark - Actions
+
+- (IBAction)actionSettings:(UIButton *)sender {
+    
+    [self showViewControllerFromStoryboardID:@"SettingsViewController"];
 }
 
 
 - (IBAction)actionAdd:(UIButton *)sender {
     
-    if (!self.selectedWallet) {
-        
-        [self showWalletAlert];
-        
-    }else{
+    [self showViewControllerFromStoryboardID:@"AddOperationViewController"];
 
+}
+
+- (IBAction)actionStatictics:(UIButton *)sender {
     
-        UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-        
-        AddOperationViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"AddOperationViewController"];
-        
-        vc.selectedWallet = self.selectedWallet;
-        
-        [self.navigationController pushViewController:vc animated:YES];
-    }
+    [self showViewControllerFromStoryboardID:@"StatisticsViewController"];
+
     
 }
 @end

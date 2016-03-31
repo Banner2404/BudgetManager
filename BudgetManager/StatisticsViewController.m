@@ -7,11 +7,12 @@
 //
 
 #import "StatisticsViewController.h"
+#import "DetailOperationViewController.h"
 #import "Wallet.h"
 #import "Operation.h"
 #import "OperationType.h"
 
-@interface StatisticsViewController ()
+@interface StatisticsViewController () <UITableViewDelegate>
 
 @end
 
@@ -77,6 +78,22 @@
     
     cell.textLabel.text = operation.type.name;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",operation.cost];
+    
+}
+
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    Operation* operation = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    
+    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    
+    DetailOperationViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"DetailOperationViewController"];
+ 
+    vc.selectedOperation = operation;
+    
+    [self.navigationController pushViewController:vc animated:YES];
     
 }
 

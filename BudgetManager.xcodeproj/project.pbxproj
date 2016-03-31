@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D128D13F1CAD81F600E4D9C4 /* StatisticsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D128D13E1CAD81F600E4D9C4 /* StatisticsViewController.m */; };
+		D128D1421CADA57700E4D9C4 /* DetailOperationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D128D1411CADA57700E4D9C4 /* DetailOperationViewController.m */; };
 		D1396A801CA55949006CF786 /* AddOperationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1396A7F1CA55949006CF786 /* AddOperationViewController.m */; };
 		D1396A841CA5929D006CF786 /* TypesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1396A831CA5929D006CF786 /* TypesViewController.m */; };
 		D176C1451CA450A500CB7334 /* AddWalletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D176C1441CA450A500CB7334 /* AddWalletViewController.m */; };
@@ -36,6 +37,8 @@
 /* Begin PBXFileReference section */
 		D128D13D1CAD81F600E4D9C4 /* StatisticsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatisticsViewController.h; sourceTree = "<group>"; };
 		D128D13E1CAD81F600E4D9C4 /* StatisticsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatisticsViewController.m; sourceTree = "<group>"; };
+		D128D1401CADA57700E4D9C4 /* DetailOperationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailOperationViewController.h; sourceTree = "<group>"; };
+		D128D1411CADA57700E4D9C4 /* DetailOperationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailOperationViewController.m; sourceTree = "<group>"; };
 		D1396A7E1CA55949006CF786 /* AddOperationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddOperationViewController.h; sourceTree = "<group>"; };
 		D1396A7F1CA55949006CF786 /* AddOperationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddOperationViewController.m; sourceTree = "<group>"; };
 		D1396A821CA5929D006CF786 /* TypesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypesViewController.h; sourceTree = "<group>"; };
@@ -142,6 +145,8 @@
 				D199E45F1CAA795600911848 /* DateViewController.m */,
 				D128D13D1CAD81F600E4D9C4 /* StatisticsViewController.h */,
 				D128D13E1CAD81F600E4D9C4 /* StatisticsViewController.m */,
+				D128D1401CADA57700E4D9C4 /* DetailOperationViewController.h */,
+				D128D1411CADA57700E4D9C4 /* DetailOperationViewController.m */,
 				D1AFD1DD1CA19B2900E998F0 /* Main.storyboard */,
 				D1AFD1E31CA19B2900E998F0 /* Assets.xcassets */,
 				D1AFD1E51CA19B2900E998F0 /* LaunchScreen.storyboard */,
@@ -261,6 +266,7 @@
 				D1396A801CA55949006CF786 /* AddOperationViewController.m in Sources */,
 				D1AFD1E21CA19B2900E998F0 /* BudgetManager.xcdatamodeld in Sources */,
 				D1AFD2031CA1A49800E998F0 /* Wallet.m in Sources */,
+				D128D1421CADA57700E4D9C4 /* DetailOperationViewController.m in Sources */,
 				D1AFD2091CA1A49800E998F0 /* Operation.m in Sources */,
 				D1AFD2081CA1A49800E998F0 /* Operation+CoreDataProperties.m in Sources */,
 				D1AFD2021CA1A49800E998F0 /* Wallet+CoreDataProperties.m in Sources */,

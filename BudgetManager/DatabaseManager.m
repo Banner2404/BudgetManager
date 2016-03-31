@@ -86,7 +86,6 @@
     
     Operation* operation = [NSEntityDescription insertNewObjectForEntityForName:@"Operation"
                                                          inManagedObjectContext:self.managedObjectContext];
-    
     operation.wallet = wallet;
     operation.type = operationType;
     operation.cost = [NSNumber numberWithInteger:cost];
@@ -94,6 +93,40 @@
     operation.profitType = [NSNumber numberWithInteger:profitType];
     operation.date = date;
     operation.operationID = [NSNumber numberWithInteger:operationID ++];
+    
+    NSInteger money;
+    
+    if (moneyType == MoneyTypeCash) {
+        
+        money = [wallet.cashMoney integerValue];
+        
+        if (profitType == ProfitTypeIncome) {
+            
+            wallet.cashMoney = [NSNumber numberWithInteger:money + cost];
+            
+        }else{
+            
+            wallet.cashMoney = [NSNumber numberWithInteger:money - cost];
+         
+        }
+        
+    }else{
+        
+        money = [wallet.bankMoney integerValue];
+        
+        if (profitType == ProfitTypeIncome) {
+            
+            wallet.bankMoney = [NSNumber numberWithInteger:money + cost];
+            
+        }else{
+            
+            wallet.bankMoney = [NSNumber numberWithInteger:money - cost];
+            
+        }
+
+        
+    }
+    
     
     [self saveContext];
     

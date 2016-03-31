@@ -122,11 +122,6 @@
     
     [[DatabaseManager sharedManager] saveContext];
     
-    MainViewController* mainVC = [[self.navigationController viewControllers] objectAtIndex:0];
-    
-    [mainVC refreshInfo];
-    
-    
     [self.navigationController popViewControllerAnimated:YES];
 
     

@@ -157,6 +157,11 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <items>
                                 <navigationItem title="Types" id="Iwz-R5-cxq">
+                                    <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="XKC-mN-qVf">
+                                        <connections>
+                                            <action selector="actionCancelButton:" destination="3Bs-5b-PeV" id="rxS-5z-Zwx"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem key="rightBarButtonItem" systemItem="add" id="EsJ-cD-U5a">
                                         <connections>
                                             <action selector="actionAddButton:" destination="3Bs-5b-PeV" id="gKV-oN-sS2"/>

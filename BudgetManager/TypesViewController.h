@@ -18,6 +18,7 @@
 
 - (void)configureCell:(UITableViewCell *)cell withObject:(NSManagedObject *)object;
 - (IBAction)actionAddButton:(UIBarButtonItem *)sender;
+- (IBAction)actionCancelButton:(UIBarButtonItem *)sender;
 
 
 @end

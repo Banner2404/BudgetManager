@@ -25,6 +25,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated{
+    
     [self refreshInfo];
 }
 
@@ -87,11 +88,83 @@
     
 }
 
+- (void)showAlertWithTitle:(NSString*) title message:(NSString*) message actionName:(NSString*) actionName{
+    
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:title
+                                                                   message:message
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* action = [UIAlertAction actionWithTitle:actionName
+                                                     style:UIAlertActionStyleDefault
+                                                   handler:nil];
+    
+    [alert addAction:action];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+    
+    
+}
+
+- (void)validSettingsLoad{
+    
+    [self showViewControllerFromStoryboardID:@"SettingsViewController"];
+    
+}
+
+- (void)checkPassword{
+    
+    if ([self.selectedWallet.isSecure boolValue]) {
+        
+        NSLog(@"Password: %@ %@",self.selectedWallet.isSecure,self.selectedWallet.password);
+        
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Password"
+                                                                       message:@"Enter password for wallet"
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        
+        __block UITextField* passwordTextField = nil;
+        
+        [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+            
+            passwordTextField = textField;
+            
+        }];
+        
+        UIAlertAction* actionDone = [UIAlertAction
+                                   actionWithTitle:@"Done"
+                                             style:UIAlertActionStyleDefault
+                                           handler:^(UIAlertAction * _Nonnull action) {
+                                               
+                                               if ([passwordTextField.text isEqualToString:self.selectedWallet.password]) {
+                                                   
+                                                   [self validSettingsLoad];
+                                                   
+                                               }else{
+                                                   
+                                                   [self showAlertWithTitle:@"Error"
+                                                                    message:@"Incorrect password"
+                                                                 actionName:@"OK"];
+                                                   
+                                               }
+                                               
+                                           }];
+        
+        [alert addAction:actionDone];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+        
+    }else{
+        
+        [self validSettingsLoad];
+        
+    }
+}
+
+
 #pragma mark - Actions
 
 - (IBAction)actionSettings:(UIButton *)sender {
-    
-    [self showViewControllerFromStoryboardID:@"SettingsViewController"];
+
+    [self checkPassword];
 }
 
 

@@ -114,7 +114,10 @@
 
 - (void)checkPassword{
     
-    if (self.selectedWallet.isSecure) {
+    if ([self.selectedWallet.isSecure boolValue]) {
+        
+        NSLog(@"Password: %@ %@",self.selectedWallet.isSecure,self.selectedWallet.password);
+        
         
         UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Password"
                                                                        message:@"Enter password for wallet"
@@ -148,6 +151,10 @@
         [alert addAction:actionDone];
         
         [self presentViewController:alert animated:YES completion:nil];
+        
+    }else{
+        
+        [self validAddOperation];
         
     }
 }

@@ -112,6 +112,46 @@
     
 }
 
+- (void)checkPassword{
+    
+    if (self.selectedWallet.isSecure) {
+        
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Password"
+                                                                       message:@"Enter password for wallet"
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        
+        __block UITextField* passwordTextField = nil;
+        
+        [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+            
+            passwordTextField = textField;
+            
+        }];
+        
+        UIAlertAction* actionDone = [UIAlertAction actionWithTitle:@"Done"
+                                                             style:UIAlertActionStyleDefault
+                                                           handler:^(UIAlertAction * _Nonnull action) {
+                                                               
+                                                               if ([passwordTextField.text isEqualToString:self.selectedWallet.password]) {
+                                                                   
+                                                                   [self validAddOperation];
+                                                               }else{
+                                                                   
+                                                                   [self showAlertWithTitle:@"Error"
+                                                                                    message:@"Incorrect password"
+                                                                                 actionName:@"OK"];
+                                                                   
+                                                               }
+                                                               
+                                                           }];
+        
+        [alert addAction:actionDone];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+        
+    }
+}
+
 
 
 #pragma mark - UITextFieldDelegate
@@ -160,7 +200,7 @@
         
     }else{
         
-        [self validAddOperation];
+        [self checkPassword];
         
     }
     

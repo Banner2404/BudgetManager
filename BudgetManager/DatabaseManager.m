@@ -74,6 +74,21 @@
     
 }
 
+
+- (Wallet*)getWalletWithID:(NSInteger)walletID{
+    
+    NSFetchRequest* request = [NSFetchRequest fetchRequestWithEntityName:@"Wallet"];
+    
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"walletID == %ld",walletID];
+    
+    [request setPredicate:predicate];
+    
+    NSArray* results = [self.managedObjectContext executeFetchRequest:request error:nil];
+    
+    return [results firstObject];
+    
+}
+
 - (NSArray*)getOperationTypes{
     
     NSFetchRequest* request = [NSFetchRequest fetchRequestWithEntityName:@"OperationType"];

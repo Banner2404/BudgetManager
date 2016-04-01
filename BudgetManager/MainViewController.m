@@ -9,6 +9,7 @@
 #import "MainViewController.h"
 #import "SettingsViewController.h"
 #import "AddOperationViewController.h"
+#import "DatabaseManager.h"
 #import "Wallet.h"
 
 @interface MainViewController ()
@@ -20,7 +21,24 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    
+    NSInteger selectedWalletID = [defaults integerForKey:@"selectedWalletID"];
+    
+    NSLog(@"load %ld",selectedWalletID);
+    
+    self.selectedWallet = [[DatabaseManager sharedManager] getWalletWithID:selectedWalletID];
+    
     [self refreshInfo];
+    
+}
+
+- (void)saveWallet{
+    
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    
+    [defaults setInteger:[self.selectedWallet.walletID integerValue] forKey:@"selectedWalletID"];
+    NSLog(@"save %ld",[self.selectedWallet.walletID integerValue]);
     
 }
 

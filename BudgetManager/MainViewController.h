@@ -22,4 +22,5 @@
 - (IBAction)actionStatictics:(UIButton *)sender;
 
 - (void)refreshInfo;
+- (void)saveWallet;
 @end

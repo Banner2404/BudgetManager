@@ -94,6 +94,7 @@
     Wallet* wallet = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
     mainVC.selectedWallet = wallet;
+    [mainVC saveWallet];
     [mainVC refreshInfo];
 
     [self dismissViewControllerAnimated:YES completion:nil];

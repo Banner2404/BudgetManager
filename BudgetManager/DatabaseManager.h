@@ -26,6 +26,7 @@
 - (OperationType*)createOperationTypeWithName:(NSString*)name;
 - (Operation*)addOperationForWallet:(Wallet*)wallet type:(OperationType*) operationType cost:(NSInteger)cost moneyType:(MoneyType) moneyType profitType:(ProfitType)profitType date:(NSDate*)date;
 - (NSArray*)getWallets;
+- (Wallet*)getWalletWithID:(NSInteger)walletID;
 - (NSArray*)getOperationTypes;
 - (void)showOperations;
 

@@ -30,6 +30,10 @@
 
 - (Wallet*)createWalletWithName:(NSString*) name cash:(NSInteger)cashMoney bank:(NSInteger)bankMoney security:(BOOL)isSecure password:(NSString *)password{
     
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    
+    NSInteger walletID = [[defaults valueForKey:@"walletID"] integerValue];
+    
     Wallet* wallet = [NSEntityDescription insertNewObjectForEntityForName:@"Wallet"
                                                    inManagedObjectContext:self.managedObjectContext];
     
@@ -38,7 +42,9 @@
     wallet.bankMoney = [NSNumber numberWithInteger:bankMoney];
     wallet.isSecure = [NSNumber numberWithBool:isSecure];
     wallet.password = password;
-
+    wallet.walletID = [NSNumber numberWithInteger:walletID++];
+    
+    [defaults setInteger:walletID forKey:@"walletID"];
     
     return wallet;
     
@@ -129,7 +135,7 @@
         
     }
     
-    [defaults setValue:[NSNumber numberWithInteger:operationID] forKey:@"operationID"];
+    [defaults setInteger:operationID forKey:@"operationID"];
     [self saveContext];
     
     return operation;

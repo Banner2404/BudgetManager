@@ -25,6 +25,7 @@
     self.passwordTextField.text = self.selectedWallet.password;
     self.cashMoneyTextField.text = [NSString stringWithFormat:@"%@",self.selectedWallet.cashMoney];
     self.bankMoneyTextField.text = [NSString stringWithFormat:@"%@",self.selectedWallet.bankMoney];
+    self.idLabel.text = [NSString stringWithFormat:@"%@",self.selectedWallet.walletID];
 
     
     [self checkSequre];

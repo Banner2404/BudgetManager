@@ -23,12 +23,13 @@
         <attribute name="isSecure" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="walletID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <relationship name="operations" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Operation" inverseName="wallet" inverseEntity="Operation" syncable="YES"/>
     </entity>
     <elements>
+        <element name="Favourites" positionX="-614" positionY="18" width="128" height="58"/>
         <element name="Operation" positionX="-837" positionY="-1" width="128" height="163"/>
         <element name="OperationType" positionX="-614" positionY="161" width="128" height="73"/>
-        <element name="Wallet" positionX="-1028" positionY="-16" width="128" height="133"/>
-        <element name="Favourites" positionX="-614" positionY="18" width="128" height="58"/>
+        <element name="Wallet" positionX="-1028" positionY="-16" width="128" height="148"/>
     </elements>
 </model>

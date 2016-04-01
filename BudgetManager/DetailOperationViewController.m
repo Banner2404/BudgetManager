@@ -30,6 +30,7 @@
     formatter.dateStyle = NSDateFormatterMediumStyle;
     
     self.dateLabel.text = [formatter stringFromDate:self.selectedOperation.date];
+    self.idLabel.text = [NSString stringWithFormat:@"%@",self.selectedOperation.operationID];
     
     
 }

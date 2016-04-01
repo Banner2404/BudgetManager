@@ -210,7 +210,7 @@
         <scene sceneID="iFU-mT-t0U">
             <objects>
                 <tableViewController storyboardIdentifier="AddOperationViewController" id="qXc-X6-ILx" customClass="AddOperationViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="j5d-Hg-zXk">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="j5d-Hg-zXk">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -502,7 +502,7 @@
         <scene sceneID="UDe-LT-yfS">
             <objects>
                 <tableViewController id="jmW-td-nxo" customClass="AddWalletViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="z3U-7b-0Ep">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="z3U-7b-0Ep">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -929,6 +929,38 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Ulu-eI-Cq0">
+                                        <rect key="frame" x="0.0" y="220" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ulu-eI-Cq0" id="W7c-pQ-Lgb">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kxe-Va-3Ea">
+                                                    <rect key="frame" x="20" y="0.0" width="280" height="43"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="id" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="70E-3w-JkX">
+                                                    <rect key="frame" x="300" y="0.0" width="280" height="43"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="70E-3w-JkX" secondAttribute="trailing" constant="20" id="9bm-4f-g1J"/>
+                                                <constraint firstItem="70E-3w-JkX" firstAttribute="top" secondItem="W7c-pQ-Lgb" secondAttribute="top" id="KLT-3u-ji4"/>
+                                                <constraint firstItem="Kxe-Va-3Ea" firstAttribute="leading" secondItem="W7c-pQ-Lgb" secondAttribute="leading" constant="20" id="Klr-Ew-aHo"/>
+                                                <constraint firstItem="Kxe-Va-3Ea" firstAttribute="top" secondItem="W7c-pQ-Lgb" secondAttribute="top" id="TLt-c1-nOD"/>
+                                                <constraint firstItem="70E-3w-JkX" firstAttribute="width" secondItem="Kxe-Va-3Ea" secondAttribute="width" id="a28-VY-BSc"/>
+                                                <constraint firstAttribute="bottom" secondItem="Kxe-Va-3Ea" secondAttribute="bottom" id="bzc-8G-m6e"/>
+                                                <constraint firstAttribute="bottom" secondItem="70E-3w-JkX" secondAttribute="bottom" id="c7a-6C-cJV"/>
+                                                <constraint firstItem="70E-3w-JkX" firstAttribute="leading" secondItem="Kxe-Va-3Ea" secondAttribute="trailing" id="hVr-50-9VG"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -940,6 +972,7 @@
                     <connections>
                         <outlet property="costLabel" destination="CeH-cD-Wje" id="P5U-fn-03h"/>
                         <outlet property="dateLabel" destination="aLR-2t-RNV" id="ck6-1N-GVK"/>
+                        <outlet property="idLabel" destination="70E-3w-JkX" id="0Lq-Pn-bk2"/>
                         <outlet property="moneyTypeLabel" destination="EeU-ud-9hG" id="x3e-hf-EFb"/>
                         <outlet property="profitTypeLabel" destination="m11-Dk-Big" id="exM-MZ-vUn"/>
                         <outlet property="typeLabel" destination="AIF-3Z-vJc" id="2XM-1o-wYT"/>
@@ -997,7 +1030,7 @@
         <scene sceneID="KvT-c7-1Qr">
             <objects>
                 <tableViewController storyboardIdentifier="SettingsViewController" id="ZGc-I2-fbs" customClass="SettingsViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="l9p-LF-hLg">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="l9p-LF-hLg">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

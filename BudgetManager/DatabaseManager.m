@@ -82,7 +82,9 @@
 
 - (Operation*)addOperationForWallet:(Wallet*)wallet type:(OperationType*) operationType cost:(NSInteger)cost moneyType:(MoneyType) moneyType profitType:(ProfitType)profitType date:(NSDate*)date{
     
-    static NSInteger operationID = 0;
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+
+    NSInteger operationID = [[defaults valueForKey:@"operationID"] integerValue];
     
     Operation* operation = [NSEntityDescription insertNewObjectForEntityForName:@"Operation"
                                                          inManagedObjectContext:self.managedObjectContext];
@@ -127,7 +129,7 @@
         
     }
     
-    
+    [defaults setValue:[NSNumber numberWithInteger:operationID] forKey:@"operationID"];
     [self saveContext];
     
     return operation;

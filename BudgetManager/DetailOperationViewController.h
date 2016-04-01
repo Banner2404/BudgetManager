@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *moneyTypeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *profitTypeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *idLabel;
 
 
 @end

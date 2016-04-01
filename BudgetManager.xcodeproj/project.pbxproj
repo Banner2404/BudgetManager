@@ -32,6 +32,7 @@
 		D1AFD20F1CA2947800E998F0 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AFD20E1CA2947800E998F0 /* MainViewController.m */; };
 		D1AFD2121CA2950700E998F0 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AFD2111CA2950700E998F0 /* SettingsViewController.m */; };
 		D1AFD21E1CA2A16100E998F0 /* WalletsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1AFD21D1CA2A16100E998F0 /* WalletsViewController.m */; };
+		D1CF0EC61CAED70A00F088E2 /* FilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1CF0EC51CAED70A00F088E2 /* FilterViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +83,8 @@
 		D1AFD2111CA2950700E998F0 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		D1AFD21C1CA2A16100E998F0 /* WalletsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WalletsViewController.h; sourceTree = "<group>"; };
 		D1AFD21D1CA2A16100E998F0 /* WalletsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WalletsViewController.m; sourceTree = "<group>"; };
+		D1CF0EC41CAED70A00F088E2 /* FilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterViewController.h; sourceTree = "<group>"; };
+		D1CF0EC51CAED70A00F088E2 /* FilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +150,8 @@
 				D128D13E1CAD81F600E4D9C4 /* StatisticsViewController.m */,
 				D128D1401CADA57700E4D9C4 /* DetailOperationViewController.h */,
 				D128D1411CADA57700E4D9C4 /* DetailOperationViewController.m */,
+				D1CF0EC41CAED70A00F088E2 /* FilterViewController.h */,
+				D1CF0EC51CAED70A00F088E2 /* FilterViewController.m */,
 				D1AFD1DD1CA19B2900E998F0 /* Main.storyboard */,
 				D1AFD1E31CA19B2900E998F0 /* Assets.xcassets */,
 				D1AFD1E51CA19B2900E998F0 /* LaunchScreen.storyboard */,
@@ -280,6 +285,7 @@
 				D1AFD2121CA2950700E998F0 /* SettingsViewController.m in Sources */,
 				D1AFD21E1CA2A16100E998F0 /* WalletsViewController.m in Sources */,
 				D1AFD1F01CA1A2B900E998F0 /* DatabaseManager.m in Sources */,
+				D1CF0EC61CAED70A00F088E2 /* FilterViewController.m in Sources */,
 				D1AFD1D61CA19B2900E998F0 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -182,7 +182,7 @@
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
     
-    if ([textField isEqual:self.cashMoneyTextField] || [textField isEqual:self.cashMoneyTextField]) {
+    if ([textField isEqual:self.cashMoneyTextField] || [textField isEqual:self.bankMoneyTextField]) {
         
         return [self numberField:textField shouldChangeCharactersInRange:range replacementString:string];
         

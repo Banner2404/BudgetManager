@@ -69,6 +69,7 @@
     if ([[string componentsSeparatedByCharactersInSet:charactersSet] count] > 1) {
         return NO;
     }
+    
     return YES;
 }
 

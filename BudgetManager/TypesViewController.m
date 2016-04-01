@@ -97,16 +97,22 @@
         
     }];
     
-    UIAlertAction* action = [UIAlertAction actionWithTitle:@"Done"
-                                                     style:UIAlertActionStyleDefault
-                                                   handler:^(UIAlertAction * _Nonnull action) {
-                                                       
-                                                       [self createOperationTypeWithName:alertTextField.text];
-                                                       
-                                                   }];
+    UIAlertAction* actionDone = [UIAlertAction actionWithTitle:@"Done"
+                                                         style:UIAlertActionStyleDefault
+                                                       handler:^(UIAlertAction * _Nonnull action) {
+                                                           
+                                                           [self createOperationTypeWithName:alertTextField.text];
+                                                           
+                                                       }];
+    UIAlertAction* actionCancel = [UIAlertAction actionWithTitle:@"Cancel"
+                                                         style:UIAlertActionStyleCancel
+                                                       handler:^(UIAlertAction * _Nonnull action) {
+                                                           
+                                                       }];
     
-    [alert addAction:action];
-    
+    [alert addAction:actionDone];
+    [alert addAction:actionCancel];
+
     
     [self presentViewController:alert animated:YES completion:nil];
     

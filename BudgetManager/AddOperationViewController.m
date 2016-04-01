@@ -127,6 +127,8 @@
         
         [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
             
+            textField.secureTextEntry = YES;
+            
             passwordTextField = textField;
             
         }];

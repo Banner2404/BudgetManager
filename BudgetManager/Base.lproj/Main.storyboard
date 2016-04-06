@@ -1300,7 +1300,7 @@
         <scene sceneID="UFw-ok-6eQ">
             <objects>
                 <tableViewController storyboardIdentifier="FilterViewController" id="fUw-GN-zxK" customClass="FilterViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="wwA-kw-DBQ">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="wwA-kw-DBQ">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1345,7 +1345,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Z7-rs-PRw">
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="9Z7-rs-PRw">
                                                     <rect key="frame" x="531" y="6" width="51" height="31"/>
                                                 </switch>
                                                 <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="tJK-yG-sfe">
@@ -1371,7 +1371,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pHD-hh-2I1">
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="pHD-hh-2I1">
                                                     <rect key="frame" x="531" y="6" width="51" height="31"/>
                                                 </switch>
                                                 <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="gEk-DF-eHu">
@@ -1397,7 +1397,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u3M-xg-FJS">
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="u3M-xg-FJS">
                                                     <rect key="frame" x="531" y="6" width="51" height="31"/>
                                                 </switch>
                                             </subviews>
@@ -1448,7 +1448,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sMi-OT-AEF">
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="sMi-OT-AEF">
                                                     <rect key="frame" x="531" y="6" width="51" height="31"/>
                                                 </switch>
                                             </subviews>
@@ -1494,6 +1494,24 @@
                             <outlet property="delegate" destination="fUw-GN-zxK" id="NCU-zb-FRk"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="costSwitch" destination="u3M-xg-FJS" id="cVY-pn-onA"/>
+                        <outlet property="dateSwitch" destination="sMi-OT-AEF" id="GsK-tN-8a2"/>
+                        <outlet property="moneyTypeControl" destination="tJK-yG-sfe" id="WJr-pF-OwC"/>
+                        <outlet property="moneyTypeSwitch" destination="9Z7-rs-PRw" id="cdy-Yk-sjv"/>
+                        <outlet property="profitTypeControl" destination="gEk-DF-eHu" id="YhR-Bh-09S"/>
+                        <outlet property="profitTypeSwitch" destination="pHD-hh-2I1" id="Irq-Jn-6Fy"/>
+                        <outletCollection property="sortTypeControl" destination="HnJ-gs-X2X" id="ENZ-Kb-UzB"/>
+                        <outletCollection property="sortTypeControl" destination="k8Z-g4-k6m" id="ygK-vk-Mn4"/>
+                        <outletCollection property="costLabels" destination="aYT-p4-kEc" id="vJs-Qi-eZ5"/>
+                        <outletCollection property="costLabels" destination="qyA-0K-VGk" id="Ebp-kc-zlS"/>
+                        <outletCollection property="dateLabels" destination="OUS-Ol-57x" id="gsY-Q7-RQ2"/>
+                        <outletCollection property="dateLabels" destination="Ymm-Nd-8ci" id="bK1-D8-zb9"/>
+                        <outletCollection property="costTextFields" destination="TA9-gb-dlc" id="goa-vv-m1p"/>
+                        <outletCollection property="costTextFields" destination="1Wv-dT-F3s" id="DCO-mp-Jos"/>
+                        <outletCollection property="dateTextFields" destination="pgV-uM-ZS8" id="MeF-2m-XgR"/>
+                        <outletCollection property="dateTextFields" destination="cwM-lD-nES" id="1h6-IN-kQc"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jf2-bz-NiT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

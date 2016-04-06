@@ -40,13 +40,14 @@
         
         [self.passwordTextField setHidden:NO];
         [self.passwordLabel setHidden:NO];
+        self.bankMoneyTextField.returnKeyType = UIReturnKeyNext;
         
     }else{
         
         [self.passwordTextField setHidden:YES];
         [self.passwordLabel setHidden:YES];
-        
-        
+        self.bankMoneyTextField.returnKeyType = UIReturnKeyDone;
+
         
     }
     
@@ -156,6 +157,34 @@
     if ([textField isEqual:self.walletNameTextField] || [textField isEqual:self.passwordTextField]) {
         
         return [self nameField:textField shouldChangeCharactersInRange:range replacementString:string];
+        
+    }
+    return YES;
+    
+}
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    
+    if ([textField isEqual:self.walletNameTextField]){
+        
+        [self.cashMoneyTextField becomeFirstResponder];
+        
+    }else if ([textField isEqual:self.cashMoneyTextField]){
+        
+        [self.bankMoneyTextField becomeFirstResponder];
+        
+    }else if ([textField isEqual:self.bankMoneyTextField]){
+        
+        [textField resignFirstResponder];
+        
+        if (self.secureSwitch.isOn) {
+            
+            [self.passwordTextField becomeFirstResponder];
+            
+        }
+        
+    }else{
+        
+        [textField resignFirstResponder];
         
     }
     return YES;

@@ -132,6 +132,7 @@
     
     self.operationVC.typeTextField.text = cell.textLabel.text;
     self.operationVC.selectedType = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    [self.operationVC.costTextField becomeFirstResponder];
     
     [self dismissViewControllerAnimated:YES completion:nil];
     

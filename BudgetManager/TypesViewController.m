@@ -21,7 +21,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    [[DatabaseManager sharedManager] checkDefaultOperationTypes];
+    
 }
 
 - (void)didReceiveMemoryWarning {

@@ -176,4 +176,11 @@
     
     
 }
+
+- (IBAction)actionProfitTypeControl:(UISegmentedControl *)sender {
+    
+    self.selectedType = nil;
+    [self.typeTextField becomeFirstResponder];
+    
+}
 @end

@@ -15,6 +15,8 @@
 
 @interface DatabaseManager : NSObject
 
+@property (assign, nonatomic) BOOL mustLoadDefaultTypes;
+@property (strong, nonatomic) NSMutableDictionary* defaultOperationTypes;
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
@@ -29,6 +31,7 @@
 - (Wallet*)getWalletWithID:(NSInteger)walletID;
 - (NSArray*)getOperationTypes;
 - (void)showOperations;
+- (void)checkDefaultOperationTypes;
 
 
 - (void)saveContext;

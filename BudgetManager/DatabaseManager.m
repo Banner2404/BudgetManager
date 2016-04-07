@@ -8,7 +8,28 @@
 
 #import "DatabaseManager.h"
 
+@interface DatabaseManager ()
+
+@property (strong,nonatomic) NSArray* incomeOperationsNames;
+@property (strong,nonatomic) NSArray* expenceOperationsNames;
+
+
+@end
+
 @implementation DatabaseManager
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        
+        self.defaultOperationTypes = [NSMutableDictionary dictionary];
+        self.expenceOperationsNames = @[@"Магазин", @"Подарки", @"Машина", @"Одежда", @"Развлечения", @"Коммунальные"];
+        self.incomeOperationsNames = @[@"Зарплата", @"Подарки", @"Лотерея"];
+
+    }
+    return self;
+}
 
 #pragma mark Static manager
 
@@ -61,6 +82,22 @@
     [self saveContext];
     return type;
     
+}
+
+- (void)createDefaultOperationTypesPreset{
+    
+    self.mustLoadDefaultTypes = NO;
+    
+    for (NSString* name in self.incomeOperationsNames) {
+        
+        [self createOperationTypeWithName:name profitType:OperationTypeProfitTypeIncome];
+        
+    }
+    for (NSString* name in self.expenceOperationsNames) {
+        
+        [self createOperationTypeWithName:name profitType:OperationTypeProfitTypeExpence];
+        
+    }
 }
 
 #pragma mark - Get
@@ -191,6 +228,16 @@
     
 }
 
+- (void)checkDefaultOperationTypes{
+    
+    if (self.mustLoadDefaultTypes) {
+        
+        [self createDefaultOperationTypesPreset];
+        
+    }
+    
+}
+
 #pragma mark - Core Data stack
 
 @synthesize managedObjectContext = _managedObjectContext;
@@ -232,6 +279,8 @@
         dict[NSUnderlyingErrorKey] = error;
         error = [NSError errorWithDomain:@"YOUR_ERROR_DOMAIN" code:9999 userInfo:dict];
         
+        
+        self.mustLoadDefaultTypes = YES;
         [[NSFileManager defaultManager] removeItemAtURL:storeURL error:nil];
         
         [_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error];

@@ -22,5 +22,6 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *profitTypeControl;
 @property (weak, nonatomic) IBOutlet UITextField *dateTextField;
 - (IBAction)actionAddButton:(UIButton *)sender;
+- (IBAction)actionProfitTypeControl:(UISegmentedControl *)sender;
 
 @end

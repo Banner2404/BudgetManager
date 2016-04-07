@@ -21,7 +21,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     self.databaseManager = [DatabaseManager sharedManager];
-    
+        
 //    Wallet* wallet1 = [self.databaseManager createWalletWithName:@"Banner1"];
 //    Wallet* wallet2 = [self.databaseManager createWalletWithName:@"Banner2"];
 //    Wallet* wallet3 = [self.databaseManager createWalletWithName:@"Banner3"];

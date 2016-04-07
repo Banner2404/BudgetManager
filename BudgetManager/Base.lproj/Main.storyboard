@@ -345,6 +345,9 @@
                                                         <segment title="Income"/>
                                                         <segment title="Expence"/>
                                                     </segments>
+                                                    <connections>
+                                                        <action selector="actionProfitTypeControl:" destination="qXc-X6-ILx" eventType="valueChanged" id="Pd1-3S-OzE"/>
+                                                    </connections>
                                                 </segmentedControl>
                                             </subviews>
                                             <constraints>

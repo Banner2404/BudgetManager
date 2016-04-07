@@ -14,16 +14,16 @@
 NS_ASSUME_NONNULL_BEGIN
 
 typedef enum{
-    MoneyTypeCash,
-    MoneyTypeBank
-}MoneyType;
+    OperationMoneyTypeCash,
+    OperationMoneyTypeBank
+}OperationMoneyType;
 
 typedef enum{
     
-    ProfitTypeIncome,
-    ProfitTypeExpence
+    OperationProfitTypeIncome,
+    OperationProfitTypeExpence
     
-}ProfitType;
+}OperationProfitType;
 
 @interface Operation : NSManagedObject
 

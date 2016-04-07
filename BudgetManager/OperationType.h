@@ -11,6 +11,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef enum{
+    
+    OperationTypeProfitTypeIncome,
+    OperationTypeProfitTypeExpence
+    
+}OperationTypeProfitType;
+
 @interface OperationType : NSManagedObject
 
 // Insert code here to declare functionality of your managed object subclass

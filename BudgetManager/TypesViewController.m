@@ -39,11 +39,14 @@
     // Edit the entity name as appropriate.
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"OperationType" inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
+
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"profitType == %ld",self.operationVC.profitTypeControl.selectedSegmentIndex];
     
     // Edit the sort key as appropriate.
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:NO];
     
     [fetchRequest setSortDescriptors:@[sortDescriptor]];
+    [fetchRequest setPredicate:predicate];
     
     // Edit the section name key path and cache name if appropriate.
     // nil for section name key path means "no sections".
@@ -66,17 +69,39 @@
     return _fetchedResultsController;
 }
 
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    static NSString* identifier = @"Cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    
+    if (!cell) {
+        
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        
+    }
+    
+    NSManagedObject *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+    [self configureCell:cell withObject:object];
+    return cell;
+}
+
 
 - (void)configureCell:(UITableViewCell *)cell withObject:(NSManagedObject *)object{
     
     OperationType* type = (OperationType*)object;
     cell.textLabel.text = type.name;
-    
+    if (arc4random() % 1000 > 500) {
+        cell.imageView.image = [UIImage imageNamed:@"cup"];
+    }else{
+        cell.imageView.image = [UIImage imageNamed:@"transport-2"];
+    }
 }
 
-- (void)createOperationTypeWithName:(NSString*)name{
+- (void)createOperationTypeWithName:(NSString*)name profitType:(OperationTypeProfitType)profitType{
     
-    [[DatabaseManager sharedManager] createOperationTypeWithName:name];
+    
+    [[DatabaseManager sharedManager] createOperationTypeWithName:name profitType:profitType];
     
 }
 
@@ -96,13 +121,15 @@
         
     }];
     
-    UIAlertAction* actionDone = [UIAlertAction actionWithTitle:@"Done"
-                                                         style:UIAlertActionStyleDefault
-                                                       handler:^(UIAlertAction * _Nonnull action) {
-                                                           
-                                                           [self createOperationTypeWithName:alertTextField.text];
-                                                           
-                                                       }];
+    UIAlertAction* actionDone = [UIAlertAction
+                                 actionWithTitle:@"Done"
+                                 style:UIAlertActionStyleDefault
+                                 handler:^(UIAlertAction * _Nonnull action) {
+                                
+                                     [self createOperationTypeWithName:alertTextField.text
+                                                            profitType:(OperationTypeProfitType)self.operationVC.profitTypeControl.selectedSegmentIndex];
+                                   
+                                 }];
     UIAlertAction* actionCancel = [UIAlertAction actionWithTitle:@"Cancel"
                                                          style:UIAlertActionStyleCancel
                                                        handler:^(UIAlertAction * _Nonnull action) {

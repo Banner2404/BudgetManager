@@ -15,6 +15,7 @@
     </entity>
     <entity name="OperationType" representedClassName="OperationType" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="profitType" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <relationship name="operations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Operation" inverseName="type" inverseEntity="Operation" syncable="YES"/>
     </entity>
     <entity name="Wallet" representedClassName="Wallet" syncable="YES">
@@ -29,7 +30,7 @@
     <elements>
         <element name="Favourites" positionX="-614" positionY="18" width="128" height="58"/>
         <element name="Operation" positionX="-837" positionY="-1" width="128" height="163"/>
-        <element name="OperationType" positionX="-614" positionY="161" width="128" height="73"/>
+        <element name="OperationType" positionX="-614" positionY="161" width="128" height="88"/>
         <element name="Wallet" positionX="-1028" positionY="-16" width="128" height="148"/>
     </elements>
 </model>

@@ -50,12 +50,13 @@
     
 }
 
-- (OperationType*)createOperationTypeWithName:(NSString*)name{
+- (OperationType*)createOperationTypeWithName:(NSString*)name profitType:(OperationTypeProfitType)profitType{
     
     OperationType* type = [NSEntityDescription insertNewObjectForEntityForName:@"OperationType"
                                                         inManagedObjectContext:self.managedObjectContext];
     
     type.name = name;
+    type.profitType = [NSNumber numberWithInteger:profitType];
     
     [self saveContext];
     return type;
@@ -101,7 +102,7 @@
 
 #pragma mark - Add
 
-- (Operation*)addOperationForWallet:(Wallet*)wallet type:(OperationType*) operationType cost:(NSInteger)cost moneyType:(MoneyType) moneyType profitType:(ProfitType)profitType date:(NSDate*)date{
+- (Operation*)addOperationForWallet:(Wallet*)wallet type:(OperationType*) operationType cost:(NSInteger)cost moneyType:(OperationMoneyType) moneyType profitType:(OperationProfitType)profitType date:(NSDate*)date{
     
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
 
@@ -119,11 +120,11 @@
     
     NSInteger money;
     
-    if (moneyType == MoneyTypeCash) {
+    if (moneyType == OperationMoneyTypeCash) {
         
         money = [wallet.cashMoney integerValue];
         
-        if (profitType == ProfitTypeIncome) {
+        if (profitType == OperationProfitTypeIncome) {
             
             wallet.cashMoney = [NSNumber numberWithInteger:money + cost];
             
@@ -137,7 +138,7 @@
         
         money = [wallet.bankMoney integerValue];
         
-        if (profitType == ProfitTypeIncome) {
+        if (profitType == OperationProfitTypeIncome) {
             
             wallet.bankMoney = [NSNumber numberWithInteger:money + cost];
             

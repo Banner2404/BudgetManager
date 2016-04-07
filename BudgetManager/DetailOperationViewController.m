@@ -24,8 +24,8 @@
     
     self.typeLabel.text = self.selectedOperation.type.name;
     self.costLabel.text = [NSString stringWithFormat:@"%@",self.selectedOperation.cost];
-    self.moneyTypeLabel.text = [NSString stringWithFormat:@"%@",[self.selectedOperation.moneyType integerValue] == MoneyTypeCash ? @"Cash" : @"Bank" ];
-    self.profitTypeLabel.text = [NSString stringWithFormat:@"%@",[self.selectedOperation.profitType integerValue] == ProfitTypeIncome ? @"Income" : @"Expence" ];
+    self.moneyTypeLabel.text = [NSString stringWithFormat:@"%@",[self.selectedOperation.moneyType integerValue] == OperationMoneyTypeCash ? @"Cash" : @"Bank" ];
+    self.profitTypeLabel.text = [NSString stringWithFormat:@"%@",[self.selectedOperation.profitType integerValue] == OperationProfitTypeIncome ? @"Income" : @"Expence" ];
     
     NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
     

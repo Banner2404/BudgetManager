@@ -104,8 +104,8 @@
     [[DatabaseManager sharedManager] addOperationForWallet:self.selectedWallet
                                                       type:self.selectedType
                                                       cost:[self.costTextField.text integerValue]
-                                                 moneyType:(MoneyType)self.moneyTypeControl.selectedSegmentIndex
-                                                profitType:(ProfitType)self.profitTypeControl.selectedSegmentIndex
+                                                 moneyType:(OperationMoneyType)self.moneyTypeControl.selectedSegmentIndex
+                                                profitType:(OperationProfitType)self.profitTypeControl.selectedSegmentIndex
                                                       date:self.selectedDate];
     
     [self.navigationController popViewControllerAnimated:YES];

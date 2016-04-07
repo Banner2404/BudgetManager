@@ -74,8 +74,11 @@
     }else{
         
         [self.walletButton setTitle:@"No wallet" forState:UIControlStateNormal];
-        self.cashMoneyLabel.text = @"0";
-        self.bankMoneyLabel.text = @"0";
+        self.cashMoneyLabel.text = @"0 $";
+        self.cashMoneyLabel.textColor = [UIColor blackColor];
+        self.bankMoneyLabel.text = @"0 $";
+        self.bankMoneyLabel.textColor = [UIColor blackColor];
+
     }
 
     

@@ -20,6 +20,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.navigationItem.title = self.selectedOperation.type.name;
+    
     self.typeLabel.text = self.selectedOperation.type.name;
     self.costLabel.text = [NSString stringWithFormat:@"%@",self.selectedOperation.cost];
     self.moneyTypeLabel.text = [NSString stringWithFormat:@"%@",[self.selectedOperation.moneyType integerValue] == MoneyTypeCash ? @"Cash" : @"Bank" ];

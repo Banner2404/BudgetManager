@@ -98,7 +98,7 @@
     Operation* operation = (Operation*)object;
     
     cell.textLabel.text = operation.type.name;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",operation.cost];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ $",operation.cost];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
 }

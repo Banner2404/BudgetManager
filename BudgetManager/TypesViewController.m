@@ -70,7 +70,6 @@
 - (void)configureCell:(UITableViewCell *)cell withObject:(NSManagedObject *)object{
     
     OperationType* type = (OperationType*)object;
-    
     cell.textLabel.text = type.name;
     
 }
@@ -119,7 +118,7 @@
 }
 
 - (IBAction)actionCancelButton:(UIBarButtonItem *)sender {
-    
+     
     [self dismissViewControllerAnimated:YES completion:nil];
     
 }
@@ -132,7 +131,9 @@
     
     self.operationVC.typeTextField.text = cell.textLabel.text;
     self.operationVC.selectedType = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    [self.operationVC.costTextField becomeFirstResponder];
+    if (![self.operationVC.costTextField isFirstResponder]) {
+        [self.operationVC.costTextField becomeFirstResponder];
+    }
     
     [self dismissViewControllerAnimated:YES completion:nil];
     

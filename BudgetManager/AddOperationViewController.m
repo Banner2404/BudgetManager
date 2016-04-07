@@ -118,6 +118,7 @@
     
     if ([textField isEqual:self.typeTextField]) {
         
+        [self.costTextField resignFirstResponder];
         [self loadTypesController];
         return NO;
         
@@ -125,6 +126,7 @@
     
     if ([textField isEqual:self.dateTextField]){
         
+        [self.costTextField resignFirstResponder];
         [self loadDateController];
         return NO;
         

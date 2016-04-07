@@ -57,8 +57,18 @@
     if (self.selectedWallet) {
         
         [self.walletButton setTitle:self.selectedWallet.name forState:UIControlStateNormal];
-        self.cashMoneyLabel.text = [NSString stringWithFormat:@"%@",self.selectedWallet.cashMoney];
-        self.bankMoneyLabel.text = [NSString stringWithFormat:@"%@",self.selectedWallet.bankMoney];
+        self.cashMoneyLabel.text = [NSString stringWithFormat:@"%@ $",self.selectedWallet.cashMoney];
+        if ([self.selectedWallet.cashMoney integerValue] < 0) {
+            self.cashMoneyLabel.textColor = [UIColor redColor];
+        }else{
+            self.cashMoneyLabel.textColor = [UIColor blackColor];
+        }
+        self.bankMoneyLabel.text = [NSString stringWithFormat:@"%@ $",self.selectedWallet.bankMoney];
+        if ([self.selectedWallet.bankMoney integerValue] < 0) {
+            self.bankMoneyLabel.textColor = [UIColor redColor];
+        }else{
+            self.bankMoneyLabel.textColor = [UIColor blackColor];
+        }
         
         
     }else{

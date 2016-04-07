@@ -206,7 +206,7 @@
             </objects>
             <point key="canvasLocation" x="754" y="-1039"/>
         </scene>
-        <!--Title-->
+        <!--Add operation-->
         <scene sceneID="iFU-mT-t0U">
             <objects>
                 <tableViewController storyboardIdentifier="AddOperationViewController" id="qXc-X6-ILx" customClass="AddOperationViewController" sceneMemberID="viewController">
@@ -421,7 +421,7 @@
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Title" id="Sgn-Kz-jJI">
+                    <navigationItem key="navigationItem" title="Add operation" id="Sgn-Kz-jJI">
                         <barButtonItem key="rightBarButtonItem" systemItem="bookmarks" id="JOf-0H-ugq"/>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
@@ -1054,7 +1054,7 @@
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="WalletName" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pMk-hO-cZw">
                                                     <rect key="frame" x="302" y="0.0" width="278" height="43"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="done"/>
                                                     <connections>
                                                         <outlet property="delegate" destination="ZGc-I2-fbs" id="hfD-m9-e3z"/>
                                                     </connections>
@@ -1088,7 +1088,7 @@
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Sxx-Na-HJG">
                                                     <rect key="frame" x="300" y="0.0" width="280" height="43"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numbersAndPunctuation" returnKeyType="done"/>
                                                     <connections>
                                                         <outlet property="delegate" destination="ZGc-I2-fbs" id="fX1-27-9c2"/>
                                                     </connections>
@@ -1128,7 +1128,7 @@
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KP2-fJ-LCP">
                                                     <rect key="frame" x="300" y="0.0" width="280" height="43"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numbersAndPunctuation" returnKeyType="done"/>
                                                     <connections>
                                                         <outlet property="delegate" destination="ZGc-I2-fbs" id="Q8Y-bb-LFk"/>
                                                     </connections>
@@ -1224,7 +1224,7 @@
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="password" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0ZD-Wz-t5s">
                                                     <rect key="frame" x="300" y="0.0" width="280" height="43"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="done" secureTextEntry="YES"/>
                                                     <connections>
                                                         <outlet property="delegate" destination="ZGc-I2-fbs" id="QN6-f7-8s0"/>
                                                     </connections>

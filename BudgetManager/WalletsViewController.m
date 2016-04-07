@@ -75,6 +75,100 @@
     
 }
 
+- (void)validWalletAtIndexPath:(NSIndexPath *)indexPath{
+    
+    UINavigationController* nav = (UINavigationController*)self.presentingViewController;
+    
+    MainViewController* mainVC = (MainViewController*)nav.topViewController;
+    
+    Wallet* wallet = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    
+    mainVC.selectedWallet = wallet;
+    [mainVC saveWallet];
+    [mainVC refreshInfo];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+}
+
+- (void)showAlertWithTitle:(NSString*) title message:(NSString*) message actionName:(NSString*) actionName{
+    
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:title
+                                                                   message:message
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* action = [UIAlertAction actionWithTitle:actionName
+                                                     style:UIAlertActionStyleDefault
+                                                   handler:nil];
+    
+    [alert addAction:action];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+    
+    
+}
+
+
+
+- (void)checkPasswordForWalletAtIndexPath:(NSIndexPath *)indexPath{
+    
+    Wallet* wallet = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    
+    if ([wallet.isSecure boolValue]) {
+        
+        NSLog(@"Password: %@ %@",wallet.isSecure,wallet.password);
+        
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Password"
+                                                                       message:@"Enter password for wallet"
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        
+        __block UITextField* passwordTextField = nil;
+        
+        [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+            
+            textField.secureTextEntry = YES;
+            
+            passwordTextField = textField;
+            
+        }];
+        
+        UIAlertAction* actionDone = [UIAlertAction
+                                     actionWithTitle:@"Done"
+                                     style:UIAlertActionStyleDefault
+                                     handler:^(UIAlertAction * _Nonnull action) {
+                                         
+                                         if ([passwordTextField.text isEqualToString:wallet.password]) {
+                                             
+                                             [self validWalletAtIndexPath:indexPath];
+                                             
+                                         }else{
+                                             
+                                             [self showAlertWithTitle:@"Error"
+                                                              message:@"Incorrect password"
+                                                           actionName:@"OK"];
+                                             
+                                         }
+                                         
+                                     }];
+        
+        UIAlertAction* actionCancel = [UIAlertAction
+                                       actionWithTitle:@"Cancel"
+                                       style:UIAlertActionStyleCancel
+                                       handler:nil];
+        
+        [alert addAction:actionDone];
+        [alert addAction:actionCancel];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+        
+    }else{
+        
+        [self validWalletAtIndexPath:indexPath];
+        
+    }
+}
+
+
 #pragma mark - Actions
 
 - (IBAction)actionCancelButton:(UIBarButtonItem *)sender {
@@ -87,27 +181,17 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    UINavigationController* nav = (UINavigationController*)self.presentingViewController;
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    MainViewController* mainVC = (MainViewController*)nav.topViewController;
-        
-    Wallet* wallet = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    [self checkPasswordForWalletAtIndexPath:indexPath];
     
-    mainVC.selectedWallet = wallet;
-    [mainVC saveWallet];
-    [mainVC refreshInfo];
-
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return UITableViewCellEditingStyleNone;
+    
 }
-*/
+
 
 @end

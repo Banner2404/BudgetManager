@@ -22,6 +22,8 @@
     
     [self checkSequre];
     
+    [self.walletNameTextField becomeFirstResponder];
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -120,6 +122,12 @@
 #pragma mark - Actions
 
 - (IBAction)actionSecureSwitch:(UISwitch *)sender {
+    
+    if ([self.passwordTextField isFirstResponder]) {
+        
+        [self.passwordTextField resignFirstResponder];
+        
+    }
     
     [self checkSequre];
     

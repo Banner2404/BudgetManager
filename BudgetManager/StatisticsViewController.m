@@ -99,6 +99,7 @@
     
     cell.textLabel.text = operation.type.name;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",operation.cost];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
 }
 
@@ -117,7 +118,9 @@
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-        
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     Operation* operation = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
     UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];

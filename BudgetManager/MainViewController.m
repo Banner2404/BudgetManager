@@ -167,9 +167,15 @@
                                                }
                                                
                                            }];
+        UIAlertAction* actionCancel = [UIAlertAction
+                                       actionWithTitle:@"Cancel"
+                                       style:UIAlertActionStyleCancel
+                                       handler:nil];
         
         [alert addAction:actionDone];
-        
+        [alert addAction:actionCancel];
+
+                
         [self presentViewController:alert animated:YES completion:nil];
         
     }else{

@@ -112,57 +112,6 @@
     
 }
 
-- (void)checkPassword{
-    
-    if ([self.selectedWallet.isSecure boolValue]) {
-        
-        NSLog(@"Password: %@ %@",self.selectedWallet.isSecure,self.selectedWallet.password);
-        
-        
-        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Password"
-                                                                       message:@"Enter password for wallet"
-                                                                preferredStyle:UIAlertControllerStyleAlert];
-        
-        __block UITextField* passwordTextField = nil;
-        
-        [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
-            
-            textField.secureTextEntry = YES;
-            
-            passwordTextField = textField;
-            
-        }];
-        
-        UIAlertAction* actionDone = [UIAlertAction actionWithTitle:@"Done"
-                                                             style:UIAlertActionStyleDefault
-                                                           handler:^(UIAlertAction * _Nonnull action) {
-                                                               
-                                                               if ([passwordTextField.text isEqualToString:self.selectedWallet.password]) {
-                                                                   
-                                                                   [self validAddOperation];
-                                                               }else{
-                                                                   
-                                                                   [self showAlertWithTitle:@"Error"
-                                                                                    message:@"Incorrect password"
-                                                                                 actionName:@"OK"];
-                                                                   
-                                                               }
-                                                               
-                                                           }];
-        
-        [alert addAction:actionDone];
-        
-        [self presentViewController:alert animated:YES completion:nil];
-        
-    }else{
-        
-        [self validAddOperation];
-        
-    }
-}
-
-
-
 #pragma mark - UITextFieldDelegate
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
@@ -217,7 +166,7 @@
         
     }else{
         
-        [self checkPassword];
+        [self validAddOperation];
         
     }
     

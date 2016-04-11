@@ -9,19 +9,15 @@
 #import "DatabaseViewController.h"
 
 @class Wallet;
-
-typedef enum{
-   
-    SortTypeName,
-    SortTypeCost,
-    SortTypeDate
-    
-}SortType;
+@class FilterViewController;
 
 @interface StatisticsViewController : DatabaseViewController <NSFetchedResultsControllerDelegate>
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) Wallet* selectedWallet;
+@property (strong, nonatomic) FilterViewController* filterVC;
+
+
 - (void)configureCell:(UITableViewCell *)cell withObject:(NSManagedObject *)object;
 - (IBAction)actionFilterButton:(UIBarButtonItem *)sender;
 

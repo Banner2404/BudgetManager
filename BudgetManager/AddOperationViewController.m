@@ -180,6 +180,7 @@
 - (IBAction)actionProfitTypeControl:(UISegmentedControl *)sender {
     
     self.selectedType = nil;
+    self.typeTextField.text = @"";
     [self.typeTextField becomeFirstResponder];
     
 }

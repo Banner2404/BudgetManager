@@ -17,42 +17,48 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self checkEnables];
+    self.navigationItem.title = @"Filter";
 
-    
+
     
 }
 
-- (void)checkEnables{
+- (void)viewWillDisappear:(BOOL)animated{
     
-    self.moneyTypeControl.enabled = self.moneyTypeSwitch.isOn ? YES:NO;
-    self.profitTypeControl.enabled = self.profitTypeSwitch.isOn ? YES:NO;
-    for (UILabel* label in  self.costLabels) {
-        
-        label.enabled = self.costSwitch.isOn ? YES:NO;
-        
-    }
-    for (UITextField* textField in  self.costTextFields) {
-        
-        textField.enabled = self.costSwitch.isOn ? YES:NO;
-        
-    }
-    for (UILabel* label in  self.dateLabels) {
-        
-        label.enabled = self.dateSwitch.isOn ? YES:NO;
-        
-    }
-    for (UITextField* textField in  self.dateTextFields) {
-        
-        textField.enabled = self.dateSwitch.isOn ? YES:NO;
-        
-    }
+    [super viewWillDisappear:animated];
+
+    UITextField* textField = [self.costTextField objectAtIndex:0];
     
+    self.minCost = [textField.text integerValue];
+    
+    textField = [self.costTextField objectAtIndex:1];
+    
+    self.maxCost = [textField.text integerValue];
+
+    
+    if (self.maxCost < self.minCost) {
+        self.minCost = 0;
+    }    
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - UITextFieldDelegate
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    
+    NSCharacterSet* charactersSet = [[NSCharacterSet decimalDigitCharacterSet] invertedSet];
+    
+    if ([[string componentsSeparatedByCharactersInSet:charactersSet] count] > 1) {
+        return NO;
+    }
+    return YES;
+ 
+    
 }
 
 @end

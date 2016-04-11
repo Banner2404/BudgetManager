@@ -21,8 +21,20 @@
 
 @synthesize fetchedResultsController = _fetchedResultsController;
 
+static const int secInWeek = 604800;
+static const int secInMonth = 2592000;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+    
+    [self updateFetchedResultsController];
+    [self.tableView reloadData];
     
 }
 
@@ -31,18 +43,56 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (NSSortDescriptor*)getSortDescriptorForSortType:(SortType)sortType{
+- (NSSortDescriptor*)getSortDescriptorForSortType:(FilterSortType)sortType ascending:(BOOL) asceding{
     
     NSSortDescriptor* descriptor;
-    if (sortType == SortTypeName) {
-        descriptor = [[NSSortDescriptor alloc] initWithKey:@"type" ascending:NO];
-    }else if(sortType == SortTypeCost){
-        descriptor = [[NSSortDescriptor alloc] initWithKey:@"cost" ascending:NO];
+    if (sortType == FilterSortTypeName) {
+        descriptor = [[NSSortDescriptor alloc] initWithKey:@"type" ascending:asceding];
+    }else if(sortType == FilterSortTypeCost){
+        descriptor = [[NSSortDescriptor alloc] initWithKey:@"cost" ascending:asceding];
     }else{
-        descriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:NO];
+        descriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:asceding];
     }
     
     return descriptor;
+    
+}
+
+- (NSString*)getFormatStringForMoneyType:(FilterMoneyType)moneyType profitType:(FilterProfitType)profitType minCost:(NSInteger) minCost maxCost:(NSInteger)maxCost{
+    
+    
+    NSMutableString* format = [NSMutableString string];
+    
+    [format appendFormat:@"wallet.name == '%@'",self.selectedWallet.name];
+    
+    
+    if (moneyType != FilterMoneyTypeNone) {
+        
+        
+        [format appendFormat:@" AND moneyType == %u",moneyType - 1];
+        
+    }
+    
+    if (profitType != FilterProfitTypeNone) {
+        
+        
+        [format appendFormat:@" AND profitType == %u",profitType - 1];
+        
+    }
+    
+    NSLog(@"min: %ld",minCost);
+    NSLog(@"max: %ld",maxCost);
+    
+    if (minCost != 0 || maxCost != 0) {
+        
+        NSLog(@"min: %ld",minCost);
+        NSLog(@"max: %ld",maxCost);
+        
+        [format appendFormat:@" AND (cost >= %ld AND cost <= %ld)",minCost,maxCost];
+        
+    }
+    
+    return format;
     
 }
 
@@ -53,12 +103,29 @@
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Operation" inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
     
-    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"wallet.name == %@",self.selectedWallet.name];
+    NSString* format = [self
+                        getFormatStringForMoneyType:(FilterMoneyType)[self.filterVC.moneyTypeControl selectedSegmentIndex]
+                                          profitType:(FilterProfitType)[self.filterVC.profitTypeControl selectedSegmentIndex]
+                                          minCost:self.filterVC.minCost
+                                          maxCost:self.filterVC.maxCost];
+    
+    
+    
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:format];
     
     [fetchRequest setPredicate:predicate];
     
     // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [self getSortDescriptorForSortType:SortTypeDate];
+    
+    NSSortDescriptor* sortDescriptor;
+    
+    if (!self.filterVC) {
+        sortDescriptor = [self getSortDescriptorForSortType:FilterSortTypeDate ascending:NO];
+    }else{
+        sortDescriptor = [self
+          getSortDescriptorForSortType:(FilterSortType)[[self.filterVC.sortTypeControl objectAtIndex:0] selectedSegmentIndex]
+          ascending:(BOOL)[[self.filterVC.sortTypeControl objectAtIndex:1] selectedSegmentIndex]];
+    }
     [fetchRequest setSortDescriptors:@[sortDescriptor]];
     
     // Edit the section name key path and cache name if appropriate.
@@ -107,11 +174,13 @@
 
 - (IBAction)actionFilterButton:(UIBarButtonItem *)sender {
     
-    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    if (!self.filterVC) {
+        UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+        
+        self.filterVC = [storyboard instantiateViewControllerWithIdentifier:@"FilterViewController"];
+    }
     
-    FilterViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"FilterViewController"];
-
-    [self.navigationController pushViewController:vc animated:YES];
+    [self.navigationController pushViewController:self.filterVC animated:YES];
     
 }
 

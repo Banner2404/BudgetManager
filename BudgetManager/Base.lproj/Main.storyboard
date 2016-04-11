@@ -1364,7 +1364,7 @@
                                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="tJK-yG-sfe">
                                                     <rect key="frame" x="20" y="8" width="560" height="29"/>
                                                     <segments>
-                                                        <segment title="None"/>
+                                                        <segment title="All"/>
                                                         <segment title="Cash"/>
                                                         <segment title="Bank"/>
                                                     </segments>
@@ -1398,7 +1398,7 @@
                                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="gEk-DF-eHu">
                                                     <rect key="frame" x="20" y="8" width="560" height="29"/>
                                                     <segments>
-                                                        <segment title="None"/>
+                                                        <segment title="All"/>
                                                         <segment title="Income"/>
                                                         <segment title="Expence"/>
                                                     </segments>
@@ -1422,7 +1422,7 @@
                                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="90Z-Xu-paK">
                                                     <rect key="frame" x="20" y="7" width="560" height="29"/>
                                                     <segments>
-                                                        <segment title="None"/>
+                                                        <segment title="All"/>
                                                         <segment title="Week"/>
                                                         <segment title="Month"/>
                                                     </segments>
@@ -1458,7 +1458,7 @@
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Wv-dT-F3s">
                                                     <rect key="frame" x="405" y="0.0" width="175" height="42"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numbersAndPunctuation" returnKeyType="done"/>
                                                     <connections>
                                                         <outlet property="delegate" destination="fUw-GN-zxK" id="4XC-rV-4KM"/>
                                                     </connections>
@@ -1466,7 +1466,7 @@
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TA9-gb-dlc">
                                                     <rect key="frame" x="120" y="1" width="226" height="42"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numbersAndPunctuation" returnKeyType="next"/>
                                                     <connections>
                                                         <outlet property="delegate" destination="fUw-GN-zxK" id="sk5-cs-eAW"/>
                                                     </connections>

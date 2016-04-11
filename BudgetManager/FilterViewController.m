@@ -58,6 +58,25 @@
     }
     return YES;
  
+}
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    
+    textField.text = @"";
+    
+    return YES;
+    
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    
+    [textField resignFirstResponder];
+    
+    if ([textField isEqual:[self.costTextField objectAtIndex:0]]) {
+        [[self.costTextField objectAtIndex:1] becomeFirstResponder];
+    }
+    
+    return YES;
     
 }
 

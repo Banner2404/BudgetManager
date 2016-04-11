@@ -58,7 +58,7 @@ static const int secInMonth = 2592000;
     
 }
 
-- (NSString*)getFormatStringForMoneyType:(FilterMoneyType)moneyType profitType:(FilterProfitType)profitType minCost:(NSInteger) minCost maxCost:(NSInteger)maxCost{
+- (NSMutableString*)getFormatStringForMoneyType:(FilterMoneyType)moneyType profitType:(FilterProfitType)profitType minCost:(NSInteger) minCost maxCost:(NSInteger)maxCost{
     
     
     NSMutableString* format = [NSMutableString string];
@@ -80,13 +80,7 @@ static const int secInMonth = 2592000;
         
     }
     
-    NSLog(@"min: %ld",minCost);
-    NSLog(@"max: %ld",maxCost);
-    
     if (minCost != 0 || maxCost != 0) {
-        
-        NSLog(@"min: %ld",minCost);
-        NSLog(@"max: %ld",maxCost);
         
         [format appendFormat:@" AND (cost >= %ld AND cost <= %ld)",minCost,maxCost];
         
@@ -103,7 +97,7 @@ static const int secInMonth = 2592000;
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Operation" inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
     
-    NSString* format = [self
+    NSMutableString* format = [self
                         getFormatStringForMoneyType:(FilterMoneyType)[self.filterVC.moneyTypeControl selectedSegmentIndex]
                                           profitType:(FilterProfitType)[self.filterVC.profitTypeControl selectedSegmentIndex]
                                           minCost:self.filterVC.minCost
@@ -111,14 +105,25 @@ static const int secInMonth = 2592000;
     
     
     
-    NSPredicate* predicate = [NSPredicate predicateWithFormat:format];
+    NSPredicate* firstPredicate = [NSPredicate predicateWithFormat:format];
+    
+    NSPredicate* secondPredicate = nil;
+    
+    if ([self.filterVC.dateControl selectedSegmentIndex] == FilterDateTypeWeek) {
+        secondPredicate = [NSPredicate predicateWithFormat:@"date >= %@ AND date <= %@",[NSDate dateWithTimeIntervalSinceNow:-secInWeek], [NSDate dateWithTimeIntervalSinceNow:0]];
+    }else if ([self.filterVC.dateControl selectedSegmentIndex] == FilterDateTypeMonth){
+        secondPredicate = [NSPredicate predicateWithFormat:@"date >= %@ AND date <= %@",[NSDate dateWithTimeIntervalSinceNow:-secInMonth], [NSDate dateWithTimeIntervalSinceNow:0]];
+    }
+    
+    NSArray* predicates = [NSArray arrayWithObjects:firstPredicate, secondPredicate, nil];
+    
+    NSCompoundPredicate* predicate = [NSCompoundPredicate andPredicateWithSubpredicates:predicates];
     
     [fetchRequest setPredicate:predicate];
     
     // Edit the sort key as appropriate.
     
     NSSortDescriptor* sortDescriptor;
-    
     if (!self.filterVC) {
         sortDescriptor = [self getSortDescriptorForSortType:FilterSortTypeDate ascending:NO];
     }else{
@@ -167,6 +172,11 @@ static const int secInMonth = 2592000;
     cell.textLabel.text = operation.type.name;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ $",operation.cost];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    if ([operation.profitType integerValue] == OperationProfitTypeIncome) {
+        cell.detailTextLabel.textColor = [UIColor greenColor];
+    }else{
+        cell.detailTextLabel.textColor = [UIColor redColor];
+    }
     
 }
 

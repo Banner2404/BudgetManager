@@ -15,6 +15,7 @@
 
 @interface DatabaseManager : NSObject
 
+
 @property (assign, nonatomic) BOOL mustLoadDefaultTypes;
 @property (strong, nonatomic) NSMutableDictionary* defaultOperationTypes;
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;

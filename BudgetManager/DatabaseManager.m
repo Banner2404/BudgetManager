@@ -10,8 +10,8 @@
 
 @interface DatabaseManager ()
 
-@property (strong,nonatomic) NSArray* incomeOperationsNames;
-@property (strong,nonatomic) NSArray* expenceOperationsNames;
+@property (strong,nonatomic) NSDictionary* incomeOperationsNames;
+@property (strong,nonatomic) NSDictionary* expenceOperationsNames;
 
 
 @end
@@ -22,10 +22,24 @@
 {
     self = [super init];
     if (self) {
+                
+        self.expenceOperationsNames = [NSDictionary dictionaryWithObjectsAndKeys:
+                                       @"shop",@"Магазин",
+                                       @"gift",@"Подарки",
+                                       @"car",@"Машина",
+                                       @"clothes",@"Одежда",
+                                       @"entertainment",@"Развлечения",
+                                       @"utility",@"Коммунальные",nil];
+                
+        self.incomeOperationsNames = [NSDictionary dictionaryWithObjectsAndKeys:
+                                      @"salary",@"Зарплата",
+                                      @"gift",@"Подарки",
+                                      @"lottery",@"Лотерея", nil];
         
         self.defaultOperationTypes = [NSMutableDictionary dictionary];
-        self.expenceOperationsNames = @[@"Магазин", @"Подарки", @"Машина", @"Одежда", @"Развлечения", @"Коммунальные"];
-        self.incomeOperationsNames = @[@"Зарплата", @"Подарки", @"Лотерея"];
+        [self.defaultOperationTypes addEntriesFromDictionary:self.incomeOperationsNames];
+        [self.defaultOperationTypes addEntriesFromDictionary:self.expenceOperationsNames];
+
 
     }
     return self;
@@ -88,12 +102,12 @@
     
     self.mustLoadDefaultTypes = NO;
     
-    for (NSString* name in self.incomeOperationsNames) {
+    for (NSString* name in self.incomeOperationsNames.allKeys) {
         
         [self createOperationTypeWithName:name profitType:OperationTypeProfitTypeIncome];
         
     }
-    for (NSString* name in self.expenceOperationsNames) {
+    for (NSString* name in self.expenceOperationsNames.allKeys) {
         
         [self createOperationTypeWithName:name profitType:OperationTypeProfitTypeExpence];
         

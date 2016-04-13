@@ -25,6 +25,18 @@
     [[DatabaseManager sharedManager] checkDefaultOperationTypes];
     
 }
+- (void)viewDidAppear:(BOOL)animated{
+    
+    [super viewDidAppear:animated];
+    
+    UITableViewCell* cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]];
+    NSLog(@"%@",NSStringFromCGRect(cell.imageView.frame));
+    NSLog(@"%@",NSStringFromCGRect(cell.textLabel.frame));
+    NSLog(@"%@",NSStringFromCGRect(cell.detailTextLabel.frame));
+
+
+    
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -82,7 +94,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         
     }
-    
+
     NSManagedObject *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
     [self configureCell:cell withObject:object];
     return cell;
@@ -93,11 +105,11 @@
     
     OperationType* type = (OperationType*)object;
     cell.textLabel.text = type.name;
-    if (arc4random() % 1000 > 500) {
-        cell.imageView.image = [UIImage imageNamed:@"cup"];
-    }else{
-        cell.imageView.image = [UIImage imageNamed:@"transport-2"];
-    }
+    if ([[[DatabaseManager sharedManager] defaultOperationTypes] objectForKey:type.name]) {
+        cell.imageView.image = [UIImage
+                                imageNamed:[[[DatabaseManager sharedManager] defaultOperationTypes] objectForKey:type.name]];
+    }else
+        cell.imageView.image = [UIImage imageNamed:@"other"];
 }
 
 - (void)createOperationTypeWithName:(NSString*)name profitType:(OperationTypeProfitType)profitType{

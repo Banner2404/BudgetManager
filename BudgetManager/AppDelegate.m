@@ -68,8 +68,6 @@
 //                                     profitType:ProfitTypeIncome];
 //    [self.databaseManager saveContext];
     
-    NSLog(@"Wallets: %ld",[[self.databaseManager getWallets] count]);
-    [self.databaseManager showOperations];
     return YES;
 }
 

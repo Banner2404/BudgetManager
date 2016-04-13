@@ -90,6 +90,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     Operation* operation = (Operation*)[self.fetchedResultsController objectAtIndexPath:indexPath];
     
     UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];

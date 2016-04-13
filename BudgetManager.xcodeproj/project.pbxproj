@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D11BCCCD1CBEC49000379135 /* FavouritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D11BCCCC1CBEC49000379135 /* FavouritesViewController.m */; };
 		D128D13F1CAD81F600E4D9C4 /* StatisticsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D128D13E1CAD81F600E4D9C4 /* StatisticsViewController.m */; };
 		D128D1421CADA57700E4D9C4 /* DetailOperationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D128D1411CADA57700E4D9C4 /* DetailOperationViewController.m */; };
 		D1396A801CA55949006CF786 /* AddOperationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D1396A7F1CA55949006CF786 /* AddOperationViewController.m */; };
@@ -36,6 +37,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D11BCCCB1CBEC49000379135 /* FavouritesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavouritesViewController.h; sourceTree = "<group>"; };
+		D11BCCCC1CBEC49000379135 /* FavouritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavouritesViewController.m; sourceTree = "<group>"; };
 		D128D13D1CAD81F600E4D9C4 /* StatisticsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatisticsViewController.h; sourceTree = "<group>"; };
 		D128D13E1CAD81F600E4D9C4 /* StatisticsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatisticsViewController.m; sourceTree = "<group>"; };
 		D128D1401CADA57700E4D9C4 /* DetailOperationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailOperationViewController.h; sourceTree = "<group>"; };
@@ -152,6 +155,8 @@
 				D128D1411CADA57700E4D9C4 /* DetailOperationViewController.m */,
 				D1CF0EC41CAED70A00F088E2 /* FilterViewController.h */,
 				D1CF0EC51CAED70A00F088E2 /* FilterViewController.m */,
+				D11BCCCB1CBEC49000379135 /* FavouritesViewController.h */,
+				D11BCCCC1CBEC49000379135 /* FavouritesViewController.m */,
 				D1AFD1DD1CA19B2900E998F0 /* Main.storyboard */,
 				D1AFD1E31CA19B2900E998F0 /* Assets.xcassets */,
 				D1AFD1E51CA19B2900E998F0 /* LaunchScreen.storyboard */,
@@ -278,6 +283,7 @@
 				D1AFD2061CA1A49800E998F0 /* OperationType+CoreDataProperties.m in Sources */,
 				D1AFD1D91CA19B2900E998F0 /* AppDelegate.m in Sources */,
 				D1AFD2041CA1A49800E998F0 /* Favourites+CoreDataProperties.m in Sources */,
+				D11BCCCD1CBEC49000379135 /* FavouritesViewController.m in Sources */,
 				D199E4601CAA795600911848 /* DateViewController.m in Sources */,
 				D1AFD20C1CA1ABB000E998F0 /* DatabaseViewController.m in Sources */,
 				D176C1451CA450A500CB7334 /* AddWalletViewController.m in Sources */,

@@ -96,6 +96,9 @@
                                 <rect key="frame" x="20" y="310" width="260" height="206"/>
                                 <color key="backgroundColor" red="0.20026111543857505" green="1" blue="0.89862515538337995" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Favourites"/>
+                                <connections>
+                                    <action selector="actionFavourites:" destination="eUW-rH-kGX" eventType="touchUpInside" id="fhp-8J-eqp"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -226,6 +229,35 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mqO-cy-zxV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="754" y="-1039"/>
+        </scene>
+        <!--Favourites-->
+        <scene sceneID="Ann-50-emx">
+            <objects>
+                <tableViewController storyboardIdentifier="FavouritesViewController" id="SLf-Ly-Q5P" customClass="FavouritesViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Fbg-rv-hO1">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="QTP-aP-fxs">
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QTP-aP-fxs" id="r2j-H0-amb">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="SLf-Ly-Q5P" id="ACp-8H-eLb"/>
+                            <outlet property="delegate" destination="SLf-Ly-Q5P" id="y40-Pm-OLQ"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Favourites" id="teO-Hs-MXR"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Y1k-4g-joe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="80" y="-332"/>
         </scene>
         <!--Add operation-->
         <scene sceneID="iFU-mT-t0U">
@@ -450,7 +482,11 @@
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Add operation" id="Sgn-Kz-jJI">
-                        <barButtonItem key="rightBarButtonItem" systemItem="bookmarks" id="JOf-0H-ugq"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="bookmarks" id="JOf-0H-ugq">
+                            <connections>
+                                <action selector="actionFavouritesButton:" destination="qXc-X6-ILx" id="UwF-Aq-LZA"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>

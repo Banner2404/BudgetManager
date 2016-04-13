@@ -7,9 +7,21 @@
 //
 
 #import "Favourites.h"
+#import "DatabaseManager.h"
 
 @implementation Favourites
 
-// Insert code here to add functionality to your managed object subclass
++ (Favourites*)sharedFavourites{
+
+    static Favourites* favourites = nil;
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        favourites = [NSEntityDescription insertNewObjectForEntityForName:@"Favourites" inManagedObjectContext:[[DatabaseManager sharedManager] managedObjectContext]];
+    });
+    
+    return favourites;
+    
+}
 
 @end

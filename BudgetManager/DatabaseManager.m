@@ -139,6 +139,15 @@
 
 #pragma mark - Add
 
+- (void)addOperationInFavourites:(Operation*)operation{
+    
+    Favourites* favourites = [Favourites sharedFavourites];
+    
+    [favourites addOperationsObject:operation];
+    
+    
+    
+}
 - (Operation*)addOperationForWallet:(Wallet*)wallet type:(OperationType*) operationType cost:(NSInteger)cost moneyType:(OperationMoneyType) moneyType profitType:(OperationProfitType)profitType date:(NSDate*)date{
     
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];

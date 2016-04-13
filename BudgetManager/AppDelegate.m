@@ -20,12 +20,12 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
     [[UISegmentedControl appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor blackColor]} forState:UIControlStateNormal];
     self.databaseManager = [DatabaseManager sharedManager];
     
-    NSLog(@"lol");
 //    Wallet* wallet1 = [self.databaseManager createWalletWithName:@"Banner1"];
 //    Wallet* wallet2 = [self.databaseManager createWalletWithName:@"Banner2"];
 //    Wallet* wallet3 = [self.databaseManager createWalletWithName:@"Banner3"];

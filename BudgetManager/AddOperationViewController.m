@@ -13,6 +13,10 @@
 
 @interface AddOperationViewController () <UITextFieldDelegate>
 
+@property (assign,nonatomic) NSInteger cost;
+@property (assign,nonatomic) NSInteger moneyType;
+@property (assign,nonatomic) NSInteger profitType;
+
 @end
 
 @implementation AddOperationViewController
@@ -28,11 +32,25 @@
     
     self.dateTextField.text = [formatter stringFromDate:self.selectedDate];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    if (self.selectedType) {
+        self.typeTextField.text = self.selectedType.name;
+    }
+    if (self.cost) {
+        
+        self.costTextField.text = [NSString stringWithFormat:@"%ld",self.cost];
+        
+    }
+    if (self.moneyType) {
+        
+        self.moneyTypeControl.selectedSegmentIndex = self.moneyType;
+        
+    }
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    if (self.profitType) {
+        
+        self.profitTypeControl.selectedSegmentIndex = self.profitType;
+        
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -112,6 +130,14 @@
     
 }
 
+- (void)setCost:(NSInteger)cost moneyType:(NSInteger)moneyType profitType:(NSInteger)profitType{
+    
+    self.cost = cost;
+    self.moneyType = moneyType;
+    self.profitType = profitType;
+    
+}
+
 #pragma mark - UITextFieldDelegate
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
@@ -155,6 +181,24 @@
 }
 
 #pragma mark - Actions
+
+- (IBAction)actionFavouritesButton:(UIBarButtonItem *)sender {
+    
+    Operation* operation = [NSEntityDescription insertNewObjectForEntityForName:@"Operation" inManagedObjectContext:[[DatabaseManager sharedManager] managedObjectContext]];
+    
+    NSInteger cost = [self.costTextField.text integerValue];
+    
+    OperationMoneyType moneyType = (OperationMoneyType)self.moneyTypeControl.selectedSegmentIndex;
+    OperationProfitType profitType = (OperationProfitType)self.profitTypeControl.selectedSegmentIndex;
+    
+    operation.wallet = self.selectedWallet;
+    operation.type = self.selectedType;
+    operation.cost = [NSNumber numberWithInteger:cost];
+    operation.moneyType = [NSNumber numberWithInteger:moneyType];
+    operation.profitType = [NSNumber numberWithInteger:profitType];
+
+    [[DatabaseManager sharedManager] addOperationInFavourites:operation];
+}
 
 - (IBAction)actionAddButton:(UIButton *)sender {
     

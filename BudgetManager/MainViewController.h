@@ -20,6 +20,7 @@
 - (IBAction)actionSettings:(UIButton *)sender;
 - (IBAction)actionAdd:(UIButton *)sender;
 - (IBAction)actionStatictics:(UIButton *)sender;
+- (IBAction)actionFavourites:(UIButton *)sender;
 
 - (void)refreshInfo;
 - (void)saveWallet;

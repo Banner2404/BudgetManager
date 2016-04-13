@@ -10,6 +10,11 @@
 
 @implementation OperationType
 
-// Insert code here to add functionality to your managed object subclass
+- (NSComparisonResult)compare:(id)other
+{
+    
+    OperationType* otherType = (OperationType*)other;
+    return [self.name compare:otherType.name];
+}
 
 @end

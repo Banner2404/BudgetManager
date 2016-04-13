@@ -10,6 +10,7 @@
 #import "AddOperationViewController.h"
 #import "Operation.h"
 #import "OperationType.h"
+#import "Wallet.h"
 
 @interface FavouritesViewController ()
 
@@ -43,7 +44,7 @@
     // Edit the sort key as appropriate.
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"type" ascending:NO];
     
-    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"favourite != nil"];
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"favourite != nil AND wallet.name = %@",self.selectedWallet.name];
 
     [fetchRequest setPredicate:predicate];
     [fetchRequest setSortDescriptors:@[sortDescriptor]];

@@ -106,13 +106,22 @@
                                                                    message:message
                                                             preferredStyle:UIAlertControllerStyleAlert];
     
-    UIAlertAction* action = [UIAlertAction actionWithTitle:actionName
-                                                     style:UIAlertActionStyleDefault
-                                                   handler:nil];
+    if (actionName) {
+        
+        UIAlertAction* action = [UIAlertAction actionWithTitle:actionName
+                                                         style:UIAlertActionStyleDefault
+                                                       handler:nil];
+        
+        [alert addAction:action];
+
+    }
     
-    [alert addAction:action];
     
     [self presentViewController:alert animated:YES completion:nil];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self dismissViewControllerAnimated:YES completion:nil];
+    });
     
     
 }
@@ -127,6 +136,25 @@
                                                       date:self.selectedDate];
     
     [self.navigationController popViewControllerAnimated:YES];
+    
+}
+- (void)validAddFavourites{
+    
+    Operation* operation = [NSEntityDescription insertNewObjectForEntityForName:@"Operation" inManagedObjectContext:[[DatabaseManager sharedManager] managedObjectContext]];
+    
+    NSInteger cost = [self.costTextField.text integerValue];
+    
+    OperationMoneyType moneyType = (OperationMoneyType)self.moneyTypeControl.selectedSegmentIndex;
+    OperationProfitType profitType = (OperationProfitType)self.profitTypeControl.selectedSegmentIndex;
+    
+    operation.wallet = self.selectedWallet;
+    operation.type = self.selectedType;
+    operation.cost = [NSNumber numberWithInteger:cost];
+    operation.moneyType = [NSNumber numberWithInteger:moneyType];
+    operation.profitType = [NSNumber numberWithInteger:profitType];
+    
+    [[DatabaseManager sharedManager] addOperationInFavourites:operation];
+
     
 }
 
@@ -184,20 +212,17 @@
 
 - (IBAction)actionFavouritesButton:(UIBarButtonItem *)sender {
     
-    Operation* operation = [NSEntityDescription insertNewObjectForEntityForName:@"Operation" inManagedObjectContext:[[DatabaseManager sharedManager] managedObjectContext]];
-    
-    NSInteger cost = [self.costTextField.text integerValue];
-    
-    OperationMoneyType moneyType = (OperationMoneyType)self.moneyTypeControl.selectedSegmentIndex;
-    OperationProfitType profitType = (OperationProfitType)self.profitTypeControl.selectedSegmentIndex;
-    
-    operation.wallet = self.selectedWallet;
-    operation.type = self.selectedType;
-    operation.cost = [NSNumber numberWithInteger:cost];
-    operation.moneyType = [NSNumber numberWithInteger:moneyType];
-    operation.profitType = [NSNumber numberWithInteger:profitType];
+    if (!self.selectedType) {
+        
+        [self showAlertWithTitle:@"Type" message:@"Please select type of operation" actionName:@"OK"];
+        
+    }else{
+        
+        [self validAddFavourites];
+        [self showAlertWithTitle:@"Favourites" message:@"Operation has been added to favourites" actionName:nil];
 
-    [[DatabaseManager sharedManager] addOperationInFavourites:operation];
+    }
+    
 }
 
 - (IBAction)actionAddButton:(UIButton *)sender {
@@ -213,7 +238,6 @@
     }else{
         
         [self validAddOperation];
-        
     }
     
     

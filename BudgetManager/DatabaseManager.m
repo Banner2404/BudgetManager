@@ -145,7 +145,8 @@
     
     [favourites addOperationsObject:operation];
     
-    
+    [self saveContext];
+
     
 }
 - (Operation*)addOperationForWallet:(Wallet*)wallet type:(OperationType*) operationType cost:(NSInteger)cost moneyType:(OperationMoneyType) moneyType profitType:(OperationProfitType)profitType date:(NSDate*)date{

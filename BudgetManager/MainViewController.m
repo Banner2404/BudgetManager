@@ -20,7 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+        
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     
     NSInteger selectedWalletID = [defaults integerForKey:@"selectedWalletID"];
@@ -61,13 +61,13 @@
         if ([self.selectedWallet.cashMoney integerValue] < 0) {
             self.cashMoneyLabel.textColor = [UIColor redColor];
         }else{
-            self.cashMoneyLabel.textColor = [UIColor blackColor];
+            self.cashMoneyLabel.textColor = [UIColor whiteColor];
         }
         self.bankMoneyLabel.text = [NSString stringWithFormat:@"%@ $",self.selectedWallet.bankMoney];
         if ([self.selectedWallet.bankMoney integerValue] < 0) {
             self.bankMoneyLabel.textColor = [UIColor redColor];
         }else{
-            self.bankMoneyLabel.textColor = [UIColor blackColor];
+            self.bankMoneyLabel.textColor = [UIColor whiteColor];
         }
         
         

@@ -35,10 +35,6 @@
     
     self.maxCost = [textField.text integerValue];
 
-    
-    if (self.maxCost < self.minCost) {
-        self.minCost = 0;
-    }    
 }
 
 
@@ -77,6 +73,13 @@
     }
     
     return YES;
+    
+}
+- (void)textFieldDidEndEditing:(UITextField *)textField{
+    
+    if ([textField.text isEqualToString:@""]) {
+        textField.text = @"0";
+    }
     
 }
 

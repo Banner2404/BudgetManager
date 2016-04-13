@@ -46,7 +46,7 @@
     
     // Edit the sort key as appropriate.
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:NO];
-    
+        
     [fetchRequest setSortDescriptors:@[sortDescriptor]];
     [fetchRequest setPredicate:predicate];
     

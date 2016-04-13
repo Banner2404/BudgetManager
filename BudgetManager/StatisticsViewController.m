@@ -58,38 +58,63 @@ static const int secInMonth = 2592000;
     
 }
 
-- (NSMutableString*)getFormatStringForMoneyType:(FilterMoneyType)moneyType profitType:(FilterProfitType)profitType minCost:(NSInteger) minCost maxCost:(NSInteger)maxCost{
+- (NSPredicate*)getPredicateForMoneyType:(FilterMoneyType)moneyType profitType:(FilterProfitType)profitType dateType:(FilterDateType)dateType minCost:(NSInteger) minCost maxCost:(NSInteger)maxCost{
     
+    NSMutableArray* predicatesArray = [NSMutableArray array];
     
-    NSMutableString* format = [NSMutableString string];
+    NSPredicate* namePredicate = [NSPredicate predicateWithFormat:@"wallet.name == %@",self.selectedWallet.name];
     
-    [format appendFormat:@"wallet.name == '%@'",self.selectedWallet.name];
-    
+    [predicatesArray addObject:namePredicate];
     
     if (moneyType != FilterMoneyTypeNone) {
         
+        NSPredicate* moneyPredicate = [NSPredicate predicateWithFormat:@"moneyType == %ld",moneyType - 1];
         
-        [format appendFormat:@" AND moneyType == %u",moneyType - 1];
+        [predicatesArray addObject:moneyPredicate];
         
     }
     
     if (profitType != FilterProfitTypeNone) {
+
+        NSPredicate* profitPredicate = [NSPredicate predicateWithFormat:@"profitType == %u",profitType - 1];
         
-        
-        [format appendFormat:@" AND profitType == %u",profitType - 1];
+        [predicatesArray addObject:profitPredicate];
+
         
     }
+    
+    
+    if (dateType == FilterDateTypeWeek) {
+        
+        NSPredicate* datePredicate = [NSPredicate predicateWithFormat:@"date >= %@ AND date <= %@",
+                                      [NSDate dateWithTimeIntervalSinceNow:-secInWeek],
+                                      [NSDate dateWithTimeIntervalSinceNow:0]];
+        
+        [predicatesArray addObject:datePredicate];
+
+    }else if (dateType == FilterDateTypeMonth){
+        
+        NSPredicate* datePredicate = [NSPredicate predicateWithFormat:@"date >= %@ AND date <= %@",
+                                      [NSDate dateWithTimeIntervalSinceNow:-secInMonth],
+                                      [NSDate dateWithTimeIntervalSinceNow:0]];
+        
+        [predicatesArray addObject:datePredicate];
+
+    }
+    
     
     if (minCost != 0 || maxCost != 0) {
         
-        [format appendFormat:@" AND (cost >= %ld AND cost <= %ld)",minCost,maxCost];
+        NSPredicate* costPredicate = [NSPredicate predicateWithFormat:@"cost >= %ld AND cost <= %ld",minCost,maxCost];
         
+        [predicatesArray addObject:costPredicate];
+
     }
     
-    return format;
+    NSCompoundPredicate* predicate = [NSCompoundPredicate andPredicateWithSubpredicates:predicatesArray];
+    return predicate;
     
 }
-
 - (void)updateFetchedResultsController{
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
@@ -97,27 +122,12 @@ static const int secInMonth = 2592000;
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Operation" inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
     
-    NSMutableString* format = [self
-                        getFormatStringForMoneyType:(FilterMoneyType)[self.filterVC.moneyTypeControl selectedSegmentIndex]
-                                          profitType:(FilterProfitType)[self.filterVC.profitTypeControl selectedSegmentIndex]
-                                          minCost:self.filterVC.minCost
-                                          maxCost:self.filterVC.maxCost];
-    
-    
-    
-    NSPredicate* firstPredicate = [NSPredicate predicateWithFormat:format];
-    
-    NSPredicate* secondPredicate = nil;
-    
-    if ([self.filterVC.dateControl selectedSegmentIndex] == FilterDateTypeWeek) {
-        secondPredicate = [NSPredicate predicateWithFormat:@"date >= %@ AND date <= %@",[NSDate dateWithTimeIntervalSinceNow:-secInWeek], [NSDate dateWithTimeIntervalSinceNow:0]];
-    }else if ([self.filterVC.dateControl selectedSegmentIndex] == FilterDateTypeMonth){
-        secondPredicate = [NSPredicate predicateWithFormat:@"date >= %@ AND date <= %@",[NSDate dateWithTimeIntervalSinceNow:-secInMonth], [NSDate dateWithTimeIntervalSinceNow:0]];
-    }
-    
-    NSArray* predicates = [NSArray arrayWithObjects:firstPredicate, secondPredicate, nil];
-    
-    NSCompoundPredicate* predicate = [NSCompoundPredicate andPredicateWithSubpredicates:predicates];
+    NSPredicate* predicate = [self
+                              getPredicateForMoneyType:(FilterMoneyType)[self.filterVC.moneyTypeControl selectedSegmentIndex]
+                              profitType:(FilterProfitType)[self.filterVC.profitTypeControl selectedSegmentIndex]
+                              dateType:(FilterDateType)[self.filterVC.dateControl selectedSegmentIndex]
+                              minCost:self.filterVC.minCost
+                              maxCost:self.filterVC.maxCost];
     
     [fetchRequest setPredicate:predicate];
     

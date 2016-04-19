@@ -17,7 +17,11 @@
 @property (weak, nonatomic) IBOutlet UIButton *walletButton;
 @property (weak, nonatomic) IBOutlet UILabel *cashMoneyLabel;
 @property (weak, nonatomic) IBOutlet UILabel *bankMoneyLabel;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
+- (IBAction)actionRightSwipe:(UISwipeGestureRecognizer *)sender;
+- (IBAction)actionLeftSwipe:(UISwipeGestureRecognizer *)sender;
+- (IBAction)actionDateButton:(UIButton *)sender;
 - (void)refreshInfo;
 - (void)saveWallet;
 @end

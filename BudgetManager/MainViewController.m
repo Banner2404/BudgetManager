@@ -11,17 +11,23 @@
 #import "AddOperationViewController.h"
 #import "StatisticsViewController.h"
 #import "FavouritesViewController.h"
+#import "DetailOperationViewController.h"
 #import "DatabaseManager.h"
 
 @interface MainViewController ()
+
+@property (strong,nonatomic) NSDate* selectedDate;
+@property (strong,nonatomic) NSArray* loadedOperations;
 
 @end
 
 @implementation MainViewController
 
+static const NSInteger secInDay = 86400;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-        
+    [self setCurrentDate];
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     
     NSInteger selectedWalletID = [defaults integerForKey:@"selectedWalletID"];
@@ -33,6 +39,18 @@
     [self refreshInfo];
     [self setDate];
     
+}
+
+- (void)setCurrentDate{
+    
+    NSCalendar* calendar = [NSCalendar currentCalendar];
+    
+    NSDateComponents* components = nil;
+    
+    components = [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:[NSDate dateWithTimeIntervalSinceNow:0]];
+    
+    self.selectedDate = [calendar dateFromComponents:components];
+
 }
 
 - (void)saveWallet{
@@ -48,6 +66,8 @@
     
     [self refreshInfo];
     [self setDate];
+    [self.tableView reloadData];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -61,14 +81,11 @@
     
     [formatter setDateFormat:@"d MMMM"];
     
-    NSString* date = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:0]];
+    NSString* date = [formatter stringFromDate:self.selectedDate];
     
     [self.dateButton setTitle:date forState:UIControlStateNormal];
     
-    NSLog(@"%@",[formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:0]]);
-    
 }
-
 
 - (void)refreshInfo{
     
@@ -102,6 +119,83 @@
     
 }
 
+- (void)loadDailyOperations{
+    
+    NSFetchRequest* request = [[NSFetchRequest alloc] init];
+    
+    request.entity = [NSEntityDescription entityForName:@"Operation" inManagedObjectContext:[[DatabaseManager sharedManager] managedObjectContext]];
+    
+    NSPredicate* walletPredicate = [NSPredicate predicateWithFormat:@"wallet.name == %@",self.selectedWallet.name];
+    
+    NSPredicate* datePredicate = [NSPredicate predicateWithFormat:@"date >= %@ AND date < %@",self.selectedDate,[self.selectedDate dateByAddingTimeInterval:secInDay]];
+    
+    NSCompoundPredicate* predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[walletPredicate,datePredicate]];
+    
+    [request setPredicate:predicate];
+    
+    NSSortDescriptor* descriptor = [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES];
+    
+    [request setSortDescriptors:@[descriptor]];
+    
+    self.loadedOperations = [[[DatabaseManager sharedManager] managedObjectContext] executeFetchRequest:request error:nil];
+    
+}
+
+- (void)updateDate{
+    [self setDate];
+    
+    [self.tableView beginUpdates];
+    
+    [self loadDailyOperations];
+
+    NSInteger oldRowsCount = [self.tableView numberOfRowsInSection:0];
+    NSInteger newRowsCount = [self.loadedOperations count];
+    
+    NSMutableArray* deleteIndexPaths = [NSMutableArray array];
+    NSMutableArray* insertIndexPaths = [NSMutableArray array];
+
+    
+    for (int i = 0;  i < oldRowsCount; i ++) {
+        NSIndexPath* indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+
+        [deleteIndexPaths addObject:indexPath];
+    }
+    for (int i = 0;  i < newRowsCount; i ++) {
+        NSIndexPath* indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+        
+        [insertIndexPaths addObject:indexPath];
+    }
+    
+    [self.tableView deleteRowsAtIndexPaths:deleteIndexPaths withRowAnimation:UITableViewRowAnimationTop];
+    [self.tableView insertRowsAtIndexPaths:insertIndexPaths withRowAnimation:UITableViewRowAnimationTop];
+    
+    [self.tableView endUpdates];
+    
+}
+
+#pragma mark - Actions
+
+
+- (IBAction)actionRightSwipe:(UISwipeGestureRecognizer *)sender {
+    
+    self.selectedDate = [self.selectedDate dateByAddingTimeInterval:-secInDay];
+    [self updateDate];
+
+}
+
+- (IBAction)actionLeftSwipe:(UISwipeGestureRecognizer *)sender {
+    self.selectedDate = [self.selectedDate dateByAddingTimeInterval:secInDay];
+    [self updateDate];
+
+}
+
+- (IBAction)actionDateButton:(UIButton *)sender {
+    
+    [self setCurrentDate];
+    [self updateDate];
+    
+}
+
 #pragma mark - Segues
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
@@ -126,6 +220,46 @@
         AddOperationViewController* vc = segue.destinationViewController;
         vc.selectedWallet = self.selectedWallet;
         
+    }else if([segue.identifier  isEqualToString: @"detailOperationSegue"]){
+        
+        DetailOperationViewController* vc = segue.destinationViewController;
+        NSInteger index = [[self.tableView indexPathForSelectedRow] row];
+        vc.selectedOperation = [self.loadedOperations objectAtIndex:index];
+        
     }
+}
+
+
+#pragma mark - UITableViewDataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    [self loadDailyOperations];
+    NSLog(@"count %ld",[self.loadedOperations count]);
+    return [self.loadedOperations count];
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    Operation* operation = [self.loadedOperations objectAtIndex:indexPath.row];
+    
+    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    
+    UIImageView* imageView = [cell.contentView viewWithTag:1];
+    if ([[[DatabaseManager sharedManager] defaultOperationTypes] objectForKey:operation.type.name]) {
+        imageView.image =
+        [UIImage imageNamed:[[[DatabaseManager sharedManager] defaultOperationTypes] objectForKey:operation.type.name]];
+    }else
+        imageView.image = [UIImage imageNamed:@"other"];
+    UILabel* textLabel = [cell.contentView viewWithTag:2];
+    textLabel.text = operation.type.name;
+    UILabel* detailTextLabel = [cell.contentView viewWithTag:3];
+    detailTextLabel.text = [NSString stringWithFormat:@"%@ $",operation.cost];
+    if ([operation.profitType integerValue] == OperationProfitTypeIncome) {
+        detailTextLabel.textColor = [UIColor greenColor];
+    }else{
+        detailTextLabel.textColor = [UIColor redColor];
+    }
+    
+    return cell;
+    
 }
 @end

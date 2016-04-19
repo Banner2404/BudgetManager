@@ -12,15 +12,11 @@
 
 @interface MainViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UIButton *dateButton;
 @property (strong,nonatomic) Wallet* selectedWallet;
 @property (weak, nonatomic) IBOutlet UIButton *walletButton;
 @property (weak, nonatomic) IBOutlet UILabel *cashMoneyLabel;
 @property (weak, nonatomic) IBOutlet UILabel *bankMoneyLabel;
-
-- (IBAction)actionSettings:(UIButton *)sender;
-- (IBAction)actionAdd:(UIButton *)sender;
-- (IBAction)actionStatictics:(UIButton *)sender;
-- (IBAction)actionFavourites:(UIButton *)sender;
 
 - (void)refreshInfo;
 - (void)saveWallet;

@@ -217,9 +217,7 @@ static const int secInMonth = 2592000;
         detailTextLabel.textColor = [UIColor greenColor];
     }else{
         detailTextLabel.textColor = [UIColor redColor];
-    }
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    
+    }    
 }
 
 #pragma mark - Actions

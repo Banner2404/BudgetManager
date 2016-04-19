@@ -8,9 +8,7 @@
 
 #import "FavouritesViewController.h"
 #import "AddOperationViewController.h"
-#import "Operation.h"
-#import "OperationType.h"
-#import "Wallet.h"
+#import "DatabaseManager.h"
 
 @interface FavouritesViewController ()
 
@@ -71,18 +69,39 @@
     return _fetchedResultsController;
 }
 
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    static NSString* identifier = @"Cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    
+    NSManagedObject *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+    [self configureCell:cell withObject:object];
+    return cell;
+}
+
+
 - (void)configureCell:(UITableViewCell *)cell withObject:(NSManagedObject *)object{
     
     Operation* operation = (Operation*)object;
     
-    cell.textLabel.text = operation.type.name;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ $",operation.cost];
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    UIImageView* imageView = [cell.contentView viewWithTag:1];
+    if ([[[DatabaseManager sharedManager] defaultOperationTypes] objectForKey:operation.type.name]) {
+        imageView.image =
+        [UIImage imageNamed:[[[DatabaseManager sharedManager] defaultOperationTypes] objectForKey:operation.type.name]];
+    }else
+        imageView.image = [UIImage imageNamed:@"other"];
+    UILabel* textLabel = [cell.contentView viewWithTag:2];
+    textLabel.text = operation.type.name;
+    UILabel* detailTextLabel = [cell.contentView viewWithTag:3];
+    detailTextLabel.text = [NSString stringWithFormat:@"%@ $",operation.cost];
     if ([operation.profitType integerValue] == OperationProfitTypeIncome) {
-        cell.detailTextLabel.textColor = [UIColor greenColor];
+        detailTextLabel.textColor = [UIColor greenColor];
     }else{
-        cell.detailTextLabel.textColor = [UIColor redColor];
+        detailTextLabel.textColor = [UIColor redColor];
     }
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
     
 }
 

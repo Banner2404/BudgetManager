@@ -9,8 +9,9 @@
 #import "MainViewController.h"
 #import "SettingsViewController.h"
 #import "AddOperationViewController.h"
+#import "StatisticsViewController.h"
+#import "FavouritesViewController.h"
 #import "DatabaseManager.h"
-#import "Wallet.h"
 
 @interface MainViewController ()
 
@@ -30,6 +31,7 @@
     self.selectedWallet = [[DatabaseManager sharedManager] getWalletWithID:selectedWalletID];
     
     [self refreshInfo];
+    [self setDate];
     
 }
 
@@ -45,12 +47,28 @@
 - (void)viewWillAppear:(BOOL)animated{
     
     [self refreshInfo];
+    [self setDate];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (void)setDate{
+    
+    NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+    
+    [formatter setDateFormat:@"d MMMM"];
+    
+    NSString* date = [formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:0]];
+    
+    [self.dateButton setTitle:date forState:UIControlStateNormal];
+    
+    NSLog(@"%@",[formatter stringFromDate:[NSDate dateWithTimeIntervalSinceNow:0]]);
+    
+}
+
 
 - (void)refreshInfo{
     
@@ -84,145 +102,30 @@
     
 }
 
-- (void)showWalletAlert{
-    
-    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"No wallet"
-                                                                   message:@"Please select wallet you want to configure"
-                                                            preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction* action = [UIAlertAction actionWithTitle:@"OK"
-                                                     style:UIAlertActionStyleDefault
-                                                   handler:nil];
-    
-    [alert addAction:action];
-    
-    [self presentViewController:alert animated:nil completion:nil];
-    
-}
+#pragma mark - Segues
 
-- (void)showViewControllerFromStoryboardID:(NSString*)storyboardID{
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
-    if (!self.selectedWallet) {
+    if ([segue.identifier  isEqualToString: @"statisticsSegue"]) {
         
-        [self showWalletAlert];
-        
-    }else{
-        
-        UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-        
-        SettingsViewController* vc = [storyboard instantiateViewControllerWithIdentifier:storyboardID];
-        
+        StatisticsViewController* vc = segue.destinationViewController;
         vc.selectedWallet = self.selectedWallet;
         
-        [self.navigationController pushViewController:vc animated:YES];
-    }
-    
-}
-
-- (void)showAlertWithTitle:(NSString*) title message:(NSString*) message actionName:(NSString*) actionName{
-    
-    UIAlertController* alert = [UIAlertController alertControllerWithTitle:title
-                                                                   message:message
-                                                            preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction* action = [UIAlertAction actionWithTitle:actionName
-                                                     style:UIAlertActionStyleDefault
-                                                   handler:nil];
-    
-    [alert addAction:action];
-    
-    [self presentViewController:alert animated:YES completion:nil];
-    
-    
-}
-
-- (void)validSettingsLoad{
-    
-    [self showViewControllerFromStoryboardID:@"SettingsViewController"];
-    
-}
-
-- (void)checkPassword{
-    
-    if ([self.selectedWallet.isSecure boolValue]) {
+    }else if ([segue.identifier  isEqualToString: @"favouritesSegue"]){
         
-        NSLog(@"Password: %@ %@",self.selectedWallet.isSecure,self.selectedWallet.password);
+        FavouritesViewController* vc = segue.destinationViewController;
+        vc.selectedWallet = self.selectedWallet;
         
-        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Password"
-                                                                       message:@"Enter password for wallet"
-                                                                preferredStyle:UIAlertControllerStyleAlert];
+    }else if ([segue.identifier  isEqualToString: @"settingsSegue"]){
         
-        __block UITextField* passwordTextField = nil;
+        SettingsViewController* vc = segue.destinationViewController;
+        vc.selectedWallet = self.selectedWallet;
         
-        [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
-            
-            textField.secureTextEntry = YES;
-            
-            passwordTextField = textField;
-            
-        }];
+    }else if ([segue.identifier  isEqualToString: @"addOperationSegue"]){
         
-        UIAlertAction* actionDone = [UIAlertAction
-                                   actionWithTitle:@"Done"
-                                             style:UIAlertActionStyleDefault
-                                           handler:^(UIAlertAction * _Nonnull action) {
-                                               
-                                               if ([passwordTextField.text isEqualToString:self.selectedWallet.password]) {
-                                                   
-                                                   [self validSettingsLoad];
-                                                   
-                                               }else{
-                                                   
-                                                   [self showAlertWithTitle:@"Error"
-                                                                    message:@"Incorrect password"
-                                                                 actionName:@"OK"];
-                                                   
-                                               }
-                                               
-                                           }];
-        UIAlertAction* actionCancel = [UIAlertAction
-                                       actionWithTitle:@"Cancel"
-                                       style:UIAlertActionStyleCancel
-                                       handler:nil];
-        
-        [alert addAction:actionDone];
-        [alert addAction:actionCancel];
-
-                
-        [self presentViewController:alert animated:YES completion:nil];
-        
-    }else{
-        
-        [self validSettingsLoad];
+        AddOperationViewController* vc = segue.destinationViewController;
+        vc.selectedWallet = self.selectedWallet;
         
     }
-}
-
-
-#pragma mark - Actions
-
-- (IBAction)actionSettings:(UIButton *)sender {
-
-    [self checkPassword];
-}
-
-
-- (IBAction)actionAdd:(UIButton *)sender {
-    
-    [self showViewControllerFromStoryboardID:@"AddOperationViewController"];
-
-}
-
-- (IBAction)actionStatictics:(UIButton *)sender {
-    
-    [self showViewControllerFromStoryboardID:@"StatisticsViewController"];
-
-    
-}
-
-- (IBAction)actionFavourites:(UIButton *)sender {
-    
-    [self showViewControllerFromStoryboardID:@"FavouritesViewController"];
-
 }
 @end

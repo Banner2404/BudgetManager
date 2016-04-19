@@ -32,6 +32,8 @@
     
     self.dateTextField.text = [formatter stringFromDate:self.selectedDate];
     
+    self.navigationItem.backBarButtonItem.title = @"Назад";
+    
     if (self.selectedType) {
         self.typeTextField.text = self.selectedType.name;
     }

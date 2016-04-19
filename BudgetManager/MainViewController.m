@@ -12,6 +12,7 @@
 #import "StatisticsViewController.h"
 #import "FavouritesViewController.h"
 #import "DetailOperationViewController.h"
+#import "AddWalletViewController.h"
 #import "DatabaseManager.h"
 
 @interface MainViewController ()
@@ -198,6 +199,7 @@ static const NSInteger secInDay = 86400;
 
 #pragma mark - Segues
 
+
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
     if ([segue.identifier  isEqualToString: @"statisticsSegue"]) {
@@ -227,6 +229,25 @@ static const NSInteger secInDay = 86400;
         vc.selectedOperation = [self.loadedOperations objectAtIndex:index];
         
     }
+}
+- (IBAction)prepareForUnwind:(UIStoryboardSegue*)segue{
+    
+    AddWalletViewController* vc = segue.sourceViewController;
+    NSString* name = vc.walletNameTextField.text;
+    NSInteger cash = [vc.cashMoneyTextField.text integerValue];
+    NSInteger bank = [vc.bankMoneyTextField.text integerValue];
+    BOOL isSecure = vc.secureSwitch.isOn;
+    NSString* password = vc.passwordTextField.text;
+    
+    self.selectedWallet = [[DatabaseManager sharedManager] createWalletWithName:name
+                                                     cash:cash
+                                                     bank:bank
+                                                 security:isSecure
+                                                 password:password];
+    
+    [[DatabaseManager sharedManager] saveContext];
+
+    [self refreshInfo];
 }
 
 

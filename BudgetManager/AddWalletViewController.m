@@ -7,7 +7,6 @@
 //
 
 #import "AddWalletViewController.h"
-#import "MainViewController.h"
 #import "DatabaseManager.h"
 #import "Wallet.h"
 
@@ -77,32 +76,6 @@
     return YES;
 }
 
-- (void)validCreation{
-    
-    NSString* name = self.walletNameTextField.text;
-    NSInteger cash = [self.cashMoneyTextField.text integerValue];
-    NSInteger bank = [self.bankMoneyTextField.text integerValue];
-    BOOL isSecure = self.secureSwitch.isOn;
-    NSString* password = self.passwordTextField.text;
-    
-    [[DatabaseManager sharedManager] createWalletWithName:name
-                                                     cash:cash
-                                                     bank:bank
-                                                 security:isSecure
-                                                 password:password];
-    
-    [[DatabaseManager sharedManager] saveContext];
-    
-    MainViewController* mainVC = [[self.navigationController viewControllers] objectAtIndex:0];
-    
-    [mainVC refreshInfo];
-    
-    
-    [self.navigationController popViewControllerAnimated:YES];
-
-    
-}
-
 - (void)showAlertWithTitle:(NSString*) title message:(NSString*) message actionName:(NSString*) actionName{
     
     UIAlertController* alert = [UIAlertController alertControllerWithTitle:title
@@ -134,23 +107,31 @@
     
 }
 
-- (IBAction)actionDoneButton:(UIBarButtonItem *)sender {
+#pragma mark - Segues
+
+-(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{
     
-    if ([self.walletNameTextField.text isEqualToString:@""]) {
+    if ([identifier isEqualToString:@"unwindSegueToMainController"]) {
         
-        [self showAlertWithTitle:@"Name" message:@"Please enter name for wallet" actionName:@"OK"];
+        if ([self.walletNameTextField.text isEqualToString:@""]) {
+            
+            [self showAlertWithTitle:@"Name" message:@"Please enter name for wallet" actionName:@"OK"];
+            return NO;
+            
+        }else if (self.secureSwitch.isOn && [self.passwordTextField.text isEqualToString:@""]) {
+            
+            [self showAlertWithTitle:@"Password" message:@"Please enter password for wallet" actionName:@"OK"];
+            return NO;
+            
+        }else{
+            
+            return YES;
+            
+        }
         
-    }else if (self.secureSwitch.isOn && [self.passwordTextField.text isEqualToString:@""]) {
         
-        [self showAlertWithTitle:@"Password" message:@"Please enter password for wallet" actionName:@"OK"];
-        
-    }else{
-        
-        [self validCreation];
-        
-    }
-    
-    
+    }else
+        return YES;
 }
 
 #pragma mark - UITextFieldDelegate
@@ -199,6 +180,5 @@
     return YES;
     
 }
-
 
 @end

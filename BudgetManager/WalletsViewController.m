@@ -66,6 +66,33 @@
     return _fetchedResultsController;
 }
 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
+    return [sectionInfo numberOfObjects] + 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row != [tableView numberOfRowsInSection:0] - 1) {
+        static NSString* identifier = @"Cell";
+        
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+        
+        if (!cell) {
+            
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:identifier];
+            
+        }
+        
+        NSManagedObject *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+        [self configureCell:cell withObject:object];
+        return cell;
+    }else{
+        NSString* identifier = @"addWallet";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+        return cell;
+    }
+}
+
 
 - (void)configureCell:(UITableViewCell *)cell withObject:(NSManagedObject *)object{
     
@@ -174,6 +201,12 @@
 - (IBAction)actionCancelButton:(UIBarButtonItem *)sender {
     
     [self dismissViewControllerAnimated:YES completion:nil];
+    
+}
+
+#pragma mark - Segues
+
+- (IBAction)prepareForUnwindToWallets:(UIStoryboardSegue*)segue{
     
 }
 

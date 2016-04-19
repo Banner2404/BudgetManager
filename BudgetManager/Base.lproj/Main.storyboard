@@ -208,7 +208,7 @@
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
-                                <segue destination="ivk-vY-Yws" kind="popoverPresentation" identifier="segue" popoverAnchorView="20l-18-eXz" id="cDy-DL-UdX">
+                                <segue destination="ivk-vY-Yws" kind="popoverPresentation" identifier="walletSegue" popoverAnchorView="20l-18-eXz" id="cDy-DL-UdX">
                                     <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                 </segue>
                             </connections>
@@ -386,7 +386,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y1k-4g-joe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="80" y="-332"/>
+            <point key="canvasLocation" x="760" y="-324"/>
         </scene>
         <!--Добавить операцию-->
         <scene sceneID="iFU-mT-t0U">
@@ -629,7 +629,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6CE-Ta-HT9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="754" y="-366"/>
+            <point key="canvasLocation" x="1518" y="-538"/>
         </scene>
         <!--Date View Controller-->
         <scene sceneID="YMq-av-5FB">
@@ -696,7 +696,7 @@
             </objects>
             <point key="canvasLocation" x="1376" y="-1177"/>
         </scene>
-        <!--Добавить кошелек-->
+        <!--Add Wallet View Controller-->
         <scene sceneID="UDe-LT-yfS">
             <objects>
                 <tableViewController id="jmW-td-nxo" customClass="AddWalletViewController" sceneMemberID="viewController">
@@ -704,11 +704,47 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="4PN-oq-IHo">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xu0-0i-4Tq">
+                                    <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                    <color key="barTintColor" red="0.26274509800000001" green="0.89019607840000003" blue="0.23921568630000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <textAttributes key="titleTextAttributes">
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </textAttributes>
+                                    <items>
+                                        <navigationItem title="Title" id="L10-Ks-vS1">
+                                            <barButtonItem key="leftBarButtonItem" title="Отмена" id="lq0-E2-3XL">
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <connections>
+                                                    <segue destination="ZJ0-Zk-CtX" kind="unwind" unwindAction="prepareForUnwindToWallets:" id="3MK-98-17T"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem key="rightBarButtonItem" title="Готово" style="done" id="9L9-5I-xAA">
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <connections>
+                                                    <segue destination="ZJ0-Zk-CtX" kind="unwind" identifier="unwindSegueToMainController" unwindAction="prepareForUnwind:" id="VBh-JE-dOL"/>
+                                                </connections>
+                                            </barButtonItem>
+                                        </navigationItem>
+                                    </items>
+                                </navigationBar>
+                            </subviews>
+                            <color key="backgroundColor" red="0.26274509800000001" green="0.89019607840000003" blue="0.23921568630000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="xu0-0i-4Tq" secondAttribute="bottom" id="14n-CN-jv1"/>
+                                <constraint firstAttribute="trailing" secondItem="xu0-0i-4Tq" secondAttribute="trailing" id="6aI-rY-QTz"/>
+                                <constraint firstItem="xu0-0i-4Tq" firstAttribute="top" secondItem="4PN-oq-IHo" secondAttribute="top" constant="20" id="NzL-pu-zu5"/>
+                                <constraint firstItem="xu0-0i-4Tq" firstAttribute="leading" secondItem="4PN-oq-IHo" secondAttribute="leading" id="j4H-Eg-qu6"/>
+                            </constraints>
+                        </view>
                         <sections>
                             <tableViewSection id="Ha4-NK-Vu9">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="3pk-T0-HFA">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="64" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3pk-T0-HFA" id="ygO-va-kUN">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -742,7 +778,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Kk2-Hu-qdu">
-                                        <rect key="frame" x="0.0" y="44" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="108" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Kk2-Hu-qdu" id="xfb-il-sqQ">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -776,7 +812,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="0Yb-Qb-ubK">
-                                        <rect key="frame" x="0.0" y="88" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="152" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0Yb-Qb-ubK" id="nN5-Hd-hIz">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -810,7 +846,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="9Az-w9-Soq">
-                                        <rect key="frame" x="0.0" y="132" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="196" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9Az-w9-Soq" id="ENm-TK-fle">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -841,7 +877,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="xB7-a3-TvL">
-                                        <rect key="frame" x="0.0" y="176" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="240" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xB7-a3-TvL" id="npB-Ws-ZNi">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -882,14 +918,6 @@
                             <outlet property="delegate" destination="jmW-td-nxo" id="Ww0-JE-wTr"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Добавить кошелек" id="xAx-wa-viQ">
-                        <barButtonItem key="rightBarButtonItem" title="Готово" style="done" id="5GX-nC-qla">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <action selector="actionDoneButton:" destination="jmW-td-nxo" id="4PU-BW-UzU"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
                     <connections>
                         <outlet property="bankMoneyTextField" destination="6uH-dI-jzw" id="Vk9-g5-0zY"/>
                         <outlet property="cashMoneyTextField" destination="82A-gA-tGz" id="0hm-hY-TSt"/>
@@ -900,8 +928,9 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M1t-ga-M6C" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="ZJ0-Zk-CtX" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1526" y="-537"/>
+            <point key="canvasLocation" x="2346" y="131"/>
         </scene>
         <!--Wallet-->
         <scene sceneID="96T-o0-t13">
@@ -948,6 +977,29 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2V9-Ce-2JN" id="qj3-sc-i4Y">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="addWallet" id="Ncu-Yl-Byk">
+                                <rect key="frame" x="0.0" y="136" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ncu-Yl-Byk" id="Wy7-Sn-nZT">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f1h-It-IXN">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <state key="normal" title="Add wallet"/>
+                                            <connections>
+                                                <segue destination="jmW-td-nxo" kind="show" identifier="addWalletSegue" id="7Sg-ZV-OhJ"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="f1h-It-IXN" firstAttribute="leading" secondItem="Wy7-Sn-nZT" secondAttribute="leading" id="3M9-cy-wcE"/>
+                                        <constraint firstAttribute="bottom" secondItem="f1h-It-IXN" secondAttribute="bottom" id="LBJ-ge-qtd"/>
+                                        <constraint firstItem="f1h-It-IXN" firstAttribute="top" secondItem="Wy7-Sn-nZT" secondAttribute="top" id="b38-ed-foB"/>
+                                        <constraint firstAttribute="trailing" secondItem="f1h-It-IXN" secondAttribute="trailing" id="iAY-DI-3Ma"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>

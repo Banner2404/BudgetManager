@@ -216,12 +216,12 @@
     
     if (!self.selectedType) {
         
-        [self showAlertWithTitle:@"Type" message:@"Please select type of operation" actionName:@"OK"];
+        [self showAlertWithTitle:@"Категория" message:@"Выберите катогорию" actionName:@"OK"];
         
     }else{
         
         [self validAddFavourites];
-        [self showAlertWithTitle:@"Favourites" message:@"Operation has been added to favourites" actionName:nil];
+        [self showAlertWithTitle:@"Избранное" message:@"Операция добавлена в избранное" actionName:nil];
 
     }
     
@@ -231,11 +231,11 @@
     
     if (!self.selectedType) {
         
-        [self showAlertWithTitle:@"Type" message:@"Please select type of operation" actionName:@"OK"];
+        [self showAlertWithTitle:@"Категория" message:@"Выберите категорию" actionName:@"OK"];
         
     }else if([self.costTextField.text isEqualToString:@""]){
         
-        [self showAlertWithTitle:@"Cost" message:@"Please enter cost of operation" actionName:@"OK"];
+        [self showAlertWithTitle:@"Стоимость" message:@"Введите стоимость операции" actionName:@"OK"];
         
     }else{
         

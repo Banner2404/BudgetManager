@@ -123,8 +123,8 @@
 
 - (IBAction)actionAddButton:(UIBarButtonItem *)sender {
     
-    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"New type"
-                                                                   message:@"Please enter name of new type"
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Новая категория"
+                                                                   message:@"Введите имя категории"
                                                             preferredStyle:UIAlertControllerStyleAlert];
     
     __block UITextField* alertTextField = [[UITextField alloc] init];
@@ -136,7 +136,7 @@
     }];
     
     UIAlertAction* actionDone = [UIAlertAction
-                                 actionWithTitle:@"Done"
+                                 actionWithTitle:@"Готово"
                                  style:UIAlertActionStyleDefault
                                  handler:^(UIAlertAction * _Nonnull action) {
                                 
@@ -144,7 +144,7 @@
                                                             profitType:(OperationTypeProfitType)self.operationVC.profitTypeControl.selectedSegmentIndex];
                                    
                                  }];
-    UIAlertAction* actionCancel = [UIAlertAction actionWithTitle:@"Cancel"
+    UIAlertAction* actionCancel = [UIAlertAction actionWithTitle:@"Отмена"
                                                          style:UIAlertActionStyleCancel
                                                        handler:^(UIAlertAction * _Nonnull action) {
                                                            
@@ -168,6 +168,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     UITableViewCell* cell = [self.tableView cellForRowAtIndexPath:indexPath];
     
     self.operationVC.typeTextField.text = cell.textLabel.text;
@@ -177,6 +179,18 @@
     }
     
     [self dismissViewControllerAnimated:YES completion:nil];
+    
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    OperationType* type = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    if ([[[DatabaseManager sharedManager] defaultOperationTypes] objectForKey:type.name]) {
+        return UITableViewCellEditingStyleNone;
+    }else
+        return UITableViewCellEditingStyleDelete;
+
+    
     
 }
 

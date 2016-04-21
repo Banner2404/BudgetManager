@@ -98,22 +98,6 @@
     
 }
 
-- (void)createDefaultOperationTypesPreset{
-    
-    self.mustLoadDefaultTypes = NO;
-    
-    for (NSString* name in self.incomeOperationsNames.allKeys) {
-        
-        [self createOperationTypeWithName:name profitType:OperationTypeProfitTypeIncome];
-        
-    }
-    for (NSString* name in self.expenceOperationsNames.allKeys) {
-        
-        [self createOperationTypeWithName:name profitType:OperationTypeProfitTypeExpence];
-        
-    }
-}
-
 #pragma mark - Get
 
 - (NSArray*)getWallets{
@@ -148,6 +132,24 @@
     NSArray* results = [self.managedObjectContext executeFetchRequest:request error:nil];
     
     return results;
+    
+}
+
+- (OperationType*)getOperationTypeWithName:(NSString*) name{
+    
+    NSFetchRequest* request = [NSFetchRequest fetchRequestWithEntityName:@"OperationType"];
+    
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"name == %@",name];
+    
+    [request setPredicate:predicate];
+    
+    NSArray* results = [self.managedObjectContext executeFetchRequest:request error:nil];
+    
+    if ([results count]) {
+        return [results objectAtIndex:0];
+    }else{
+        return nil;
+    }
     
 }
 
@@ -254,11 +256,25 @@
 
 - (void)checkDefaultOperationTypes{
     
-    if (self.mustLoadDefaultTypes) {
+    for (NSString* name in self.incomeOperationsNames.allKeys) {
         
-        [self createDefaultOperationTypesPreset];
+        if (![self getOperationTypeWithName:name]) {
+            
+            [self createOperationTypeWithName:name profitType:OperationTypeProfitTypeIncome];
+            
+        }
         
     }
+    for (NSString* name in self.expenceOperationsNames.allKeys) {
+        
+        if (![self getOperationTypeWithName:name]) {
+            
+            [self createOperationTypeWithName:name profitType:OperationTypeProfitTypeExpence];
+            
+        }
+        
+    }
+
     
 }
 

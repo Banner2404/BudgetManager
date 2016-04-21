@@ -16,7 +16,7 @@
     <entity name="OperationType" representedClassName="OperationType" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="profitType" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <relationship name="operations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Operation" inverseName="type" inverseEntity="Operation" syncable="YES"/>
+        <relationship name="operations" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Operation" inverseName="type" inverseEntity="Operation" syncable="YES"/>
     </entity>
     <entity name="Wallet" representedClassName="Wallet" syncable="YES">
         <attribute name="bankMoney" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>

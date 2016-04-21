@@ -145,8 +145,8 @@
         
         NSLog(@"Password: %@ %@",wallet.isSecure,wallet.password);
         
-        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Password"
-                                                                       message:@"Enter password for wallet"
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Пароль"
+                                                                       message:@"Введите пароль"
                                                                 preferredStyle:UIAlertControllerStyleAlert];
         
         __block UITextField* passwordTextField = nil;
@@ -160,7 +160,7 @@
         }];
         
         UIAlertAction* actionDone = [UIAlertAction
-                                     actionWithTitle:@"Done"
+                                     actionWithTitle:@"Готово"
                                      style:UIAlertActionStyleDefault
                                      handler:^(UIAlertAction * _Nonnull action) {
                                          
@@ -170,8 +170,8 @@
                                              
                                          }else{
                                              
-                                             [self showAlertWithTitle:@"Error"
-                                                              message:@"Incorrect password"
+                                             [self showAlertWithTitle:@"Ошибка"
+                                                              message:@"Неверный пароль"
                                                            actionName:@"OK"];
                                              
                                          }
@@ -179,7 +179,7 @@
                                      }];
         
         UIAlertAction* actionCancel = [UIAlertAction
-                                       actionWithTitle:@"Cancel"
+                                       actionWithTitle:@"Отмена"
                                        style:UIAlertActionStyleCancel
                                        handler:nil];
         

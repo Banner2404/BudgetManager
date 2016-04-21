@@ -29,6 +29,7 @@ static const NSInteger secInDay = 86400;
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setCurrentDate];
+    
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     
     NSInteger selectedWalletID = [defaults integerForKey:@"selectedWalletID"];
@@ -111,9 +112,9 @@ static const NSInteger secInDay = 86400;
         
         [self.walletButton setTitle:@"No wallet" forState:UIControlStateNormal];
         self.cashMoneyLabel.text = @"0 $";
-        self.cashMoneyLabel.textColor = [UIColor blackColor];
+        self.cashMoneyLabel.textColor = [UIColor whiteColor];
         self.bankMoneyLabel.text = @"0 $";
-        self.bankMoneyLabel.textColor = [UIColor blackColor];
+        self.bankMoneyLabel.textColor = [UIColor whiteColor];
 
     }
 
@@ -228,6 +229,9 @@ static const NSInteger secInDay = 86400;
         NSInteger index = [[self.tableView indexPathForSelectedRow] row];
         vc.selectedOperation = [self.loadedOperations objectAtIndex:index];
         
+    }else if([segue.identifier isEqualToString:@"walletsSegue"]){
+        
+        
     }
 }
 - (IBAction)prepareForUnwind:(UIStoryboardSegue*)segue{
@@ -275,12 +279,23 @@ static const NSInteger secInDay = 86400;
     UILabel* detailTextLabel = [cell.contentView viewWithTag:3];
     detailTextLabel.text = [NSString stringWithFormat:@"%@ $",operation.cost];
     if ([operation.profitType integerValue] == OperationProfitTypeIncome) {
-        detailTextLabel.textColor = [UIColor greenColor];
+        detailTextLabel.textColor = [UIColor colorWithRed:53.f/256 green:147.f/256 blue:127.f/256 alpha:1];
+        //detailTextLabel.textColor = [UIColor blueColor];
     }else{
-        detailTextLabel.textColor = [UIColor redColor];
+        detailTextLabel.textColor = [UIColor colorWithRed:48.f/256 green:97.f/256 blue:117.f/256 alpha:1];
     }
     
     return cell;
     
 }
+
+#pragma mark - UIGestureRecognizerDelegate
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer{
+    
+    return YES;
+    
+}
+
+
 @end

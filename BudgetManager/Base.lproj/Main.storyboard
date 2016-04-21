@@ -11,10 +11,11 @@
         <scene sceneID="LW1-1A-2Xs">
             <objects>
                 <navigationController id="u5w-Pe-U04" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="bIz-Eu-7oy">
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="bIz-Eu-7oy">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.2627450980392157" green="0.8901960784313725" blue="0.23921568627450979" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.20784313725490194" green="0.57647058823529407" blue="0.49803921568627452" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </textAttributes>
@@ -65,7 +66,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.2627450980392157" green="0.8901960784313725" blue="0.23921568627450979" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.18823529411764706" green="0.38039215686274508" blue="0.45882352941176469" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="6RX-d6-cz0" firstAttribute="top" secondItem="QA1-Sb-RBW" secondAttribute="top" id="BEo-eb-wYO"/>
                                     <constraint firstItem="uux-dJ-Im8" firstAttribute="leading" secondItem="QA1-Sb-RBW" secondAttribute="leading" constant="20" id="GUS-AW-7n8"/>
@@ -153,7 +154,7 @@
                             </tableView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hDz-V2-xDA">
                                 <rect key="frame" x="0.0" y="492" width="600" height="44"/>
-                                <color key="backgroundColor" red="0.26274509800000001" green="0.89019607840000003" blue="0.23921568630000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.20784313725490194" green="0.57647058823529407" blue="0.49803921568627452" alpha="1" colorSpace="calibratedRGB"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="dFP-G0-wNp"/>
                                     <barButtonItem title="Statistics" id="hNr-je-xLu">
@@ -164,7 +165,7 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="KJg-7s-W4z"/>
                                     <barButtonItem title="Favourites" id="Cz2-b6-wLd">
                                         <connections>
-                                            <segue destination="SLf-Ly-Q5P" kind="show" identifier="favouritesSegue" id="8hP-ow-JGu"/>
+                                            <segue destination="SLf-Ly-Q5P" kind="show" identifier="favouritesSegue" id="277-iW-R4N"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="AA6-OW-9Z5"/>
@@ -176,7 +177,7 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="v54-ni-txG"/>
                                 </items>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="barTintColor" red="0.26274509800000001" green="0.89019607840000003" blue="0.23921568630000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="barTintColor" red="0.20784313725490194" green="0.57647058823529407" blue="0.49803921568627452" alpha="1" colorSpace="calibratedRGB"/>
                             </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -208,18 +209,19 @@
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
-                                <segue destination="ivk-vY-Yws" kind="popoverPresentation" identifier="walletSegue" popoverAnchorView="20l-18-eXz" id="cDy-DL-UdX">
-                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                <segue destination="ivk-vY-Yws" kind="popoverPresentation" identifier="walletsSegue" popoverAnchorView="20l-18-eXz" id="cDy-DL-UdX">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES"/>
                                 </segue>
                             </connections>
                         </button>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="CMP-nX-7RZ">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="qXc-X6-ILx" kind="show" identifier="addOperationSegue" id="xXV-1k-xup"/>
+                                <segue destination="qXc-X6-ILx" kind="show" identifier="addOperationSegue" id="OxD-57-qIL"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="bankMoneyLabel" destination="6RX-d6-cz0" id="OKp-EO-0Qg"/>
                         <outlet property="cashMoneyLabel" destination="uux-dJ-Im8" id="vPb-4j-Lxt"/>
@@ -232,11 +234,13 @@
                 <swipeGestureRecognizer direction="right" id="DMO-zi-QJG">
                     <connections>
                         <action selector="actionRightSwipe:" destination="eUW-rH-kGX" id="dd6-3b-Y23"/>
+                        <outlet property="delegate" destination="eUW-rH-kGX" id="fpo-yy-5u8"/>
                     </connections>
                 </swipeGestureRecognizer>
                 <swipeGestureRecognizer direction="left" id="L61-5d-4pl">
                     <connections>
                         <action selector="actionLeftSwipe:" destination="eUW-rH-kGX" id="CPT-VV-cYN"/>
+                        <outlet property="delegate" destination="eUW-rH-kGX" id="gTx-QT-QAy"/>
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
@@ -254,9 +258,9 @@
                             <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u7J-Jg-lsH">
+                                <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u7J-Jg-lsH">
                                     <rect key="frame" x="0.0" y="20" width="600" height="44"/>
-                                    <color key="barTintColor" red="0.26274509800000001" green="0.89019607840000003" blue="0.23921568630000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="barTintColor" red="0.20784313730000001" green="0.57647058819999997" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
                                     <textAttributes key="titleTextAttributes">
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <offsetWrapper key="textShadowOffset" horizontal="0.0" vertical="0.0"/>
@@ -279,7 +283,7 @@
                                     </items>
                                 </navigationBar>
                             </subviews>
-                            <color key="backgroundColor" red="0.26274509800000001" green="0.89019607840000003" blue="0.23921568630000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" red="0.20784313730000001" green="0.57647058819999997" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstItem="u7J-Jg-lsH" firstAttribute="top" secondItem="4p9-ih-9ci" secondAttribute="top" constant="20" id="Loy-4n-oeD"/>
                                 <constraint firstAttribute="bottom" secondItem="u7J-Jg-lsH" secondAttribute="bottom" id="Rpo-Uc-rmO"/>
@@ -486,7 +490,7 @@
                                                         <segment title="Наличные"/>
                                                         <segment title="Безналичные"/>
                                                     </segments>
-                                                    <color key="tintColor" red="0.26274509800000001" green="0.89019607840000003" blue="0.23921568630000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="tintColor" red="0.20784313730000001" green="0.57647058819999997" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
                                                 </segmentedControl>
                                             </subviews>
                                             <constraints>
@@ -519,7 +523,7 @@
                                                         <segment title="Приход"/>
                                                         <segment title="Расход"/>
                                                     </segments>
-                                                    <color key="tintColor" red="0.26274509800000001" green="0.89019607840000003" blue="0.23921568630000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="tintColor" red="0.20784313730000001" green="0.57647058819999997" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
                                                     <connections>
                                                         <action selector="actionProfitTypeControl:" destination="qXc-X6-ILx" eventType="valueChanged" id="Pd1-3S-OzE"/>
                                                     </connections>
@@ -586,7 +590,7 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wnp-xX-hk1">
                                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                                     <state key="normal" title="Добавить операцию">
-                                                        <color key="titleColor" red="0.26274509800000001" green="0.89019607840000003" blue="0.23921568630000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="titleColor" red="0.20784313730000001" green="0.57647058819999997" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
                                                     <connections>
                                                         <action selector="actionAddButton:" destination="qXc-X6-ILx" eventType="touchUpInside" id="dA2-jq-Uje"/>
@@ -646,9 +650,9 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O0h-Np-Ajv">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
                                 <subviews>
-                                    <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4HF-VM-bNg">
+                                    <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4HF-VM-bNg">
                                         <rect key="frame" x="0.0" y="20" width="600" height="44"/>
-                                        <color key="barTintColor" red="0.26274509800000001" green="0.89019607840000003" blue="0.23921568630000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="barTintColor" red="0.20784313730000001" green="0.57647058819999997" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <textAttributes key="titleTextAttributes">
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </textAttributes>
@@ -663,7 +667,7 @@
                                         </items>
                                     </navigationBar>
                                 </subviews>
-                                <color key="backgroundColor" red="0.26274509800000001" green="0.89019607840000003" blue="0.23921568630000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.20784313730000001" green="0.57647058819999997" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="4HF-VM-bNg" secondAttribute="bottom" id="3xV-6v-ZIe"/>
                                     <constraint firstAttribute="trailing" secondItem="4HF-VM-bNg" secondAttribute="trailing" id="FY5-qR-JUD"/>
@@ -708,14 +712,14 @@
                             <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xu0-0i-4Tq">
+                                <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xu0-0i-4Tq">
                                     <rect key="frame" x="0.0" y="20" width="600" height="44"/>
-                                    <color key="barTintColor" red="0.26274509800000001" green="0.89019607840000003" blue="0.23921568630000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="barTintColor" red="0.20784313730000001" green="0.57647058819999997" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
                                     <textAttributes key="titleTextAttributes">
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </textAttributes>
                                     <items>
-                                        <navigationItem title="Title" id="L10-Ks-vS1">
+                                        <navigationItem title="Добавить кошелек" id="L10-Ks-vS1">
                                             <barButtonItem key="leftBarButtonItem" title="Отмена" id="lq0-E2-3XL">
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <connections>
@@ -732,7 +736,7 @@
                                     </items>
                                 </navigationBar>
                             </subviews>
-                            <color key="backgroundColor" red="0.26274509800000001" green="0.89019607840000003" blue="0.23921568630000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" red="0.20784313730000001" green="0.57647058819999997" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="bottom" secondItem="xu0-0i-4Tq" secondAttribute="bottom" id="14n-CN-jv1"/>
                                 <constraint firstAttribute="trailing" secondItem="xu0-0i-4Tq" secondAttribute="trailing" id="6aI-rY-QTz"/>
@@ -860,7 +864,7 @@
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="av2-il-nm3">
                                                     <rect key="frame" x="531" y="6" width="51" height="31"/>
-                                                    <color key="onTintColor" red="0.26274509800000001" green="0.89019607840000003" blue="0.23921568630000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="onTintColor" red="0.20784313730000001" green="0.57647058819999997" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
                                                     <connections>
                                                         <action selector="actionSecureSwitch:" destination="jmW-td-nxo" eventType="valueChanged" id="gYg-DA-d21"/>
                                                     </connections>
@@ -944,9 +948,9 @@
                             <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="atw-mP-3f9">
+                                <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="atw-mP-3f9">
                                     <rect key="frame" x="0.0" y="20" width="600" height="44"/>
-                                    <color key="barTintColor" red="0.26274509800000001" green="0.89019607840000003" blue="0.23921568630000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="barTintColor" red="0.20784313730000001" green="0.57647058819999997" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
                                     <textAttributes key="titleTextAttributes">
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </textAttributes>
@@ -962,7 +966,7 @@
                                     </items>
                                 </navigationBar>
                             </subviews>
-                            <color key="backgroundColor" red="0.26274509800000001" green="0.89019607840000003" blue="0.23921568630000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" red="0.20784313730000001" green="0.57647058819999997" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="bottom" secondItem="atw-mP-3f9" secondAttribute="bottom" id="Ia1-DT-AgA"/>
                                 <constraint firstAttribute="trailing" secondItem="atw-mP-3f9" secondAttribute="trailing" id="nJ6-bc-Bpx"/>
@@ -988,7 +992,9 @@
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f1h-It-IXN">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
-                                            <state key="normal" title="Add wallet"/>
+                                            <state key="normal" title="Добавить кошелек">
+                                                <color key="titleColor" red="0.20784313730000001" green="0.57647058819999997" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
                                             <connections>
                                                 <segue destination="jmW-td-nxo" kind="show" identifier="addWalletSegue" id="7Sg-ZV-OhJ"/>
                                             </connections>
@@ -1475,7 +1481,7 @@
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OTW-7B-2fQ">
                                                     <rect key="frame" x="531" y="6" width="51" height="31"/>
-                                                    <color key="onTintColor" red="0.26274509800000001" green="0.89019607840000003" blue="0.23921568630000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="onTintColor" red="0.20784313730000001" green="0.57647058819999997" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
                                                     <connections>
                                                         <action selector="actionSecureSwitch:" destination="ZGc-I2-fbs" eventType="valueChanged" id="acL-ko-0Nz"/>
                                                     </connections>
@@ -1536,7 +1542,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                     <state key="normal" title="Сохранить">
-                                                        <color key="titleColor" red="0.26274509800000001" green="0.89019607840000003" blue="0.23921568630000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="titleColor" red="0.20784313730000001" green="0.57647058819999997" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
                                                     <connections>
                                                         <action selector="actionSaveButton:" destination="ZGc-I2-fbs" eventType="touchUpInside" id="dQs-Mo-dcS"/>

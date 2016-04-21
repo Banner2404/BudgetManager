@@ -194,15 +194,6 @@ static const int secInMonth = 2592000;
 - (void)configureCell:(UITableViewCell *)cell withObject:(NSManagedObject *)object{
     
     Operation* operation = (Operation*)object;
-    
-//    cell.textLabel.text = operation.type.name;
-//    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ $",operation.cost];
-//    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-//    if ([[[DatabaseManager sharedManager] defaultOperationTypes] objectForKey:operation.type.name]) {
-//        cell.imageView.image =
-//        [UIImage imageNamed:[[[DatabaseManager sharedManager] defaultOperationTypes] objectForKey:operation.type.name]];
-//    }else
-//        cell.imageView.image = [UIImage imageNamed:@"other"];
     UIImageView* imageView = [cell.contentView viewWithTag:1];
     if ([[[DatabaseManager sharedManager] defaultOperationTypes] objectForKey:operation.type.name]) {
                 imageView.image =

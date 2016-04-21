@@ -2,7 +2,7 @@
 //  OperationType+CoreDataProperties.h
 //  BudgetManager
 //
-//  Created by Соболь Евгений on 08.04.16.
+//  Created by Соболь Евгений on 21.04.16.
 //  Copyright © 2016 Соболь Евгений. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nullable, nonatomic, retain) NSString *name;
 @property (nullable, nonatomic, retain) NSNumber *profitType;
+@property (nullable, nonatomic, retain) NSNumber *count;
 @property (nullable, nonatomic, retain) NSSet<Operation *> *operations;
 
 @end

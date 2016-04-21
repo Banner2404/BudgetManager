@@ -29,6 +29,13 @@ static const NSInteger secInDay = 86400;
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setCurrentDate];
+    [self setDate];
+    
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    
+    [super viewDidAppear:animated];
     
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     
@@ -38,8 +45,53 @@ static const NSInteger secInDay = 86400;
     
     self.selectedWallet = [[DatabaseManager sharedManager] getWalletWithID:selectedWalletID];
     
+    if (!self.selectedWallet) {
+        [self addFirstWallet];
+    }
+
     [self refreshInfo];
-    [self setDate];
+
+}
+
+- (void)addFirstWallet{
+    
+    if ([[[DatabaseManager sharedManager] getWallets] count]){
+        
+        self.selectedWallet = [[[DatabaseManager sharedManager] getWallets] firstObject];
+        return;
+        
+    }
+    
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Новый кошелек"
+                                                                   message:@"Введите имя кошелька"
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
+    __block UITextField* alertTextField = [[UITextField alloc] init];
+    
+    [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        
+        alertTextField = textField;
+        
+    }];
+    
+    UIAlertAction* actionDone = [UIAlertAction
+                                 actionWithTitle:@"Готово"
+                                 style:UIAlertActionStyleDefault
+                                 handler:^(UIAlertAction * _Nonnull action) {
+                                     
+                                     self.selectedWallet = [[DatabaseManager sharedManager]
+                                                            createWalletWithName:alertTextField.text
+                                                            cash:0
+                                                            bank:0
+                                                            security:NO
+                                                            password:nil];
+                                     [self refreshInfo];
+
+                                 }];
+    
+    [alert addAction:actionDone];
+    
+    [self presentViewController:alert animated:YES completion:nil];
     
 }
 

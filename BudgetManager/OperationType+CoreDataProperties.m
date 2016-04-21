@@ -2,7 +2,7 @@
 //  OperationType+CoreDataProperties.m
 //  BudgetManager
 //
-//  Created by Соболь Евгений on 08.04.16.
+//  Created by Соболь Евгений on 21.04.16.
 //  Copyright © 2016 Соболь Евгений. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -15,6 +15,7 @@
 
 @dynamic name;
 @dynamic profitType;
+@dynamic count;
 @dynamic operations;
 
 @end

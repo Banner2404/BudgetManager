@@ -140,15 +140,15 @@
 
 - (IBAction)actionDeleteButton:(UIBarButtonItem *)sender {
     
-    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Delete wallet"
-                                                                   message:[NSString stringWithFormat:@"Are you sure want to delete wallet %@", self.selectedWallet.name]
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Удаление кошелька"
+                                                                   message:[NSString stringWithFormat:@"Вы действительно хотите удалить кошелек %@", self.selectedWallet.name]
                                                             preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction* actionYes = [UIAlertAction actionWithTitle:@"Yes"
+    UIAlertAction* actionYes = [UIAlertAction actionWithTitle:@"Да"
                                                         style:UIAlertActionStyleDestructive
                                                       handler:^(UIAlertAction * _Nonnull action) {
                                                           [self deleteWallet];
                                                       }];
-    UIAlertAction* actionNo = [UIAlertAction actionWithTitle:@"No"
+    UIAlertAction* actionNo = [UIAlertAction actionWithTitle:@"Нет"
                                                        style:UIAlertActionStyleCancel
                                                      handler:nil];
     
@@ -163,11 +163,11 @@
     
     if ([self.walletNameTextField.text isEqualToString:@""]) {
         
-        [self showAlertWithTitle:@"Name" message:@"Please enter name for wallet" actionName:@"OK"];
+        [self showAlertWithTitle:@"Название" message:@"Введите название кошелька" actionName:@"OK"];
         
     }else if (self.secureSwitch.isOn && [self.passwordTextField.text isEqualToString:@""]) {
         
-        [self showAlertWithTitle:@"Password" message:@"Please enter password for wallet" actionName:@"OK"];
+        [self showAlertWithTitle:@"Пароль" message:@"Введите пароль" actionName:@"OK"];
         
     }else{
         

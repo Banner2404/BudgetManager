@@ -10,11 +10,4 @@
 
 @implementation OperationType
 
-- (NSComparisonResult)compare:(id)other
-{
-    
-    OperationType* otherType = (OperationType*)other;
-    return [self.name compare:otherType.name];
-}
-
 @end

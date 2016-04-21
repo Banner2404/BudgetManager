@@ -81,6 +81,8 @@
     
     [defaults setInteger:walletID forKey:@"walletID"];
     
+    [self saveContext];
+    
     return wallet;
     
 }
@@ -92,6 +94,7 @@
     
     type.name = name;
     type.profitType = [NSNumber numberWithInteger:profitType];
+    type.count = [NSNumber numberWithInteger:0];
     
     [self saveContext];
     return type;
@@ -135,11 +138,11 @@
     
 }
 
-- (OperationType*)getOperationTypeWithName:(NSString*) name{
+- (OperationType*)getOperationTypeWithName:(NSString*) name andProfitType:(OperationTypeProfitType) profitType{
     
     NSFetchRequest* request = [NSFetchRequest fetchRequestWithEntityName:@"OperationType"];
     
-    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"name == %@",name];
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"name == %@ AND profitType == %ld",name,profitType];
     
     [request setPredicate:predicate];
     
@@ -180,6 +183,12 @@
     operation.profitType = [NSNumber numberWithInteger:profitType];
     operation.date = date;
     operation.operationID = [NSNumber numberWithInteger:operationID ++];
+    
+    NSInteger count = [operationType.count integerValue];
+    NSLog(@"old %ld",count);
+    operationType.count = [NSNumber numberWithInteger:count+1];
+    NSLog(@"new %@",operationType.count);
+
     
     NSInteger money;
     
@@ -258,7 +267,7 @@
     
     for (NSString* name in self.incomeOperationsNames.allKeys) {
         
-        if (![self getOperationTypeWithName:name]) {
+        if (![self getOperationTypeWithName:name andProfitType:OperationTypeProfitTypeIncome]) {
             
             [self createOperationTypeWithName:name profitType:OperationTypeProfitTypeIncome];
             
@@ -267,7 +276,7 @@
     }
     for (NSString* name in self.expenceOperationsNames.allKeys) {
         
-        if (![self getOperationTypeWithName:name]) {
+        if (![self getOperationTypeWithName:name andProfitType:OperationTypeProfitTypeExpence]) {
             
             [self createOperationTypeWithName:name profitType:OperationTypeProfitTypeExpence];
             

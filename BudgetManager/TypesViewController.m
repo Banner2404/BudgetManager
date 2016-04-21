@@ -57,7 +57,7 @@
     NSPredicate* predicate = [NSPredicate predicateWithFormat:@"profitType == %ld",self.operationVC.profitTypeControl.selectedSegmentIndex];
     
     // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:NO];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"count" ascending:NO];
         
     [fetchRequest setSortDescriptors:@[sortDescriptor]];
     [fetchRequest setPredicate:predicate];
@@ -174,6 +174,8 @@
     
     self.operationVC.typeTextField.text = cell.textLabel.text;
     self.operationVC.selectedType = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    OperationType* operationType = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    NSLog(@"count = %@",operationType.count);
     if (![self.operationVC.costTextField isFirstResponder]) {
         [self.operationVC.costTextField becomeFirstResponder];
     }

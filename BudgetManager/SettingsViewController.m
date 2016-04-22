@@ -13,7 +13,12 @@
 
 @interface SettingsViewController () <UITextFieldDelegate>
 
+@property (assign,nonatomic) NSInteger passwordRowHeight;
+
 @end
+
+static const NSInteger passwordShownHeight = 44;
+static const NSInteger passwordHiddenHeight = 0;
 
 @implementation SettingsViewController
 
@@ -29,7 +34,6 @@
         
     [self checkSequre];
     
-    NSLog(@"%@", self.walletNameTextField.text);
     
 }
 
@@ -44,11 +48,21 @@
         
         [self.passwordTextField setHidden:NO];
         [self.passwordLabel setHidden:NO];
+        [self.tableView beginUpdates];
+        
+        self.passwordRowHeight = passwordShownHeight;
+        
+        [self.tableView endUpdates];
         
     }else{
         
         [self.passwordTextField setHidden:YES];
         [self.passwordLabel setHidden:YES];
+        [self.tableView beginUpdates];
+        
+        self.passwordRowHeight = passwordHiddenHeight;
+        
+        [self.tableView endUpdates];
 
         
         
@@ -204,4 +218,17 @@
     return YES;
     
 }
+
+#pragma mark - UITableViewDelegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (indexPath.row == 5) {
+        return self.passwordRowHeight;
+    }else{
+        return self.tableView.rowHeight;
+    }
+    
+}
+
 @end

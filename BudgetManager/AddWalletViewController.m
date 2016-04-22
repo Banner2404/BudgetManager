@@ -12,7 +12,12 @@
 
 @interface AddWalletViewController () <UITextFieldDelegate>
 
+@property (assign,nonatomic) NSInteger passwordRowHeight;
+
 @end
+
+static const NSInteger passwordShownHeight = 44;
+static const NSInteger passwordHiddenHeight = 0;
 
 @implementation AddWalletViewController
 
@@ -43,12 +48,22 @@
         [self.passwordTextField setHidden:NO];
         [self.passwordLabel setHidden:NO];
         self.bankMoneyTextField.returnKeyType = UIReturnKeyNext;
+        [self.tableView beginUpdates];
+        
+        self.passwordRowHeight = passwordShownHeight;
+        
+        [self.tableView endUpdates];
         
     }else{
         
         [self.passwordTextField setHidden:YES];
         [self.passwordLabel setHidden:YES];
         self.bankMoneyTextField.returnKeyType = UIReturnKeyDone;
+        [self.tableView beginUpdates];
+        
+        self.passwordRowHeight = passwordHiddenHeight;
+        
+        [self.tableView endUpdates];
 
         
     }
@@ -178,6 +193,18 @@
         
     }
     return YES;
+    
+}
+
+#pragma mark - UITableViewDelegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (indexPath.row == 4) {
+        return self.passwordRowHeight;
+    }else{
+        return self.tableView.rowHeight;
+    }
     
 }
 

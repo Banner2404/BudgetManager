@@ -25,18 +25,6 @@
     [[DatabaseManager sharedManager] checkDefaultOperationTypes];
     
 }
-- (void)viewDidAppear:(BOOL)animated{
-    
-    [super viewDidAppear:animated];
-    
-    UITableViewCell* cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]];
-    NSLog(@"%@",NSStringFromCGRect(cell.imageView.frame));
-    NSLog(@"%@",NSStringFromCGRect(cell.textLabel.frame));
-    NSLog(@"%@",NSStringFromCGRect(cell.detailTextLabel.frame));
-
-
-    
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -174,8 +162,6 @@
     
     self.operationVC.typeTextField.text = cell.textLabel.text;
     self.operationVC.selectedType = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    OperationType* operationType = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    NSLog(@"count = %@",operationType.count);
     if (![self.operationVC.costTextField isFirstResponder]) {
         [self.operationVC.costTextField becomeFirstResponder];
     }

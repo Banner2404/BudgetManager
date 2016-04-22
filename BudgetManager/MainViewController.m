@@ -110,7 +110,6 @@ static const NSInteger secInDay = 86400;
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     
     [defaults setInteger:[self.selectedWallet.walletID integerValue] forKey:@"selectedWalletID"];
-    NSLog(@"save %ld",[self.selectedWallet.walletID integerValue]);
     
 }
 
@@ -309,7 +308,6 @@ static const NSInteger secInDay = 86400;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     [self loadDailyOperations];
-    NSLog(@"count %ld",[self.loadedOperations count]);
     return [self.loadedOperations count];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{

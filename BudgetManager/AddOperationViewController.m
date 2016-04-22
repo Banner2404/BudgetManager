@@ -220,7 +220,7 @@ static const NSInteger datePickerHiddenHeight = 0;
     if (indexPath.row == 5) {
         return self.datePickerCellHeight;
     }else{
-        return 44;
+        return self.tableView.rowHeight;
     }
     
 }

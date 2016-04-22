@@ -580,8 +580,33 @@
                                             </variation>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="216" id="1sr-MY-KmO">
+                                        <rect key="frame" x="0.0" y="220" width="600" height="216"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1sr-MY-KmO" id="5Rq-Xb-psA">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="215"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="Zjy-xt-xI3">
+                                                    <rect key="frame" x="0.0" y="1" width="600" height="214"/>
+                                                    <date key="date" timeIntervalSinceReferenceDate="483010121.65477401">
+                                                        <!--2016-04-22 09:28:41 +0000-->
+                                                    </date>
+                                                    <connections>
+                                                        <action selector="actionDateChanged:" destination="qXc-X6-ILx" eventType="valueChanged" id="uOW-u8-e5g"/>
+                                                    </connections>
+                                                </datePicker>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Zjy-xt-xI3" firstAttribute="leading" secondItem="5Rq-Xb-psA" secondAttribute="leading" id="7ar-uv-GfL"/>
+                                                <constraint firstAttribute="trailing" secondItem="Zjy-xt-xI3" secondAttribute="trailing" id="FBp-dS-iDE"/>
+                                                <constraint firstItem="Zjy-xt-xI3" firstAttribute="top" secondItem="5Rq-Xb-psA" secondAttribute="top" constant="1" id="YUN-Hi-UPY"/>
+                                                <constraint firstAttribute="bottom" secondItem="Zjy-xt-xI3" secondAttribute="bottom" id="sry-Ah-gB3"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="bdJ-ns-aRX">
-                                        <rect key="frame" x="0.0" y="220" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="436" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bdJ-ns-aRX" id="v2z-EE-6gl">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -625,6 +650,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="costTextField" destination="IFe-Jd-TRa" id="dke-Tm-noZ"/>
+                        <outlet property="datePicker" destination="Zjy-xt-xI3" id="V8e-ev-uMa"/>
                         <outlet property="dateTextField" destination="0qy-mZ-WLw" id="cY8-Gy-jTX"/>
                         <outlet property="moneyTypeControl" destination="yxl-l5-gAD" id="bgO-Z4-YIO"/>
                         <outlet property="profitTypeControl" destination="Ukt-2M-IL0" id="gEj-24-2bv"/>
@@ -634,71 +660,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6CE-Ta-HT9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1518" y="-538"/>
-        </scene>
-        <!--Date View Controller-->
-        <scene sceneID="YMq-av-5FB">
-            <objects>
-                <viewController storyboardIdentifier="DateViewController" id="7pe-CF-lWY" customClass="DateViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="g9A-cU-0vD"/>
-                        <viewControllerLayoutGuide type="bottom" id="4wA-2g-Bke"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="9OV-AU-kJY">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O0h-Np-Ajv">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
-                                <subviews>
-                                    <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4HF-VM-bNg">
-                                        <rect key="frame" x="0.0" y="20" width="600" height="44"/>
-                                        <color key="barTintColor" red="0.20784313730000001" green="0.57647058819999997" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
-                                        <textAttributes key="titleTextAttributes">
-                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </textAttributes>
-                                        <items>
-                                            <navigationItem title="Дата" id="XxD-8K-JXi">
-                                                <barButtonItem key="rightBarButtonItem" title="Готово" style="done" id="f00-YY-DWT">
-                                                    <connections>
-                                                        <action selector="actionDoneButton:" destination="7pe-CF-lWY" id="Zl3-tA-vp1"/>
-                                                    </connections>
-                                                </barButtonItem>
-                                            </navigationItem>
-                                        </items>
-                                    </navigationBar>
-                                </subviews>
-                                <color key="backgroundColor" red="0.20784313730000001" green="0.57647058819999997" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="4HF-VM-bNg" secondAttribute="bottom" id="3xV-6v-ZIe"/>
-                                    <constraint firstAttribute="trailing" secondItem="4HF-VM-bNg" secondAttribute="trailing" id="FY5-qR-JUD"/>
-                                    <constraint firstItem="4HF-VM-bNg" firstAttribute="top" secondItem="O0h-Np-Ajv" secondAttribute="top" constant="20" id="ShK-ks-EPB"/>
-                                    <constraint firstItem="4HF-VM-bNg" firstAttribute="leading" secondItem="O0h-Np-Ajv" secondAttribute="leading" id="uad-92-tpG"/>
-                                </constraints>
-                            </view>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="8c5-gE-Ldv">
-                                <rect key="frame" x="0.0" y="64" width="600" height="216"/>
-                                <date key="date" timeIntervalSinceReferenceDate="480934166.756594">
-                                    <!--2016-03-29 08:49:26 +0000-->
-                                </date>
-                            </datePicker>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="8c5-gE-Ldv" firstAttribute="leading" secondItem="9OV-AU-kJY" secondAttribute="leading" id="BrT-BV-uFJ"/>
-                            <constraint firstItem="O0h-Np-Ajv" firstAttribute="leading" secondItem="9OV-AU-kJY" secondAttribute="leading" id="GAL-Qi-Scl"/>
-                            <constraint firstItem="O0h-Np-Ajv" firstAttribute="top" secondItem="9OV-AU-kJY" secondAttribute="top" id="KFC-72-auC"/>
-                            <constraint firstAttribute="trailing" secondItem="8c5-gE-Ldv" secondAttribute="trailing" id="Ndf-tY-Rtu"/>
-                            <constraint firstItem="8c5-gE-Ldv" firstAttribute="top" secondItem="9OV-AU-kJY" secondAttribute="top" constant="64" id="Tau-8J-cIO"/>
-                            <constraint firstAttribute="trailing" secondItem="O0h-Np-Ajv" secondAttribute="trailing" id="r0J-Qt-VFf"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="datePicker" destination="8c5-gE-Ldv" id="khu-77-PYf"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="JcD-XB-bI3" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1376" y="-1177"/>
         </scene>
         <!--Add Wallet View Controller-->
         <scene sceneID="UDe-LT-yfS">

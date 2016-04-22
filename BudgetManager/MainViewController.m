@@ -41,14 +41,12 @@ static const NSInteger secInDay = 86400;
     
     NSInteger selectedWalletID = [defaults integerForKey:@"selectedWalletID"];
     
-    NSLog(@"load %ld",selectedWalletID);
-    
     self.selectedWallet = [[DatabaseManager sharedManager] getWalletWithID:selectedWalletID];
     
     if (!self.selectedWallet) {
         [self addFirstWallet];
     }
-
+    [self.tableView reloadData];
     [self refreshInfo];
 
 }

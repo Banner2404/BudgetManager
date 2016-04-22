@@ -9,20 +9,26 @@
 #import "AddOperationViewController.h"
 #import "DatabaseManager.h"
 #import "TypesViewController.h"
-#import "DateViewController.h"
 
 @interface AddOperationViewController () <UITextFieldDelegate>
 
 @property (assign,nonatomic) NSInteger cost;
 @property (assign,nonatomic) NSInteger moneyType;
 @property (assign,nonatomic) NSInteger profitType;
+@property (assign,nonatomic) NSInteger datePickerCellHeight;
 
 @end
+
+static const NSInteger datePickerShownHeight = 216;
+static const NSInteger datePickerHiddenHeight = 0;
+
 
 @implementation AddOperationViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.datePickerCellHeight = 0;
     
     self.selectedDate = [NSDate dateWithTimeIntervalSinceNow:0];
     
@@ -59,23 +65,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-- (void)loadDateController{
-    
-    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-    
-    DateViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"DateViewController"];
-    
-    vc.operationVC = self;
-    vc.datePicker.date = self.selectedDate;
-    
-    vc.modalPresentationStyle = UIModalPresentationPopover;
-    vc.popoverPresentationController.sourceView = self.typeTextField;
-    
-    [self presentViewController:vc animated:YES completion:nil];
-    
-}
-
 
 - (void)loadTypesController{
     
@@ -183,7 +172,21 @@
     if ([textField isEqual:self.dateTextField]){
         
         [self.costTextField resignFirstResponder];
-        [self loadDateController];
+        //[self loadDateController];
+        
+        [self.tableView beginUpdates];
+        
+        if (self.datePickerCellHeight == datePickerHiddenHeight) {
+            self.datePickerCellHeight = datePickerShownHeight;
+            [self.datePicker setHidden:NO];
+
+        }else{
+            self.datePickerCellHeight = datePickerHiddenHeight;
+            [self.datePicker setHidden:YES];
+        }
+        
+        [self.tableView endUpdates];
+        
         return NO;
         
     }
@@ -210,7 +213,30 @@
     
 }
 
+#pragma mark - UITableViewDelegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (indexPath.row == 5) {
+        return self.datePickerCellHeight;
+    }else{
+        return 44;
+    }
+    
+}
+
 #pragma mark - Actions
+
+- (IBAction)actionDateChanged:(UIDatePicker *)sender {
+    
+    NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+    
+    [formatter setDateStyle:NSDateFormatterMediumStyle];
+    
+    self.dateTextField.text = [formatter stringFromDate:self.datePicker.date];
+    self.selectedDate = self.datePicker.date;
+        
+}
 
 - (IBAction)actionFavouritesButton:(UIBarButtonItem *)sender {
     
@@ -254,4 +280,5 @@
     [self.typeTextField becomeFirstResponder];
     
 }
+
 @end

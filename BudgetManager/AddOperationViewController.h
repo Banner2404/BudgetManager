@@ -22,7 +22,9 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *moneyTypeControl;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *profitTypeControl;
 @property (weak, nonatomic) IBOutlet UITextField *dateTextField;
+@property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
 
+- (IBAction)actionDateChanged:(UIDatePicker *)sender;
 - (IBAction)actionFavouritesButton:(UIBarButtonItem *)sender;
 - (IBAction)actionAddButton:(UIButton *)sender;
 - (IBAction)actionProfitTypeControl:(UISegmentedControl *)sender;

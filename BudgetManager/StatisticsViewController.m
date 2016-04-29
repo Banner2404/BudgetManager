@@ -7,173 +7,135 @@
 //
 
 #import "StatisticsViewController.h"
-#import "DetailOperationViewController.h"
-#import "FilterViewController.h"
 #import "DatabaseManager.h"
+#import "DiagramView.h"
 
 @interface StatisticsViewController () <UITableViewDelegate>
+
+@property (strong,nonatomic) NSArray* data;
+@property (strong,nonatomic) NSArray* colors;
+
 
 @end
 
 @implementation StatisticsViewController
 
-@synthesize fetchedResultsController = _fetchedResultsController;
-
-static const int secInWeek = 604800;
-static const int secInMonth = 2592000;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.intervalControl setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
     
-    self.tableView.backgroundView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"background"]];
-
-    
-}
-
-- (void)viewWillAppear:(BOOL)animated{
-    
-    [super viewWillAppear:animated];
-    
-    [self updateFetchedResultsController];
-    [self.tableView reloadData];
+    self.data = [self getDataForWallet:self.selectedWallet];
     
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-- (NSSortDescriptor*)getSortDescriptorForSortType:(FilterSortType)sortType ascending:(BOOL) asceding{
+- (UIColor*)randomColor{
     
-    NSSortDescriptor* descriptor;
-    if (sortType == FilterSortTypeName) {
-        descriptor = [[NSSortDescriptor alloc] initWithKey:@"type" ascending:asceding];
-    }else if(sortType == FilterSortTypeCost){
-        descriptor = [[NSSortDescriptor alloc] initWithKey:@"cost" ascending:asceding];
+    CGFloat r = (CGFloat)(arc4random() % 256) / 255;
+    CGFloat g = (CGFloat)(arc4random() % 256) / 255;
+    CGFloat b = (CGFloat)(arc4random() % 256) / 255;
+    
+    return [UIColor colorWithRed:r green:g blue:b alpha:1];
+    
+}
+
+
+- (NSManagedObjectContext*)managedObjectContext{
+    
+    if (_managedObjectContext) {
+        return _managedObjectContext;
     }else{
-        descriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:asceding];
+        _managedObjectContext = [[DatabaseManager sharedManager] managedObjectContext];
+        return _managedObjectContext;
     }
-    
-    return descriptor;
     
 }
 
-- (NSPredicate*)getPredicateForMoneyType:(FilterMoneyType)moneyType profitType:(FilterProfitType)profitType dateType:(FilterDateType)dateType minCost:(NSInteger) minCost maxCost:(NSInteger)maxCost{
+- (void)updateData{
     
-    NSMutableArray* predicatesArray = [NSMutableArray array];
-    
-    NSPredicate* namePredicate = [NSPredicate predicateWithFormat:@"wallet.name == %@",self.selectedWallet.name];
-    
-    [predicatesArray addObject:namePredicate];
-    
-    if (moneyType != FilterMoneyTypeNone) {
-        
-        NSPredicate* moneyPredicate = [NSPredicate predicateWithFormat:@"moneyType == %ld",moneyType - 1];
-        
-        [predicatesArray addObject:moneyPredicate];
-        
-    }
-    
-    if (profitType != FilterProfitTypeNone) {
-
-        NSPredicate* profitPredicate = [NSPredicate predicateWithFormat:@"profitType == %u",profitType - 1];
-        
-        [predicatesArray addObject:profitPredicate];
-
-        
-    }
-    
-    
-    if (dateType == FilterDateTypeWeek) {
-        
-        NSPredicate* datePredicate = [NSPredicate predicateWithFormat:@"date >= %@ AND date <= %@",
-                                      [NSDate dateWithTimeIntervalSinceNow:-secInWeek],
-                                      [NSDate dateWithTimeIntervalSinceNow:0]];
-        
-        [predicatesArray addObject:datePredicate];
-
-    }else if (dateType == FilterDateTypeMonth){
-        
-        NSPredicate* datePredicate = [NSPredicate predicateWithFormat:@"date >= %@ AND date <= %@",
-                                      [NSDate dateWithTimeIntervalSinceNow:-secInMonth],
-                                      [NSDate dateWithTimeIntervalSinceNow:0]];
-        
-        [predicatesArray addObject:datePredicate];
-
-    }
-    
-    
-    if (minCost != 0 || maxCost != 0) {
-        
-        NSPredicate* costPredicate = [NSPredicate predicateWithFormat:@"cost >= %ld AND cost <= %ld",minCost,maxCost];
-        
-        [predicatesArray addObject:costPredicate];
-
-    }
-    
-    NSCompoundPredicate* predicate = [NSCompoundPredicate andPredicateWithSubpredicates:predicatesArray];
-    return predicate;
+    [UIView animateWithDuration:0.2
+                     animations:^{
+                         
+                         self.diagramView.transform = CGAffineTransformMakeScale(0.01, 0.01);
+                         
+                     }
+                     completion:^(BOOL finished) {
+                         
+                         [UIView animateWithDuration:0.2
+                                          animations:^{
+                                              self.diagramView.transform = CGAffineTransformIdentity;
+                                          }];
+                         
+                     }];
     
 }
-- (void)updateFetchedResultsController{
+
+- (NSArray*)getDataForWallet:(Wallet*)wallet{
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    // Edit the entity name as appropriate.
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Operation" inManagedObjectContext:self.managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"OperationType" inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
     
-    NSPredicate* predicate = [self
-                              getPredicateForMoneyType:(FilterMoneyType)[self.filterVC.moneyTypeControl selectedSegmentIndex]
-                              profitType:(FilterProfitType)[self.filterVC.profitTypeControl selectedSegmentIndex]
-                              dateType:(FilterDateType)[self.filterVC.dateControl selectedSegmentIndex]
-                              minCost:self.filterVC.minCost
-                              maxCost:self.filterVC.maxCost];
-    
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"ANY operations.wallet.name == %@ AND count > 0",wallet.name];
     [fetchRequest setPredicate:predicate];
     
-    // Edit the sort key as appropriate.
     
-    NSSortDescriptor* sortDescriptor;
-    if (!self.filterVC) {
-        sortDescriptor = [self getSortDescriptorForSortType:FilterSortTypeDate ascending:NO];
-    }else{
-        sortDescriptor = [self
-          getSortDescriptorForSortType:(FilterSortType)[[self.filterVC.sortTypeControl objectAtIndex:0] selectedSegmentIndex]
-          ascending:(BOOL)[[self.filterVC.sortTypeControl objectAtIndex:1] selectedSegmentIndex]];
-    }
-    [fetchRequest setSortDescriptors:@[sortDescriptor]];
+    NSArray* result = [self.managedObjectContext executeFetchRequest:fetchRequest error:nil];
     
-    // Edit the section name key path and cache name if appropriate.
-    // nil for section name key path means "no sections".
-    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc]
-                                                             initWithFetchRequest:fetchRequest
-                                                             managedObjectContext:self.managedObjectContext
-                                                             sectionNameKeyPath:nil
-                                                             cacheName:nil];
-    aFetchedResultsController.delegate = self;
-    self.fetchedResultsController = aFetchedResultsController;
-    
-    NSError *error = nil;
-    if (![self.fetchedResultsController performFetch:&error]) {
-        // Replace this implementation with code to handle the error appropriately.
-        // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
-    }
+    result = [result sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+        
+        OperationType* object1 = (OperationType*)obj1;
+        OperationType* object2 = (OperationType*)obj2;
+        
+        NSInteger total1 = [[DatabaseManager sharedManager] getTotalCostForOperationType:object1 andWallet:wallet];
+        NSInteger total2 = [[DatabaseManager sharedManager] getTotalCostForOperationType:object2 andWallet:wallet];
 
+        if (total1 > total2) {
+            return NSOrderedAscending;
+        }else if (total2 > total1){
+            return NSOrderedDescending;
+        }else{
+            return NSOrderedSame;
+        }
+        
+        
+    }];
+    
+    NSMutableArray* diagramData = [NSMutableArray array];
+    NSMutableArray* diagramColors = [NSMutableArray array];
+
+    
+    for (OperationType* operationType in result) {
+        
+        NSInteger cost = [[DatabaseManager sharedManager] getTotalCostForOperationType:operationType andWallet:wallet];
+        
+        [diagramData addObject:[NSNumber numberWithInteger:cost]];
+        [diagramColors addObject:[self randomColor]];
+        
+    }
+    
+    NSLog(@"%@",diagramData);
+ 
+    self.diagramView.data = diagramData;
+    self.diagramView.colors = diagramColors;
+    self.colors = diagramColors;
+
+    
+    return result;
     
 }
 
-- (NSFetchedResultsController *)fetchedResultsController
-{
-    if (_fetchedResultsController != nil) {
-        return _fetchedResultsController;
-    }
-    
-    [self updateFetchedResultsController];
-    
-    return _fetchedResultsController;
+
+#pragma mark - UITableViewDataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [self.data count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -182,69 +144,66 @@ static const int secInMonth = 2592000;
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     
-//    if (!cell) {
-//        
-//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-//        
-//    }
-    
-    NSManagedObject *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-    [self configureCell:cell withObject:object];
+    OperationType *object = [self.data objectAtIndex:indexPath.row];
+    [self configureCell:cell withObject:object atIndexPath:(NSIndexPath *)indexPath];
     return cell;
 }
 
-
-- (void)configureCell:(UITableViewCell *)cell withObject:(NSManagedObject *)object{
+- (void)configureCell:(UITableViewCell *)cell withObject:(OperationType *)operationType atIndexPath:(NSIndexPath *)indexPath{
     
-    Operation* operation = (Operation*)object;
-    UIImageView* imageView = [cell.contentView viewWithTag:1];
-    if ([[[DatabaseManager sharedManager] defaultOperationTypes] objectForKey:operation.type.name]) {
-                imageView.image =
-                [UIImage imageNamed:[[[DatabaseManager sharedManager] defaultOperationTypes] objectForKey:operation.type.name]];
-            }else
-                imageView.image = [UIImage imageNamed:@"other"];
-    UILabel* textLabel = [cell.contentView viewWithTag:2];
-    textLabel.text = operation.type.name;
-    UILabel* detailTextLabel = [cell.contentView viewWithTag:3];
-    detailTextLabel.text = [NSString stringWithFormat:@"%@ $",operation.cost];
-    if ([operation.profitType integerValue] == OperationProfitTypeIncome) {
-        detailTextLabel.textColor = [UIColor greenColor];
-    }else{
-        detailTextLabel.textColor = [UIColor redColor];
-    }    
+    UIImageView* imageView = [cell viewWithTag:1];
+    
+    if ([[[DatabaseManager sharedManager] defaultOperationTypes] objectForKey:operationType.name]) {
+        imageView.image =
+        [UIImage imageNamed:[[[DatabaseManager sharedManager] defaultOperationTypes] objectForKey:operationType.name]];
+    }else
+        imageView.image = [UIImage imageNamed:@"other"];
+
+    UILabel* textLabel = [cell viewWithTag:2];
+    textLabel.text = operationType.name;
+    textLabel.textColor = [self.colors objectAtIndex:indexPath.row];
+    
+    UILabel* detailTextLabel = [cell viewWithTag:3];
+    NSInteger cost = [[DatabaseManager sharedManager] getTotalCostForOperationType:operationType andWallet:self.selectedWallet];
+    detailTextLabel.text = [NSString stringWithFormat:@"%ld",cost];
+    
+    
 }
 
 #pragma mark - Actions
 
-- (IBAction)actionFilterButton:(UIBarButtonItem *)sender {
+- (IBAction)actionControl:(UISegmentedControl *)sender {
     
-    if (!self.filterVC) {
-        UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    [self updateData];
+    
+}
+
+- (IBAction)actionRightSwipe:(UISwipeGestureRecognizer *)sender {
+    
+    if ([self.intervalControl selectedSegmentIndex] < 2) {
         
-        self.filterVC = [storyboard instantiateViewControllerWithIdentifier:@"FilterViewController"];
+        NSInteger index = [self.intervalControl selectedSegmentIndex];
+        index++;
+        
+        self.intervalControl.selectedSegmentIndex = index;
+        
+        [self updateData];
+    }
+
+    
+}
+
+- (IBAction)actionLeftSwipe:(UISwipeGestureRecognizer *)sender {
+    
+    if ([self.intervalControl selectedSegmentIndex] > 0) {
+        
+        NSInteger index = [self.intervalControl selectedSegmentIndex];
+        index--;
+        
+        self.intervalControl.selectedSegmentIndex = index;
+        
+        [self updateData];
     }
     
-    [self.navigationController pushViewController:self.filterVC animated:YES];
-    
 }
-
-#pragma mark - UITableViewDelegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    Operation* operation = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    
-    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-    
-    DetailOperationViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"DetailOperationViewController"];
- 
-    vc.selectedOperation = operation;
-    
-    [self.navigationController pushViewController:vc animated:YES];
-    
-}
-
-
 @end

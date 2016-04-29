@@ -9,16 +9,16 @@
 #import "DatabaseViewController.h"
 
 @class Wallet;
-@class FilterViewController;
+@class DiagramView;
 
-@interface StatisticsViewController : DatabaseViewController <NSFetchedResultsControllerDelegate>
-
-@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
+@interface StatisticsViewController : UIViewController
+@property (weak, nonatomic) IBOutlet DiagramView *diagramView;
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *intervalControl;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) Wallet* selectedWallet;
-@property (strong, nonatomic) FilterViewController* filterVC;
-
-
-- (void)configureCell:(UITableViewCell *)cell withObject:(NSManagedObject *)object;
-- (IBAction)actionFilterButton:(UIBarButtonItem *)sender;
+- (IBAction)actionControl:(UISegmentedControl *)sender;
+- (IBAction)actionRightSwipe:(UISwipeGestureRecognizer *)sender;
+- (IBAction)actionLeftSwipe:(UISwipeGestureRecognizer *)sender;
 
 @end

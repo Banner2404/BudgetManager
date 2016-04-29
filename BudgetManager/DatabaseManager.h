@@ -32,6 +32,7 @@
 - (NSArray*)getWallets;
 - (Wallet*)getWalletWithID:(NSInteger)walletID;
 - (NSArray*)getOperationTypes;
+- (NSInteger)getTotalCostForOperationType:(OperationType*)operationType andWallet:(Wallet*)wallet;
 - (void)showOperations;
 - (void)checkDefaultOperationTypes;
 

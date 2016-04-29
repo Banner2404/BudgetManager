@@ -162,6 +162,26 @@
     
 }
 
+- (NSInteger)getTotalCostForOperationType:(OperationType*)operationType andWallet:(Wallet*)wallet{
+    
+    NSFetchRequest* request = [NSFetchRequest fetchRequestWithEntityName:@"Operation"];
+    
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"wallet.name == %@ AND type.name == %@",wallet.name,operationType.name];
+    
+    [request setPredicate:predicate];
+    
+    NSArray* array = [self.managedObjectContext executeFetchRequest:request error:nil];
+    
+    NSInteger totalCost = 0;
+    for (Operation* operation in array) {
+        
+        NSInteger cost = [operation.cost integerValue];
+        totalCost += cost;
+    }
+
+    return totalCost;
+}
+
 #pragma mark - Add
 
 - (void)addOperationInFavourites:(Operation*)operation{

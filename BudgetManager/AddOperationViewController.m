@@ -28,6 +28,8 @@ static const NSInteger datePickerHiddenHeight = 0;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.tableView.backgroundView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"background"]];
+    
     self.datePickerCellHeight = 0;
     
     self.selectedDate = [NSDate dateWithTimeIntervalSinceNow:0];

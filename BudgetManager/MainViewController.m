@@ -143,19 +143,15 @@ static const NSInteger secInDay = 86400;
     if (self.selectedWallet) {
         
         [self.walletButton setTitle:self.selectedWallet.name forState:UIControlStateNormal];
-        self.cashMoneyLabel.text = [NSString stringWithFormat:@"%@ $",self.selectedWallet.cashMoney];
-        if ([self.selectedWallet.cashMoney integerValue] < 0) {
-            self.cashMoneyLabel.textColor = [UIColor redColor];
-        }else{
-            self.cashMoneyLabel.textColor = [UIColor whiteColor];
-        }
-        self.bankMoneyLabel.text = [NSString stringWithFormat:@"%@ $",self.selectedWallet.bankMoney];
-        if ([self.selectedWallet.bankMoney integerValue] < 0) {
-            self.bankMoneyLabel.textColor = [UIColor redColor];
-        }else{
-            self.bankMoneyLabel.textColor = [UIColor whiteColor];
-        }
+        NSNumberFormatter* formatter = [[NSNumberFormatter alloc] init];
+        formatter.numberStyle = NSNumberFormatterCurrencyAccountingStyle;
         
+        
+        self.cashMoneyLabel.text = [NSString stringWithFormat:@"%@",[formatter stringFromNumber:self.selectedWallet.cashMoney]];
+        self.cashMoneyLabel.textColor = [UIColor whiteColor];
+
+        self.bankMoneyLabel.text = [NSString stringWithFormat:@"%@",[formatter stringFromNumber:self.selectedWallet.bankMoney]];
+        self.bankMoneyLabel.textColor = [UIColor whiteColor];
         
     }else{
         
@@ -322,16 +318,25 @@ static const NSInteger secInDay = 86400;
         [UIImage imageNamed:[[[DatabaseManager sharedManager] defaultOperationTypes] objectForKey:operation.type.name]];
     }else
         imageView.image = [UIImage imageNamed:@"other"];
+    
+    UIImageView* moneyImage = [cell.contentView viewWithTag:4];
+    if ([operation.type.profitType integerValue] == OperationMoneyTypeCash) {
+        moneyImage.image = [UIImage imageNamed:@"cash"];
+    }else
+        moneyImage.image = [UIImage imageNamed:@"bank"];
+
     UILabel* textLabel = [cell.contentView viewWithTag:2];
     textLabel.text = operation.type.name;
     UILabel* detailTextLabel = [cell.contentView viewWithTag:3];
-    detailTextLabel.text = [NSString stringWithFormat:@"%@ $",operation.cost];
+
     if ([operation.profitType integerValue] == OperationProfitTypeIncome) {
-        detailTextLabel.textColor = [UIColor colorWithRed:53.f/256 green:147.f/256 blue:127.f/256 alpha:1];
-        //detailTextLabel.textColor = [UIColor blueColor];
+        //detailTextLabel.textColor = [UIColor colorWithRed:53.f/256 green:147.f/256 blue:127.f/256 alpha:1];
+        detailTextLabel.text = [NSString stringWithFormat:@"+ %@ $",operation.cost];
     }else{
-        detailTextLabel.textColor = [UIColor colorWithRed:48.f/256 green:97.f/256 blue:117.f/256 alpha:1];
+        //detailTextLabel.textColor = [UIColor colorWithRed:48.f/256 green:97.f/256 blue:117.f/256 alpha:1];
+        detailTextLabel.text = [NSString stringWithFormat:@"- %@ $",operation.cost];
     }
+    detailTextLabel.textColor = [UIColor colorWithRed:53.f/256 green:147.f/256 blue:127.f/256 alpha:1];
     
     return cell;
     

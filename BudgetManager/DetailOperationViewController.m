@@ -20,12 +20,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.tableView.backgroundView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"background"]];
+    
     self.navigationItem.title = self.selectedOperation.type.name;
     
     self.typeLabel.text = self.selectedOperation.type.name;
     self.costLabel.text = [NSString stringWithFormat:@"%@",self.selectedOperation.cost];
-    self.moneyTypeLabel.text = [NSString stringWithFormat:@"%@",[self.selectedOperation.moneyType integerValue] == OperationMoneyTypeCash ? @"Cash" : @"Bank" ];
-    self.profitTypeLabel.text = [NSString stringWithFormat:@"%@",[self.selectedOperation.profitType integerValue] == OperationProfitTypeIncome ? @"Income" : @"Expence" ];
+    self.moneyTypeLabel.text = [NSString stringWithFormat:@"%@",[self.selectedOperation.moneyType integerValue] == OperationMoneyTypeCash ? @"Наличные" : @"Безналичные" ];
+    self.profitTypeLabel.text = [NSString stringWithFormat:@"%@",[self.selectedOperation.profitType integerValue] == OperationProfitTypeIncome ? @"Приход" : @"Расход" ];
     
     NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
     

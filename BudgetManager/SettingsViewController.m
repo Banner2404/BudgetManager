@@ -25,6 +25,8 @@ static const NSInteger passwordHiddenHeight = 0;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.tableView.backgroundView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"background"]];
+    
     self.walletNameTextField.text = self.selectedWallet.name;
     [self.secureSwitch setOn:[self.selectedWallet.isSecure boolValue]];
     self.passwordTextField.text = self.selectedWallet.password;

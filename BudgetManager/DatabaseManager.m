@@ -24,17 +24,23 @@
     if (self) {
                 
         self.expenceOperationsNames = [NSDictionary dictionaryWithObjectsAndKeys:
-                                       @"shop",@"Магазин",
-                                       @"gift",@"Подарки",
+                                       @"cinema",@"Кино",
+                                       @"shop",@"Покупки",
                                        @"car",@"Машина",
-                                       @"clothes",@"Одежда",
-                                       @"entertainment",@"Развлечения",
-                                       @"utility",@"Коммунальные",nil];
+                                       @"transport",@"Транспорт",
+                                       @"restaurant",@"Ресторан",
+                                       @"education",@"Образование",
+                                       @"mobile",@"Мобильная связь",
+                                       @"mail",@"Почтовые отправления",
+                                       @"party",@"Развлечения",
+                                       @"music",@"Концерты",
+                                       @"home",@"Коммунальные",
+                                       @"doctor",@"Лечение",
+                                       @"travel",@"Путешествия",nil];
                 
         self.incomeOperationsNames = [NSDictionary dictionaryWithObjectsAndKeys:
                                       @"salary",@"Зарплата",
-                                      @"gift",@"Подарки",
-                                      @"lottery",@"Лотерея", nil];
+                                      nil];
         
         self.defaultOperationTypes = [NSMutableDictionary dictionary];
         [self.defaultOperationTypes addEntriesFromDictionary:self.incomeOperationsNames];

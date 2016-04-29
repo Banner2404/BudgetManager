@@ -24,6 +24,8 @@ static const NSInteger passwordHiddenHeight = 0;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.tableView.backgroundView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"background"]];
+    
     [self checkSequre];
     
     [self.walletNameTextField becomeFirstResponder];

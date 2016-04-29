@@ -20,6 +20,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+ 
+    self.tableView.backgroundView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"background"]];
+
     
 }
 

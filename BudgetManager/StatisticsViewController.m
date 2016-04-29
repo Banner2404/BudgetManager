@@ -25,6 +25,9 @@ static const int secInMonth = 2592000;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.tableView.backgroundView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"background"]];
+
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated{

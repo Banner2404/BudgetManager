@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "car.png",
+      "filename" : "Material Icons_e62c(0)_32.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "car-1.png",
+      "filename" : "Material Icons_e62c(0)_64.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "car-2.png",
+      "filename" : "Material Icons_e62c(0)_128.png",
       "scale" : "3x"
     }
   ],

@@ -122,8 +122,9 @@
     
     vc.selectedWallet = self.selectedWallet;
     vc.selectedType = operation.type;
-
-    [vc setCost:[operation.cost integerValue] moneyType:[operation.moneyType integerValue] profitType:[operation.moneyType integerValue]];
+    vc.isLoadFromFavourites = YES;
+    
+    [vc setCost:[operation.cost integerValue] moneyType:[operation.moneyType integerValue] profitType:[operation.profitType integerValue]];
     
     [self.navigationController pushViewController:vc animated:YES];
     

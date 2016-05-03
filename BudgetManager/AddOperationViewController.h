@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *profitTypeControl;
 @property (weak, nonatomic) IBOutlet UITextField *dateTextField;
 @property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
+@property (assign,nonatomic) BOOL isLoadFromFavourites;
 
 - (IBAction)actionDateChanged:(UIDatePicker *)sender;
 - (IBAction)actionFavouritesButton:(UIBarButtonItem *)sender;

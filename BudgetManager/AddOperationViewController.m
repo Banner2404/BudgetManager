@@ -42,24 +42,17 @@ static const NSInteger datePickerHiddenHeight = 0;
     
     self.navigationItem.backBarButtonItem.title = @"Назад";
     
+    NSLog(@"cost %ld, moneyType %ld, profitType %ld\n",self.cost,self.moneyType, self.profitType);
+    
     if (self.selectedType) {
         self.typeTextField.text = self.selectedType.name;
     }
-    if (self.cost) {
-        
-        self.costTextField.text = [NSString stringWithFormat:@"%ld",self.cost];
-        
-    }
-    if (self.moneyType) {
-        
-        self.moneyTypeControl.selectedSegmentIndex = self.moneyType;
-        
-    }
     
-    if (self.profitType) {
-        
+    if (self.isLoadFromFavourites) {
+        self.costTextField.text = [NSString stringWithFormat:@"%ld",self.cost];
+        self.moneyTypeControl.selectedSegmentIndex = self.moneyType;
         self.profitTypeControl.selectedSegmentIndex = self.profitType;
-        
+
     }
 }
 
@@ -165,6 +158,8 @@ static const NSInteger datePickerHiddenHeight = 0;
     
     if ([textField isEqual:self.typeTextField]) {
         
+        self.selectedType = nil;
+        textField.text = @"";
         [self.costTextField resignFirstResponder];
         [self loadTypesController];
         return NO;

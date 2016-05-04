@@ -13,8 +13,9 @@
 @interface StatisticsViewController () <UITableViewDelegate>
 
 @property (strong,nonatomic) NSArray* data;
+@property (strong,nonatomic) NSArray* filteredData;
 @property (strong,nonatomic) NSArray* colors;
-
+@property (strong,nonatomic) NSDate* currentDate;
 
 @end
 
@@ -24,8 +25,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.intervalControl setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
-    
+    [self setCurrentDate];
     self.data = [self getDataForWallet:self.selectedWallet];
+    self.filteredData = [self filteredDataFromData:self.data andWallet:self.selectedWallet];
+    [self updateDataWithAnimation];
     
 }
 
@@ -34,6 +37,49 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (void)setCurrentDate{
+    
+    NSCalendar* calendar = [NSCalendar currentCalendar];
+    
+    NSDateComponents* components = nil;
+    
+    components = [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:[NSDate dateWithTimeIntervalSinceNow:0]];
+    components.day ++;
+    
+    self.currentDate = [calendar dateFromComponents:components];
+    
+    
+    
+}
+
+- (NSDate*)getStartDateForSegmentedControlIndex:(NSInteger)index fromCurrentDate:(NSDate*)date{
+    
+    NSCalendar* calendar = [NSCalendar currentCalendar];
+    
+    NSDateComponents* components = nil;
+    
+    components = [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:date];
+    
+    switch (index) {
+        case 0:
+            components.day --;
+            break;
+        case 1:
+            components.day -= 7;
+            break;
+        case 2:
+            components.month --;
+            break;
+            
+        default:
+            break;
+    }
+    
+    return [calendar dateFromComponents:components];
+    
+}
+
 
 - (UIColor*)randomColor{
     
@@ -59,6 +105,34 @@
 
 - (void)updateData{
     
+    NSMutableArray* diagramData = [NSMutableArray array];
+    NSMutableArray* diagramColors = [NSMutableArray array];
+    
+    self.filteredData = [self filteredDataFromData:self.data andWallet:self.selectedWallet];
+    
+    for (OperationType* operationType in self.filteredData) {
+        
+        NSInteger cost = [self getCostForDate:self.currentDate
+                                       wallet:self.selectedWallet
+                                operationType:operationType];
+        
+        [diagramData addObject:[NSNumber numberWithInteger:cost]];
+        [diagramColors addObject:[self randomColor]];
+        
+    }
+    
+    self.diagramView.data = diagramData;
+    self.diagramView.colors = diagramColors;
+    self.colors = diagramColors;
+    
+    [self.diagramView setNeedsDisplay];
+    [self.tableView reloadData];
+
+    
+}
+
+- (void)updateDataWithAnimation{
+    
     [UIView animateWithDuration:0.2
                      animations:^{
                          
@@ -66,6 +140,8 @@
                          
                      }
                      completion:^(BOOL finished) {
+                         
+                         [self updateData];
                          
                          [UIView animateWithDuration:0.2
                                           animations:^{
@@ -76,26 +152,38 @@
     
 }
 
-- (NSArray*)getDataForWallet:(Wallet*)wallet{
+- (NSInteger)getCostForDate:(NSDate*)date wallet:(Wallet*)wallet operationType:(OperationType*)operationType{
     
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"OperationType" inManagedObjectContext:self.managedObjectContext];
-    [fetchRequest setEntity:entity];
+    NSDate* startDate = [self getStartDateForSegmentedControlIndex:[self.intervalControl selectedSegmentIndex]
+                                                   fromCurrentDate:self.currentDate];
     
-    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"ANY operations.wallet.name == %@ AND count > 0",wallet.name];
-    [fetchRequest setPredicate:predicate];
+    NSInteger cost = [[DatabaseManager sharedManager]
+                      getTotalCostForOperationType:operationType
+                      andWallet:wallet
+                      fromDate:startDate
+                      toDate:self.currentDate];
     
+    return cost;
+
+}
+
+- (NSArray*)filteredDataFromData:(NSArray*)data andWallet:(Wallet*)wallet{
     
-    NSArray* result = [self.managedObjectContext executeFetchRequest:fetchRequest error:nil];
+    NSMutableArray* filteredData = [NSMutableArray arrayWithArray:data];
     
-    result = [result sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+    [filteredData sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
         
         OperationType* object1 = (OperationType*)obj1;
         OperationType* object2 = (OperationType*)obj2;
         
-        NSInteger total1 = [[DatabaseManager sharedManager] getTotalCostForOperationType:object1 andWallet:wallet];
-        NSInteger total2 = [[DatabaseManager sharedManager] getTotalCostForOperationType:object2 andWallet:wallet];
-
+        NSInteger total1 = [self getCostForDate:self.currentDate
+                                         wallet:self.selectedWallet
+                                  operationType:object1];
+        
+        NSInteger total2 = [self getCostForDate:self.currentDate
+                                         wallet:self.selectedWallet
+                                  operationType:object2];
+        
         if (total1 > total2) {
             return NSOrderedAscending;
         }else if (total2 > total1){
@@ -103,31 +191,37 @@
         }else{
             return NSOrderedSame;
         }
-        
-        
+
     }];
     
-    NSMutableArray* diagramData = [NSMutableArray array];
-    NSMutableArray* diagramColors = [NSMutableArray array];
-
     
-    for (OperationType* operationType in result) {
+    for (OperationType* operationType in data) {
         
-        NSInteger cost = [[DatabaseManager sharedManager] getTotalCostForOperationType:operationType andWallet:wallet];
-        
-        [diagramData addObject:[NSNumber numberWithInteger:cost]];
-        [diagramColors addObject:[self randomColor]];
-        
+        NSInteger cost = [self getCostForDate:self.currentDate
+                                       wallet:self.selectedWallet
+                                operationType:operationType];
+        if (cost == 0) {
+            [filteredData removeObject:operationType];
+        }
     }
     
-    NSLog(@"%@",diagramData);
- 
-    self.diagramView.data = diagramData;
-    self.diagramView.colors = diagramColors;
-    self.colors = diagramColors;
+    return filteredData;
 
     
-    return result;
+}
+
+- (NSArray*)getDataForWallet:(Wallet*)wallet{
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"OperationType" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"ANY operations.wallet.name == %@",wallet.name];
+    
+    [fetchRequest setPredicate:predicate];
+    
+    
+    return [self.managedObjectContext executeFetchRequest:fetchRequest error:nil];
     
 }
 
@@ -135,7 +229,7 @@
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.data count];
+    return [self.filteredData count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -144,7 +238,7 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     
-    OperationType *object = [self.data objectAtIndex:indexPath.row];
+    OperationType *object = [self.filteredData objectAtIndex:indexPath.row];
     [self configureCell:cell withObject:object atIndexPath:(NSIndexPath *)indexPath];
     return cell;
 }
@@ -164,7 +258,12 @@
     textLabel.textColor = [self.colors objectAtIndex:indexPath.row];
     
     UILabel* detailTextLabel = [cell viewWithTag:3];
-    NSInteger cost = [[DatabaseManager sharedManager] getTotalCostForOperationType:operationType andWallet:self.selectedWallet];
+    
+    
+    
+    NSInteger cost = [self getCostForDate:self.currentDate
+                                   wallet:self.selectedWallet
+                            operationType:operationType];
     detailTextLabel.text = [NSString stringWithFormat:@"%ld",cost];
     
     
@@ -174,7 +273,7 @@
 
 - (IBAction)actionControl:(UISegmentedControl *)sender {
     
-    [self updateData];
+    [self updateDataWithAnimation];
     
 }
 
@@ -187,7 +286,7 @@
         
         self.intervalControl.selectedSegmentIndex = index;
         
-        [self updateData];
+        [self updateDataWithAnimation];
     }
 
     
@@ -202,7 +301,7 @@
         
         self.intervalControl.selectedSegmentIndex = index;
         
-        [self updateData];
+        [self updateDataWithAnimation];
     }
     
 }

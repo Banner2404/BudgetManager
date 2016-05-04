@@ -162,11 +162,15 @@
     
 }
 
-- (NSInteger)getTotalCostForOperationType:(OperationType*)operationType andWallet:(Wallet*)wallet{
+- (NSInteger)getTotalCostForOperationType:(OperationType*)operationType andWallet:(Wallet*)wallet fromDate:(NSDate*)fromDate toDate:(NSDate*)toDate{
     
     NSFetchRequest* request = [NSFetchRequest fetchRequestWithEntityName:@"Operation"];
     
-    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"wallet.name == %@ AND type.name == %@",wallet.name,operationType.name];
+    NSPredicate* predicateWallet = [NSPredicate predicateWithFormat:@"wallet.name == %@",wallet.name];
+    NSPredicate* predicateType = [NSPredicate predicateWithFormat:@"type.name == %@",operationType.name];
+    NSPredicate* predicateDate = [NSPredicate predicateWithFormat:@"date >= %@ AND date <= %@",fromDate,toDate];
+    
+    NSCompoundPredicate* predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[predicateWallet,predicateType,predicateDate]];
     
     [request setPredicate:predicate];
     

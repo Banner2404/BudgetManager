@@ -115,6 +115,8 @@ static const NSInteger secInDay = 86400;
 
 - (void)viewWillAppear:(BOOL)animated{
     
+    [super viewWillAppear:animated];
+    
     [self refreshInfo];
     [self setDate];
     [self.tableView reloadData];

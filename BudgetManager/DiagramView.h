@@ -13,5 +13,6 @@
 @property (strong,nonatomic) NSArray* data;
 @property (strong,nonatomic) NSMutableArray* colors;
 @property (assign,nonatomic) CGFloat maxAngle;
+@property (assign,nonatomic) NSInteger selectedSegmentIndex;
 
 @end

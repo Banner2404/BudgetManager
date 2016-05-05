@@ -20,5 +20,6 @@
 - (IBAction)actionControl:(UISegmentedControl *)sender;
 - (IBAction)actionRightSwipe:(UISwipeGestureRecognizer *)sender;
 - (IBAction)actionLeftSwipe:(UISwipeGestureRecognizer *)sender;
+- (IBAction)actionProfitChange:(UIButton *)sender;
 
 @end

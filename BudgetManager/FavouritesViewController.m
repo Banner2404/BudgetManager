@@ -94,16 +94,23 @@
         [UIImage imageNamed:[[[DatabaseManager sharedManager] defaultOperationTypes] objectForKey:operation.type.name]];
     }else
         imageView.image = [UIImage imageNamed:@"other"];
+    
+    UIImageView* moneyImage = [cell.contentView viewWithTag:4];
+    if ([operation.moneyType integerValue] == OperationMoneyTypeCash) {
+        moneyImage.image = [UIImage imageNamed:@"cash"];
+    }else
+        moneyImage.image = [UIImage imageNamed:@"bank"];
+    
     UILabel* textLabel = [cell.contentView viewWithTag:2];
     textLabel.text = operation.type.name;
     UILabel* detailTextLabel = [cell.contentView viewWithTag:3];
-    detailTextLabel.text = [NSString stringWithFormat:@"%@ $",operation.cost];
+    
     if ([operation.profitType integerValue] == OperationProfitTypeIncome) {
-        detailTextLabel.textColor = [UIColor greenColor];
+        detailTextLabel.text = [NSString stringWithFormat:@"+ %@ р",operation.cost];
     }else{
-        detailTextLabel.textColor = [UIColor redColor];
+        detailTextLabel.text = [NSString stringWithFormat:@"- %@ р",operation.cost];
     }
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    detailTextLabel.textColor = [UIColor colorWithRed:53.f/256 green:147.f/256 blue:127.f/256 alpha:1];
     
     
 }

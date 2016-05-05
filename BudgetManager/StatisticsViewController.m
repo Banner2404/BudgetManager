@@ -16,6 +16,7 @@
 @property (strong,nonatomic) NSArray* filteredData;
 @property (strong,nonatomic) NSArray* colors;
 @property (strong,nonatomic) NSDate* currentDate;
+@property (assign,nonatomic) OperationTypeProfitType profitType;
 
 @end
 
@@ -24,6 +25,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.diagramView.selectedSegmentIndex = -1;
+    self.profitType = OperationTypeProfitTypeExpence;
     [self.intervalControl setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
     [self setCurrentDate];
     self.data = [self getDataForWallet:self.selectedWallet];
@@ -110,6 +114,11 @@
     
     self.filteredData = [self filteredDataFromData:self.data andWallet:self.selectedWallet];
     
+    NSInteger i = [self.filteredData count];
+    CGFloat coeff = 1.f / i;
+    
+    NSLog(@"coeff: %lf",coeff);
+    
     for (OperationType* operationType in self.filteredData) {
         
         NSInteger cost = [self getCostForDate:self.currentDate
@@ -117,7 +126,9 @@
                                 operationType:operationType];
         
         [diagramData addObject:[NSNumber numberWithInteger:cost]];
-        [diagramColors addObject:[self randomColor]];
+        //[diagramColors addObject:[self randomColor]];
+        
+        [diagramColors addObject:[UIColor colorWithRed:53.f/256 green:147.f/256 blue:127.f/256 alpha:coeff * i--]];
         
     }
     
@@ -132,6 +143,8 @@
 }
 
 - (void)updateDataWithAnimation{
+    
+    self.diagramView.selectedSegmentIndex = -1;
     
     [UIView animateWithDuration:0.2
                      animations:^{
@@ -200,7 +213,7 @@
         NSInteger cost = [self getCostForDate:self.currentDate
                                        wallet:self.selectedWallet
                                 operationType:operationType];
-        if (cost == 0) {
+        if (cost == 0 || [operationType.profitType integerValue] != self.profitType) {
             [filteredData removeObject:operationType];
         }
     }
@@ -264,10 +277,33 @@
     NSInteger cost = [self getCostForDate:self.currentDate
                                    wallet:self.selectedWallet
                             operationType:operationType];
-    detailTextLabel.text = [NSString stringWithFormat:@"%ld",cost];
+    if (self.profitType == OperationTypeProfitTypeIncome) {
+        detailTextLabel.text = [NSString stringWithFormat:@"+ %ld p",cost];
+    }else{
+        detailTextLabel.text = [NSString stringWithFormat:@"- %ld p",cost];
+    }
+    
+    detailTextLabel.textColor = [UIColor colorWithRed:53.f/256 green:147.f/256 blue:127.f/256 alpha:1];
     
     
 }
+
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    [tableView reloadData];
+    
+    self.diagramView.selectedSegmentIndex = indexPath.row;
+    [self.diagramView setNeedsDisplay];
+    
+    UITableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
+    
+    UILabel* label = [cell viewWithTag:2];
+    
+    label.textColor = [UIColor colorWithRed:48.f/256 green:97.f/256 blue:117.f/256 alpha:1];
+}
+
 
 #pragma mark - Actions
 
@@ -279,6 +315,19 @@
 
 - (IBAction)actionRightSwipe:(UISwipeGestureRecognizer *)sender {
     
+    if ([self.intervalControl selectedSegmentIndex] > 0) {
+        
+        NSInteger index = [self.intervalControl selectedSegmentIndex];
+        index--;
+        
+        self.intervalControl.selectedSegmentIndex = index;
+        
+        [self updateDataWithAnimation];
+    }
+    
+}
+
+- (IBAction)actionLeftSwipe:(UISwipeGestureRecognizer *)sender {
     if ([self.intervalControl selectedSegmentIndex] < 2) {
         
         NSInteger index = [self.intervalControl selectedSegmentIndex];
@@ -290,19 +339,19 @@
     }
 
     
+    
 }
 
-- (IBAction)actionLeftSwipe:(UISwipeGestureRecognizer *)sender {
+- (IBAction)actionProfitChange:(UIButton *)sender {
     
-    if ([self.intervalControl selectedSegmentIndex] > 0) {
-        
-        NSInteger index = [self.intervalControl selectedSegmentIndex];
-        index--;
-        
-        self.intervalControl.selectedSegmentIndex = index;
-        
-        [self updateDataWithAnimation];
+    if (self.profitType == OperationTypeProfitTypeIncome) {
+        self.profitType = OperationTypeProfitTypeExpence;
+        [sender setTitle:@"Расходы" forState:UIControlStateNormal];
+    }else{
+        self.profitType = OperationTypeProfitTypeIncome;
+        [sender setTitle:@"Доходы" forState:UIControlStateNormal];
     }
     
+    [self updateDataWithAnimation];
 }
 @end

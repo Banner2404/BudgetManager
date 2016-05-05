@@ -20,7 +20,7 @@
     
     NSInteger lineWidth = rectSize / 3;
     
-    rectSize -= lineWidth;
+    rectSize -= lineWidth + 25;
     
     NSInteger rectOriginX = CGRectGetMidX(rect);
     NSInteger rectOriginY = CGRectGetMidY(rect);
@@ -45,16 +45,29 @@
         
         CGFloat newAngle = angle + (part * 2 * M_PI);
         
+        CGFloat radius = CGRectGetWidth(diagramRect) / 2;
+        
+        CGFloat width = lineWidth;
+        
+        if (i == self.selectedSegmentIndex) {
+            radius += 5;
+        }
+        
         CGContextAddArc(context,
-                        CGRectGetMinX(diagramRect), CGRectGetMinY(diagramRect), CGRectGetWidth(diagramRect) / 2,
+                        CGRectGetMinX(diagramRect), CGRectGetMinY(diagramRect), radius,
                         angle, newAngle,
                         0);
         
         angle = newAngle;
         
-        CGContextSetLineWidth(context, lineWidth);
+        CGContextSetLineWidth(context, width);
         
-        CGContextSetStrokeColorWithColor(context, [[self.colors objectAtIndex:i] CGColor]);
+        if (i == self.selectedSegmentIndex) {
+            CGContextSetStrokeColorWithColor(context, [[UIColor colorWithRed:48.f/256 green:97.f/256 blue:117.f/256 alpha:1] CGColor]);
+        }else{
+            CGContextSetStrokeColorWithColor(context, [[self.colors objectAtIndex:i] CGColor]);
+        }
+        
         
         CGContextStrokePath(context);
         

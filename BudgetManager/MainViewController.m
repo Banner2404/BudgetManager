@@ -332,9 +332,9 @@ static const NSInteger secInDay = 86400;
     UILabel* detailTextLabel = [cell.contentView viewWithTag:3];
 
     if ([operation.profitType integerValue] == OperationProfitTypeIncome) {
-        detailTextLabel.text = [NSString stringWithFormat:@"+ %@ $",operation.cost];
+        detailTextLabel.text = [NSString stringWithFormat:@"+ %@ р",operation.cost];
     }else{
-        detailTextLabel.text = [NSString stringWithFormat:@"- %@ $",operation.cost];
+        detailTextLabel.text = [NSString stringWithFormat:@"- %@ р",operation.cost];
     }
     detailTextLabel.textColor = [UIColor colorWithRed:53.f/256 green:147.f/256 blue:127.f/256 alpha:1];
     

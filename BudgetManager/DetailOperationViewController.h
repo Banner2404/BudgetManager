@@ -15,11 +15,15 @@
 @property (strong,nonatomic) Operation* selectedOperation;
 
 @property (weak, nonatomic) IBOutlet UILabel *typeLabel;
-@property (weak, nonatomic) IBOutlet UILabel *costLabel;
-@property (weak, nonatomic) IBOutlet UILabel *moneyTypeLabel;
-@property (weak, nonatomic) IBOutlet UILabel *profitTypeLabel;
-@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+@property (weak, nonatomic) IBOutlet UITextField *costTextField;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *moneyTypeControl;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *profitTypeControl;
+@property (weak, nonatomic) IBOutlet UITextField *dateTextField;
+@property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
 @property (weak, nonatomic) IBOutlet UILabel *idLabel;
+- (IBAction)actionMoneyTypeControl:(UISegmentedControl *)sender;
+- (IBAction)actionDateChanged:(UIDatePicker *)sender;
+- (IBAction)actionEditButton:(UIBarButtonItem *)sender;
 
 
 @end

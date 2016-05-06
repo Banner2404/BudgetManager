@@ -21,6 +21,7 @@
 
 - (IBAction)actionRightSwipe:(UISwipeGestureRecognizer *)sender;
 - (IBAction)actionLeftSwipe:(UISwipeGestureRecognizer *)sender;
+- (IBAction)actionLongPress:(UILongPressGestureRecognizer *)sender;
 - (IBAction)actionDateButton:(UIButton *)sender;
 - (void)refreshInfo;
 - (void)saveWallet;

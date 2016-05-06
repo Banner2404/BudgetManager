@@ -272,15 +272,18 @@
     
     UILabel* detailTextLabel = [cell viewWithTag:3];
     
+    NSNumber* cost = [NSNumber numberWithInteger:[self getCostForDate:self.currentDate
+                                                              wallet:self.selectedWallet
+                                                       operationType:operationType]];
     
+    NSNumberFormatter* formatter = [[NSNumberFormatter alloc] init];
+    formatter.numberStyle = NSNumberFormatterCurrencyAccountingStyle;
+
     
-    NSInteger cost = [self getCostForDate:self.currentDate
-                                   wallet:self.selectedWallet
-                            operationType:operationType];
     if (self.profitType == OperationTypeProfitTypeIncome) {
-        detailTextLabel.text = [NSString stringWithFormat:@"+ %ld p",cost];
+        detailTextLabel.text = [NSString stringWithFormat:@"+ %@",[formatter stringFromNumber:cost]];
     }else{
-        detailTextLabel.text = [NSString stringWithFormat:@"- %ld p",cost];
+        detailTextLabel.text = [NSString stringWithFormat:@"- %@",[formatter stringFromNumber:cost]];
     }
     
     detailTextLabel.textColor = [UIColor colorWithRed:53.f/256 green:147.f/256 blue:127.f/256 alpha:1];

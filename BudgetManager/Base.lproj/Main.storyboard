@@ -89,6 +89,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="w8a-8O-khZ">
                                 <rect key="frame" x="0.0" y="44" width="600" height="448"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Cell" id="7X6-ZY-Yxz">
                                         <rect key="frame" x="0.0" y="28" width="600" height="44"/>
@@ -165,6 +166,8 @@
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="eUW-rH-kGX" id="jUr-OI-Fcf"/>
+                                    <outlet property="delegate" destination="eUW-rH-kGX" id="woW-Zi-sbN"/>
+                                    <outletCollection property="gestureRecognizers" destination="PsX-9u-R3Y" appends="YES" id="xUR-0I-PY8"/>
                                 </connections>
                             </tableView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hDz-V2-xDA">
@@ -263,6 +266,11 @@
                         <outlet property="delegate" destination="eUW-rH-kGX" id="gTx-QT-QAy"/>
                     </connections>
                 </swipeGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="PsX-9u-R3Y">
+                    <connections>
+                        <action selector="actionLongPress:" destination="eUW-rH-kGX" id="UHe-9o-sOj"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="814" y="377"/>
         </scene>
@@ -349,6 +357,25 @@
                         <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view key="tableFooterView" hidden="YES" contentMode="scaleToFill" id="zvk-mo-L33">
+                            <rect key="frame" x="0.0" y="72" width="600" height="341"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Вы еще не добавляли операций в избранное" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dEX-mA-tjC">
+                                    <rect key="frame" x="20" y="0.0" width="560" height="341"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" red="0.20784313730000001" green="0.57647058819999997" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="dEX-mA-tjC" secondAttribute="bottom" id="Gry-fb-hBD"/>
+                                <constraint firstItem="dEX-mA-tjC" firstAttribute="top" secondItem="zvk-mo-L33" secondAttribute="top" id="Py5-Gz-Lvu"/>
+                                <constraint firstAttribute="trailing" secondItem="dEX-mA-tjC" secondAttribute="trailing" constant="20" id="h4W-5y-KDq"/>
+                                <constraint firstItem="dEX-mA-tjC" firstAttribute="leading" secondItem="zvk-mo-L33" secondAttribute="leading" constant="20" id="zAL-AE-ZHV"/>
+                            </constraints>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Cell" id="vx0-bL-89l">
                                 <rect key="frame" x="0.0" y="28" width="600" height="44"/>
@@ -428,6 +455,9 @@
                     <navigationItem key="navigationItem" title="Избранное" id="teO-Hs-MXR">
                         <barButtonItem key="backBarButtonItem" title="Назад" id="d0C-24-6OB"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="emptyView" destination="zvk-mo-L33" id="sML-yG-PoJ"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y1k-4g-joe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

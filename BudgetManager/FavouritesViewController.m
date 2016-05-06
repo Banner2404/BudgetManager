@@ -72,6 +72,17 @@
     return _fetchedResultsController;
 }
 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
+    
+    if ([sectionInfo numberOfObjects] == 0) {
+        [self.emptyView setHidden:NO];
+    }
+    
+    return [sectionInfo numberOfObjects];
+}
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString* identifier = @"Cell";
@@ -105,10 +116,13 @@
     textLabel.text = operation.type.name;
     UILabel* detailTextLabel = [cell.contentView viewWithTag:3];
     
+    NSNumberFormatter* formatter = [[NSNumberFormatter alloc] init];
+    formatter.numberStyle = NSNumberFormatterCurrencyAccountingStyle;
+    
     if ([operation.profitType integerValue] == OperationProfitTypeIncome) {
-        detailTextLabel.text = [NSString stringWithFormat:@"+ %@ р",operation.cost];
+        detailTextLabel.text = [NSString stringWithFormat:@"+ %@",[formatter stringFromNumber:operation.cost]];
     }else{
-        detailTextLabel.text = [NSString stringWithFormat:@"- %@ р",operation.cost];
+        detailTextLabel.text = [NSString stringWithFormat:@"- %@",[formatter stringFromNumber:operation.cost]];
     }
     detailTextLabel.textColor = [UIColor colorWithRed:53.f/256 green:147.f/256 blue:127.f/256 alpha:1];
     
@@ -137,6 +151,13 @@
     
     
 }
+
+- (nullable NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return @"Удалить";
+    
+}
+
 
 
 @end

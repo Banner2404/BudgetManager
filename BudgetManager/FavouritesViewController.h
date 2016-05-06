@@ -12,6 +12,7 @@
 
 @interface FavouritesViewController : DatabaseViewController <NSFetchedResultsControllerDelegate>
 
+@property (weak, nonatomic) IBOutlet UIView *emptyView;
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) Wallet* selectedWallet;
 

@@ -271,6 +271,14 @@
     
 }
 
+- (void)deleteOperation:(Operation*)operation{
+    
+    [self.managedObjectContext deleteObject:operation];
+    
+    [self saveContext];
+    
+}
+
 #pragma mark - Show
 
 - (void)showOperations{

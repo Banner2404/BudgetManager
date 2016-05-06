@@ -25,6 +25,7 @@
 + (DatabaseManager*)sharedManager;
 
 - (void)deleteWallet:(Wallet*)wallet;
+- (void)deleteOperation:(Operation*)operation;
 - (Wallet*)createWalletWithName:(NSString*) name cash:(NSInteger) cashMoney bank:(NSInteger)bankMoney security:(BOOL) isSecure password:(NSString*) password;
 - (OperationType*)createOperationTypeWithName:(NSString*)name profitType:(OperationTypeProfitType)profitType;
 - (Operation*)addOperationForWallet:(Wallet*)wallet type:(OperationType*) operationType cost:(NSInteger)cost moneyType:(OperationMoneyType) moneyType profitType:(OperationProfitType)profitType date:(NSDate*)date;

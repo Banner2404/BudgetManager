@@ -238,6 +238,18 @@ static const NSInteger secInDay = 86400;
 
 }
 
+- (IBAction)actionLongPress:(UILongPressGestureRecognizer *)sender {
+    
+    if (sender.state == UIGestureRecognizerStateBegan && !self.tableView.isEditing) {
+        [self.tableView setEditing:YES animated:YES];
+
+    }else if (sender.state == UIGestureRecognizerStateBegan && self.tableView.isEditing) {
+        
+        [self.tableView setEditing:NO animated:YES];
+        
+    }
+}
+
 - (IBAction)actionDateButton:(UIButton *)sender {
     
     [self setCurrentDate];
@@ -301,6 +313,14 @@ static const NSInteger secInDay = 86400;
     [self refreshInfo];
 }
 
+#pragma mark - UITableViewDelegate
+
+- (nullable NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return @"Удалить";
+    
+}
+
 
 #pragma mark - UITableViewDataSource
 
@@ -330,16 +350,43 @@ static const NSInteger secInDay = 86400;
     UILabel* textLabel = [cell.contentView viewWithTag:2];
     textLabel.text = operation.type.name;
     UILabel* detailTextLabel = [cell.contentView viewWithTag:3];
+    
+    NSNumberFormatter* formatter = [[NSNumberFormatter alloc] init];
+    formatter.numberStyle = NSNumberFormatterCurrencyAccountingStyle;
 
     if ([operation.profitType integerValue] == OperationProfitTypeIncome) {
-        detailTextLabel.text = [NSString stringWithFormat:@"+ %@ р",operation.cost];
+        detailTextLabel.text = [NSString stringWithFormat:@"+ %@",[formatter stringFromNumber:operation.cost]];
     }else{
-        detailTextLabel.text = [NSString stringWithFormat:@"- %@ р",operation.cost];
+        detailTextLabel.text = [NSString stringWithFormat:@"- %@",[formatter stringFromNumber:operation.cost]];
     }
     detailTextLabel.textColor = [UIColor colorWithRed:53.f/256 green:147.f/256 blue:127.f/256 alpha:1];
     
     return cell;
     
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    [tableView beginUpdates];
+    Operation* operation = [self.loadedOperations objectAtIndex:indexPath.row];
+    
+    [[DatabaseManager sharedManager] deleteOperation:operation];
+    
+    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+    
+    
+    [tableView endUpdates];
+    
+    
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (tableView.isEditing) {
+        return YES;
+    }else{
+        return NO;
+    }
 }
 
 #pragma mark - UIGestureRecognizerDelegate

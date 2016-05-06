@@ -326,6 +326,14 @@ static const NSInteger secInDay = 86400;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     [self loadDailyOperations];
+    if ([self.loadedOperations count] == 0) {
+        
+        [self.emptyView setHidden:NO];
+        
+    }else{
+        [self.emptyView setHidden:YES];
+
+    }
     return [self.loadedOperations count];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{

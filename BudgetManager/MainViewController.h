@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *cashMoneyLabel;
 @property (weak, nonatomic) IBOutlet UILabel *bankMoneyLabel;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIView *emptyView;
 
 - (IBAction)actionRightSwipe:(UISwipeGestureRecognizer *)sender;
 - (IBAction)actionLeftSwipe:(UISwipeGestureRecognizer *)sender;

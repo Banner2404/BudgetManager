@@ -17,6 +17,8 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *intervalControl;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) Wallet* selectedWallet;
+@property (weak, nonatomic) IBOutlet UILabel *emptyLabel;
+@property (weak, nonatomic) IBOutlet UIView *emptyView;
 - (IBAction)actionControl:(UISegmentedControl *)sender;
 - (IBAction)actionRightSwipe:(UISwipeGestureRecognizer *)sender;
 - (IBAction)actionLeftSwipe:(UISwipeGestureRecognizer *)sender;

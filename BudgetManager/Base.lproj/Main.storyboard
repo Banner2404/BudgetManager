@@ -90,6 +90,25 @@
                                 <rect key="frame" x="0.0" y="44" width="600" height="448"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
+                                <view key="tableFooterView" hidden="YES" contentMode="scaleToFill" id="vFI-gt-ge0">
+                                    <rect key="frame" x="0.0" y="72" width="600" height="281"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="В этот день нет операций" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6na-aH-unw">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="281"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.20784313730000001" green="0.57647058819999997" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="6na-aH-unw" secondAttribute="trailing" id="80P-8b-CqI"/>
+                                        <constraint firstItem="6na-aH-unw" firstAttribute="leading" secondItem="vFI-gt-ge0" secondAttribute="leading" id="TXn-3Y-7KU"/>
+                                        <constraint firstAttribute="bottom" secondItem="6na-aH-unw" secondAttribute="bottom" id="oYD-4c-nmN"/>
+                                        <constraint firstItem="6na-aH-unw" firstAttribute="top" secondItem="vFI-gt-ge0" secondAttribute="top" id="zrw-3h-DUN"/>
+                                    </constraints>
+                                </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Cell" id="7X6-ZY-Yxz">
                                         <rect key="frame" x="0.0" y="28" width="600" height="44"/>
@@ -249,6 +268,7 @@
                         <outlet property="bankMoneyLabel" destination="6RX-d6-cz0" id="OKp-EO-0Qg"/>
                         <outlet property="cashMoneyLabel" destination="uux-dJ-Im8" id="vPb-4j-Lxt"/>
                         <outlet property="dateButton" destination="bEJ-F9-f8u" id="nyH-sH-EhQ"/>
+                        <outlet property="emptyView" destination="vFI-gt-ge0" id="09d-NT-weT"/>
                         <outlet property="tableView" destination="w8a-8O-khZ" id="Sdm-d3-hqi"/>
                         <outlet property="walletButton" destination="20l-18-eXz" id="M8d-XU-ZLB"/>
                     </connections>
@@ -1750,6 +1770,25 @@
                                 <rect key="frame" x="0.0" y="290" width="600" height="246"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <view key="tableFooterView" hidden="YES" contentMode="scaleToFill" id="nXl-d0-O8c">
+                                    <rect key="frame" x="0.0" y="72" width="600" height="175"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="У вас нет операций сегодня" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DhD-qx-HKB">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="175"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.20784313730000001" green="0.57647058819999997" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstItem="DhD-qx-HKB" firstAttribute="top" secondItem="nXl-d0-O8c" secondAttribute="top" id="HHV-Co-8VW"/>
+                                        <constraint firstAttribute="bottom" secondItem="DhD-qx-HKB" secondAttribute="bottom" id="O1A-ui-d5A"/>
+                                        <constraint firstAttribute="trailing" secondItem="DhD-qx-HKB" secondAttribute="trailing" id="Qga-gT-vYA"/>
+                                        <constraint firstItem="DhD-qx-HKB" firstAttribute="leading" secondItem="nXl-d0-O8c" secondAttribute="leading" id="UCY-pX-E0t"/>
+                                    </constraints>
+                                </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Cell" id="OKz-Yu-UD0">
                                         <rect key="frame" x="0.0" y="28" width="600" height="44"/>
@@ -1835,6 +1874,8 @@
                     <navigationItem key="navigationItem" title="Статистика" id="2vk-g9-KXC"/>
                     <connections>
                         <outlet property="diagramView" destination="xBN-kn-HWv" id="f2U-uW-cV9"/>
+                        <outlet property="emptyLabel" destination="DhD-qx-HKB" id="8RW-XF-DUo"/>
+                        <outlet property="emptyView" destination="nXl-d0-O8c" id="FEf-Ne-Lbk"/>
                         <outlet property="intervalControl" destination="yig-yg-exa" id="3g2-zL-bzB"/>
                         <outlet property="tableView" destination="pMv-b4-1VA" id="87X-4s-B0r"/>
                     </connections>

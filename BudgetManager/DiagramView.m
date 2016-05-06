@@ -39,6 +39,18 @@
     
     CGFloat angle = 0 + startAngle;
     
+    if ([self.data count] == 0){
+        
+        CGContextAddArc(context,
+                        CGRectGetMinX(diagramRect), CGRectGetMinY(diagramRect), CGRectGetWidth(diagramRect) / 2,
+                        0, 2 * M_PI,
+                        0);
+        CGContextSetLineWidth(context, lineWidth);
+        CGContextSetStrokeColorWithColor(context, [[UIColor colorWithRed:53.f/256 green:147.f/256 blue:127.f/256 alpha:0.1]CGColor]);
+
+        CGContextStrokePath(context);
+    }
+    
     for (int i = 0; i < [self.data count]; i++){
         
         CGFloat part = [[self.data objectAtIndex:i] doubleValue] / totalValue;
@@ -47,7 +59,6 @@
         
         CGFloat radius = CGRectGetWidth(diagramRect) / 2;
         
-        CGFloat width = lineWidth;
         
         if (i == self.selectedSegmentIndex) {
             radius += 5;
@@ -60,7 +71,7 @@
         
         angle = newAngle;
         
-        CGContextSetLineWidth(context, width);
+        CGContextSetLineWidth(context, lineWidth);
         
         if (i == self.selectedSegmentIndex) {
             CGContextSetStrokeColorWithColor(context, [[UIColor colorWithRed:48.f/256 green:97.f/256 blue:117.f/256 alpha:1] CGColor]);

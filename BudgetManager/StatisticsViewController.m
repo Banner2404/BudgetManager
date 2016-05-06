@@ -85,15 +85,6 @@
 }
 
 
-- (UIColor*)randomColor{
-    
-    CGFloat r = (CGFloat)(arc4random() % 256) / 255;
-    CGFloat g = (CGFloat)(arc4random() % 256) / 255;
-    CGFloat b = (CGFloat)(arc4random() % 256) / 255;
-    
-    return [UIColor colorWithRed:r green:g blue:b alpha:1];
-    
-}
 
 
 - (NSManagedObjectContext*)managedObjectContext{
@@ -126,7 +117,6 @@
                                 operationType:operationType];
         
         [diagramData addObject:[NSNumber numberWithInteger:cost]];
-        //[diagramColors addObject:[self randomColor]];
         
         [diagramColors addObject:[UIColor colorWithRed:53.f/256 green:147.f/256 blue:127.f/256 alpha:coeff * i--]];
         
@@ -242,6 +232,37 @@
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+    if ([self.filteredData count] == 0) {
+        if (self.profitType == OperationTypeProfitTypeIncome) {
+            self.emptyLabel.text = @"У вас нет приходных операций за ";
+        }else{
+            self.emptyLabel.text = @"У вас нет расходных операций за ";
+        }
+        
+        switch ([self.intervalControl selectedSegmentIndex]) {
+            case 0:
+                self.emptyLabel.text = [self.emptyLabel.text stringByAppendingString:@"день"];
+                break;
+            case 1:
+                self.emptyLabel.text = [self.emptyLabel.text stringByAppendingString:@"неделю"];
+                break;
+            case 2:
+                self.emptyLabel.text = [self.emptyLabel.text stringByAppendingString:@"месяц"];
+                break;
+
+                
+            default:
+                break;
+        }
+        
+        [self.emptyView setHidden:NO];
+
+    }else{
+        [self.emptyView setHidden:YES];
+
+    }
+    
     return [self.filteredData count];
 }
 

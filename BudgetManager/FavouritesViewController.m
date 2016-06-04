@@ -18,6 +18,10 @@
 
 @synthesize fetchedResultsController = _fetchedResultsController;
 
+static const CGFloat lightRedColor = 53.f/256;
+static const CGFloat lightGreenColor = 147.f/256;
+static const CGFloat lightBlueColor = 127.f/256;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
@@ -124,7 +128,7 @@
     }else{
         detailTextLabel.text = [NSString stringWithFormat:@"- %@",[formatter stringFromNumber:operation.cost]];
     }
-    detailTextLabel.textColor = [UIColor colorWithRed:53.f/256 green:147.f/256 blue:127.f/256 alpha:1];
+    detailTextLabel.textColor = [UIColor colorWithRed:lightRedColor green:lightGreenColor blue:lightBlueColor alpha:1];
     
     
 }

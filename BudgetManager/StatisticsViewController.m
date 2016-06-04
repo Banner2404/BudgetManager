@@ -22,6 +22,12 @@
 
 @implementation StatisticsViewController
 
+static const CGFloat lightRedColor = 53.f/256;
+static const CGFloat lightGreenColor = 147.f/256;
+static const CGFloat lightBlueColor = 127.f/256;
+static const CGFloat darkRedColor = 48.f/256;
+static const CGFloat darkGreenColor = 97.f/256;
+static const CGFloat darkBlueColor = 117.f/256;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -306,7 +312,7 @@
         detailTextLabel.text = [NSString stringWithFormat:@"- %@",[formatter stringFromNumber:cost]];
     }
     
-    detailTextLabel.textColor = [UIColor colorWithRed:53.f/256 green:147.f/256 blue:127.f/256 alpha:1];
+    detailTextLabel.textColor = [UIColor colorWithRed:lightRedColor green:lightGreenColor blue:lightBlueColor alpha:1];
     
     
 }
@@ -324,7 +330,7 @@
     
     UILabel* label = [cell viewWithTag:2];
     
-    label.textColor = [UIColor colorWithRed:48.f/256 green:97.f/256 blue:117.f/256 alpha:1];
+    label.textColor = [UIColor colorWithRed:darkRedColor green:darkGreenColor blue:darkBlueColor alpha:1];
 }
 
 

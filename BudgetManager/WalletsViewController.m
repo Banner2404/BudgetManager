@@ -146,7 +146,6 @@
     
     if ([wallet.isSecure boolValue]) {
         
-        NSLog(@"Password: %@ %@",wallet.isSecure,wallet.password);
         
         UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Пароль"
                                                                        message:@"Введите пароль"

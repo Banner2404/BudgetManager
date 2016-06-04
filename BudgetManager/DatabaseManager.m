@@ -215,9 +215,7 @@
     operation.operationID = [NSNumber numberWithInteger:operationID ++];
     
     NSInteger count = [operationType.count integerValue];
-    NSLog(@"old %ld",count);
     operationType.count = [NSNumber numberWithInteger:count+1];
-    NSLog(@"new %@",operationType.count);
 
     
     NSInteger money;

@@ -41,9 +41,7 @@ static const NSInteger datePickerHiddenHeight = 0;
     self.dateTextField.text = [formatter stringFromDate:self.selectedDate];
     
     self.navigationItem.backBarButtonItem.title = @"Назад";
-    
-    NSLog(@"cost %ld, moneyType %ld, profitType %ld\n",self.cost,self.moneyType, self.profitType);
-    
+        
     if (self.selectedType) {
         self.typeTextField.text = self.selectedType.name;
     }

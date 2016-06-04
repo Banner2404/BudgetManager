@@ -108,7 +108,6 @@
     NSInteger i = [self.filteredData count];
     CGFloat coeff = 1.f / i;
     
-    NSLog(@"coeff: %lf",coeff);
     
     for (OperationType* operationType in self.filteredData) {
         
